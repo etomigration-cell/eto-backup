@@ -1,0 +1,8 @@
+.participant-info table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.participant-info td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eee;
+}

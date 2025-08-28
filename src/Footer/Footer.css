@@ -3,6 +3,8 @@
     background: #002a54;
     color: #eee;
     padding: 24px 0 12px 0;
+    left: 0;
+    bottom: 0;
     text-align: center;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
   }

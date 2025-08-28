@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import './Login.css'; // Import the CSS file
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle authentication logic here
+    navigate('/search');
     console.log('Login attempted with:', { email, password });
   };
 

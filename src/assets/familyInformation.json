@@ -1,0 +1,24 @@
+{
+  "familyInformation": {
+    "familyId": 5001,
+    "familyName": "The Micah Program Test's Family",
+    "members": [
+      {
+        "id": 1,
+        "relationship": "Head of Household",
+        "name": "The Micah Program Test Family",
+        "isParticipant": true
+      },
+      {
+        "id": 2,
+        "relationship": "Partner",
+        "name": "Family Companion History",
+        "isParticipant": false
+      }
+    ],
+    "address": "123 Example Street, Brisbane, QLD 4000",
+    "contactNumber": "0412 345 678",
+    "primaryContact": "The Micah Program Test Family",
+    "notes": "Headed by The Micah Program Test. Includes partner and other related members."
+  }
+}

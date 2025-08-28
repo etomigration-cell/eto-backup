@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer {
+  background: #002a54;
+  text-align: center;
+  padding: 1rem 0;
+  /* Any other styling */
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

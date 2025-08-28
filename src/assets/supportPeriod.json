@@ -1,0 +1,30 @@
+{
+  "supportPeriods": [
+    {
+      "id": 1,
+      "action": "Take Action",
+      "program": "The Micah Program",
+      "subjectType": "Participant",
+      "dateLastUpdated": "4/2/2025",
+      "auditCreationDate": "4/2/2025",
+      "lastUpdatedBy": "Admin.Karthika Subramani",
+      "micahTeam": "HFG - Families to Home",
+      "aihwshs": "Yes",
+      "startDate": "04/02/2025",
+      "endDate": "14/02/2025"
+    },
+    {
+      "id": 2,
+      "action": "Take Action",
+      "program": "Family Outreach",
+      "subjectType": "Partner",
+      "dateLastUpdated": "3/1/2025",
+      "auditCreationDate": "3/1/2025",
+      "lastUpdatedBy": "Admin.Emily Douglas",
+      "micahTeam": "FOG - Family Outreach Group",
+      "aihwshs": "No",
+      "startDate": "03/01/2025",
+      "endDate": "13/01/2025"
+    }
+  ]
+}
