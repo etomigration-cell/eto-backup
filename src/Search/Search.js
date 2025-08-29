@@ -9,6 +9,12 @@ import FamilyInformation from '../FamilyInformation/FamilyInformation';
 import SupportPeriod from '../SupportPeriod/SupportPeriod';
 import family from '../assets/familyInformation.json';
 import supportPeriodData from '../assets/supportPeriod.json';
+import AddressBook from '../AddressBook/AddressBook';
+import addressBook from '../assets/addressBook.json';
+import Wdyn from '../WDYN/Wdyn';
+import wdyn from '../assets/wdyn.json';
+import Consent from '../Consent/Consent';
+import consent from '../assets/consent.json';
 
 const options = [
   { value: 'Participant', label: 'Participant' },
@@ -108,7 +114,10 @@ function SearchPage({selectedProgram, programs}) {
 <TouchPointsTabs>{{
     participantInformation: <ParticipantInformation participant={participant} />,
     familyInformation: <FamilyInformation family={family.familyInformation} />,
-    supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods}></SupportPeriod>
+    supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods}></SupportPeriod>,
+    addressBook: <AddressBook addressBook={addressBook.addressBook}></AddressBook>,
+    wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
+    consent: <Consent consent={consent.consent}></Consent>
   }}</TouchPointsTabs>
 </>}
     </div>
