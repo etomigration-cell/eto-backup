@@ -22,6 +22,7 @@ function SearchPage({selectedProgram, programs}) {
   const [results, setResults] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false);
   const [selectedParticipantID, setSelectedParticipantID] = useState(null);
+  const [participant, setParticipant] = useState(null);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -42,12 +43,27 @@ function SearchPage({selectedProgram, programs}) {
   }
 };
 
+// Assume id is the participant ID you want to fetch
+const fetchParticipant = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:3001/participant/${id}`); // Use full URL if server is on a different port
+    if (!response.ok) {
+      throw new Error('Participant not found');
+    }
+    const data = await response.json();
+    // Do something with data, e.g. set state
+    setParticipant(data);
+    setShowDashboard(true);
+  } catch (error) {
+    console.error('Error fetching participant:', error);
+    setParticipant(null);
+  }
+};
 
   const programObj = find(programs.programs, { code: selectedProgram });
   const programName = programObj ? programObj.name : '';
   console.log(selectedParticipantID);
   console.log(results)
-  const participant = find(results, { id: selectedParticipantID });
   console.log(participant)
 
   return (
@@ -95,7 +111,7 @@ function SearchPage({selectedProgram, programs}) {
       <tr key={participant.id}>
         <td><Link
       to={"/search"}
-      onClick={() => { setShowDashboard(true); setSelectedParticipantID(participant.id);}}
+      onClick={() => { fetchParticipant(participant.id)}}
     >
       {participant.name}
     </Link></td>
