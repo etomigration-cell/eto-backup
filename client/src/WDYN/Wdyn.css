@@ -1,0 +1,53 @@
+.wdyn-panel {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  margin: 8px 0;
+  background: #fbfcfd;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.panel-header {
+  padding: 8px 14px;
+  background: #eaeaea;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.08em;
+}
+
+.panel-section {
+  padding: 12px 14px;
+}
+
+.wdyn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98em;
+  margin-bottom: 8px;
+}
+
+.wdyn-table th,
+.wdyn-table td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table-action-btn {
+  background: #f7efe1;
+  color: #9b6803;
+  border: 1px solid #efc35b;
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 0.97em;
+}
+
+.wdyn-new {
+  color: #147397;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
