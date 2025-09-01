@@ -15,6 +15,9 @@ import Wdyn from '../WDYN/Wdyn';
 import wdyn from '../assets/wdyn.json';
 import Consent from '../Consent/Consent';
 import consent from '../assets/consent.json';
+import SaftyAlerts from '../SaftyAlerts/SaftyAlerts'; 
+import saftyalerts from '../assets/saftyalerts.json';
+
 
 const options = [
   { value: 'Participant', label: 'Participant' },
@@ -117,7 +120,9 @@ function SearchPage({selectedProgram, programs}) {
     supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods}></SupportPeriod>,
     addressBook: <AddressBook addressBook={addressBook.addressBook}></AddressBook>,
     wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
-    consent: <Consent consent={consent.consent}></Consent>
+    consent: <Consent consent={consent.consent}></Consent>,
+    saftyalerts: <SaftyAlerts saftyalerts={saftyalerts.saftyalerts}></SaftyAlerts>
+   
   }}</TouchPointsTabs>
 </>}
     </div>

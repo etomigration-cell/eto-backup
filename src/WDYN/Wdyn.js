@@ -2,15 +2,15 @@ import React from "react";
 import './Wdyn.css';
 
 function Wdyn({ wdyn }) {
-  if (!wdyn) return <div>No participant info available.</div>;
+  if (!wdyn) return <div>No WDYN info available.</div>;
 
   return (
-     <div className="support-periods-panel">
+     <div className="wdyn-panel">
       <div className="panel-header">
         <strong>What do you need?</strong>
       </div>
       <div className="panel-section">
-        <table className="support-periods-table">
+        <table className="wdyn-table">
           <thead>
             <tr>
               

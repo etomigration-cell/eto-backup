@@ -2,15 +2,15 @@ import React from "react";
 import './Consent.css';
 
 function Consent({ consent }) {
-  if (!consent) return <div>No participant info available.</div>;
+  if (!consent) return <div>No Consent  info available.</div>;
 
   return (
-     <div className="support-periods-panel">
+     <div className="consent-panel">
       <div className="panel-header">
         <strong>Consent</strong>
       </div>
       <div className="panel-section">
-        <table className="support-periods-table">
+        <table className="consent-table">
           <thead>
             <tr>
               

@@ -2,15 +2,15 @@ import React from "react";
 import './AddressBook.css';
 
 function AddressBook({ addressBook }) {
-  if (!addressBook) return <div>No participant info available.</div>;
+  if (!addressBook) return <div>No Address Book info available.</div>;
 
   return (
-     <div className="support-periods-panel">
+     <div className="addressbook-panel">
       <div className="panel-header">
         <strong>Address Book</strong>
       </div>
       <div className="panel-section">
-        <table className="support-periods-table">
+        <table className="addressbook-table">
           <thead>
             <tr>
               
