@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import './Login.css'; // Import the CSS file
+import React, { useState, useContext } from 'react';
+import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../App';  
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext); 
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle authentication logic here
-    navigate('/search');
-    console.log('Login attempted with:', { email, password });
+
+    
+    const success = login(email, password);
+
+    if (success) {
+      navigate('/search'); 
+    } else {
+      alert('Invalid email or password');
+    }
   };
 
   return (
