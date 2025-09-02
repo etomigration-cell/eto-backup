@@ -13,11 +13,11 @@ import Consent from 'components/Consent/Consent';
 import ServiceAndActivities from 'components/ServiceAndActivities/ServiceAndActivities';
 import family from 'assets/familyInformation.json';
 import addressBookData from 'assets/addressBook.json';
-import consent from 'assets/consent.json';
+import consentData from 'assets/consent.json';
 import safetyAlerts from 'assets/safetyAlerts.json';
 import supportPeriodData from 'assets/supportPeriod.json';
-import wdyn from 'assets/wdyn.json';
-import { supportPeriodsTableConfig, addressBookTableConfig } from 'components/DynamicTable/TableComponents'
+import wdynData from 'assets/wdyn.json';
+import { supportPeriodsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig } from 'components/DynamicTable/TableComponents'
 
 const options = [
   { value: 'Participant', label: 'Participant' },
@@ -143,8 +143,10 @@ const fetchParticipant = async (id) => {
     familyInformation: <FamilyInformation family={family.familyInformation} />,
     supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods} config={supportPeriodsTableConfig} supportPeriodsDetails={supportPeriodData.supportPeriodDetails}></SupportPeriod>,
     addressBook: <AddressBook addressBook={addressBookData.addressBook} config={addressBookTableConfig} addressBookDetails={addressBookData.addressBookDetails}></AddressBook>,
-    wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
-    consent: <Consent consent={consent.consent}></Consent>,
+    wdyn: <Wdyn wdyn={wdynData.wdyn} config={wdynTableConfig} wdynDetails={wdynData.wdynDetails}></Wdyn>,
+    consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
+   
+    //consent: <Consent consent={consent.consent}></Consent>,
     saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
     serviceAndActivities: <ServiceAndActivities serviceAndActivities={supportPeriodData.supportPeriods} config={supportPeriodsTableConfig} serviceAndActivitiesDetails={supportPeriodData.supportPeriodDetails}></ServiceAndActivities>
   }}</TouchPointsTabs>

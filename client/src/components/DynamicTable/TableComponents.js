@@ -18,6 +18,7 @@ export const supportPeriodsTableConfig = {
   ]
 };
 
+
 export const addressBookTableConfig = {
   columns: [
     { key: 'dateLastUpdated',         label: 'Date Last Updated' },
@@ -32,6 +33,40 @@ export const addressBookTableConfig = {
     { key: 'suburbandpostCode',         label: 'Suburb & Post Code' },
     { key: 'key',         label: 'Key' },
     { key: 'mobile',         label: 'Mobile' },
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]
+};
+
+export const wdynTableConfig = {
+  columns: [
+    { key: 'dashboard',         label: 'dashboard' },
+    { key: 'dateLastUpdated',     label: 'Date Last Updated' },
+    { key: 'lastUpdatedby', label: 'Last Updated By' },
+    { key: 'goalStatus', label: 'Goal Status' },
+    { key: 'scope',   label: 'Scope' },
+    { key: 'isfor',       label: 'Is For' },
+    { key: 'domain',         label: 'Domain' },
+    { key: 'goalLT',       label: 'Goal LT' },
+    { key: 'goalCrisis',         label: 'Goal Crisis' },
+    { key: 'othergoal',         label: 'Other Goal' },
+    { key: 'currentgoalstatus',         label: 'Current Goal Status' },
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]
+};
+
+export const consentTableConfig = {
+  columns: [
+    { key: 'program',         label: 'Program' },
+    { key: 'dateCompleted',     label: 'Date Completed' },
+    { key: 'lastUpdatedby', label: 'Last Updated By' },
+    { key: 'status', label: 'Status' },
+    { key: 'dateParticipantSigned',   label: 'Date Participant Signed' },
     {
       key: 'actions',
       label: 'Actions'

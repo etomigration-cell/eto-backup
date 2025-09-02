@@ -1,52 +1,70 @@
-import React from "react";
+import React, { useState } from 'react';
 import './WDYN.css';
+import { FaEye } from 'react-icons/fa';
+import Sidebar from 'components/Sidebar/Sidebar';
+import Tabs from 'components/Tabs/Tabs';
+import DynamicTable from 'components/DynamicTable/DynamicTable';
+import WdynDetailView from '../WDYNDetailView/WDYNDetailView';
 
-function Wdyn({ wdyn }) {
-  if (!wdyn) return <div>No WDYN info available.</div>;
+function Wdyn({ wdyn, config, wdynDetails }) {
+
+const [viewedData, setViewedData] = useState(null);
+
+  const handleView = (row) => {
+    console.log(wdynDetails)
+    setViewedData(wdynDetails[0]); // or load details via API, then setViewedData(result)
+  };
+
+  const handleCloseSidebar = () => setViewedData(null);
+
+  const tabs = [
+    {
+      label: 'Summary',
+      content: <WdynDetailView detail={viewedData} />
+    },
+    {
+      label: 'Other Info',
+      content: <div>Other tab content or component here</div>
+    },
+  ];
+
+  const configWithActions = {
+    ...config,
+    columns: config.columns.map(col =>
+      col.key === 'actions'
+        ? {
+            ...col,
+            render: (row) => (
+              <button
+                title="View"
+                onClick={() => handleView(row)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0.5rem'
+                }}
+              >
+                <FaEye size={20} color="currentColor" />
+              </button>
+            )
+          }
+        : col
+    )
+  };
 
   return (
-     <div className="wdyn-panel">
+    <div className="addressbook-panel">
       <div className="panel-header">
         <strong>What do you need?</strong>
       </div>
       <div className="panel-section">
-        <table className="wdyn-table">
-          <thead>
-            <tr>
-              
-              <th>Dashboard</th>
-              <th>Date Last Updated</th>
-              <th>Last Updated By</th>
-              <th>Goal Status</th>
-              <th>Scope</th>
-              <th>Is For</th>
-              <th>Domain</th>
-              <th>Goal - LT</th>
-              <th>Goal - Crisis</th>
-              <th>Other Goal</th>
-              <th>Current Goal Status</th>             
-            </tr>
-          </thead>
-          <tbody>
-            {wdyn.map(row => (
-              <tr key={row.wdynid}>
-                <td>{row.dashboard}</td>
-                <td>{row.dateLastUpdated}</td>
-                <td>{row.lastUpdatedby}</td>
-                <td>{row.goalStatus}</td>
-                <td>{row.scope}</td>
-                <td>{row.isfor}</td>                
-                <td>{row.domain}</td>
-                <td>{row.goalLT}</td>
-                <td>{row.goalCrisis}</td>
-                <td>{row.othergoal}</td>
-                <td>{row.currentgoalstatus}</td>
-                
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <DynamicTable data={wdyn} config={configWithActions} />
       </div>
+      <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `WDYN for ${viewedData.program}` : ''}>
+       <Tabs tabs={tabs} />
+      </Sidebar>
+
     </div>
   );
 }
