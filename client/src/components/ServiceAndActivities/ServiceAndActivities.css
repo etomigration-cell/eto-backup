@@ -1,4 +1,4 @@
-.support-periods-panel {
+.service-and-activities-panel {
   border: 1px solid #bbb;
   border-radius: 5px;
   margin: 8px 0;
@@ -20,23 +20,6 @@
   padding: 12px 14px;
 }
 
-.table-action-btn {
-  background: #f7efe1;
-  color: #9b6803;
-  border: 1px solid #efc35b;
-  border-radius: 4px;
-  padding: 2px 10px;
-  cursor: pointer;
-  font-size: 0.97em;
-}
-
-.support-periods-new {
-  color: #147397;
-  font-weight: bold;
-  font-size: 1.1em;
-  cursor: pointer;
-}
-
 .details-vertical-list {
   margin-top: 1.2rem;
 }
@@ -54,4 +37,3 @@
   margin-left: 0.5rem;
   color: #343a40;
 }
-

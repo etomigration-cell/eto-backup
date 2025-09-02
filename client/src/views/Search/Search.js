@@ -10,6 +10,7 @@ import AddressBook from 'components/AddressBook/AddressBook';
 import Wdyn from 'components/WDYN/WDYN';
 import SaftyAlerts from 'components/SafetyAlerts/SafetyAlerts';
 import Consent from 'components/Consent/Consent';
+import ServiceAndActivities from 'components/ServiceAndActivities/ServiceAndActivities';
 import family from 'assets/familyInformation.json';
 import addressBook from 'assets/addressBook.json';
 import consent from 'assets/consent.json';
@@ -144,7 +145,8 @@ const fetchParticipant = async (id) => {
     addressBook: <AddressBook addressBook={addressBook.addressBook}></AddressBook>,
     wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
     consent: <Consent consent={consent.consent}></Consent>,
-    saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>
+    saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
+    serviceAndActivities: <ServiceAndActivities serviceAndActivities={supportPeriodData.supportPeriods} config={supportPeriodsTableConfig} serviceAndActivitiesDetails={supportPeriodData.supportPeriodDetails}></ServiceAndActivities>
   }}</TouchPointsTabs>
 </>}
     </div>
