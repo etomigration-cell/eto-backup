@@ -12,12 +12,12 @@ import SaftyAlerts from 'components/SafetyAlerts/SafetyAlerts';
 import Consent from 'components/Consent/Consent';
 import ServiceAndActivities from 'components/ServiceAndActivities/ServiceAndActivities';
 import family from 'assets/familyInformation.json';
-import addressBook from 'assets/addressBook.json';
+import addressBookData from 'assets/addressBook.json';
 import consent from 'assets/consent.json';
 import safetyAlerts from 'assets/safetyAlerts.json';
 import supportPeriodData from 'assets/supportPeriod.json';
 import wdyn from 'assets/wdyn.json';
-import { supportPeriodsTableConfig } from 'components/DynamicTable/TableComponents'
+import { supportPeriodsTableConfig, addressBookTableConfig } from 'components/DynamicTable/TableComponents'
 
 const options = [
   { value: 'Participant', label: 'Participant' },
@@ -142,7 +142,7 @@ const fetchParticipant = async (id) => {
     participantInformation: <ParticipantInformation participant={participant} />,
     familyInformation: <FamilyInformation family={family.familyInformation} />,
     supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods} config={supportPeriodsTableConfig} supportPeriodsDetails={supportPeriodData.supportPeriodDetails}></SupportPeriod>,
-    addressBook: <AddressBook addressBook={addressBook.addressBook}></AddressBook>,
+    addressBook: <AddressBook addressBook={addressBookData.addressBook} config={addressBookTableConfig} addressBookDetails={addressBookData.addressBookDetails}></AddressBook>,
     wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
     consent: <Consent consent={consent.consent}></Consent>,
     saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
