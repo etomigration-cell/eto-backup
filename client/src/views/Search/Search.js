@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Search.css';
-import data from './Search.json'; // Adjust the path as needed
 import { find } from 'lodash';
-import TouchPointsTabs from '../TouchPointsTabs/TouchPointsTabs';
-import ParticipantInformation from '../ParticipantInformation/ParticipantInformation';
-import FamilyInformation from '../FamilyInformation/FamilyInformation';
-import SupportPeriod from '../SupportPeriod/SupportPeriod';
-import family from '../assets/familyInformation.json';
-import supportPeriodData from '../assets/supportPeriod.json';
+import TouchPointsTabs from 'components/TouchPointsTabs/TouchPointsTabs';
+import ParticipantInformation from 'components/ParticipantInformation/ParticipantInformation';
+import FamilyInformation from 'components/FamilyInformation/FamilyInformation';
+import SupportPeriod from 'components/SupportPeriod/SupportPeriod';
+import AddressBook from 'components/AddressBook/AddressBook';
+import Wdyn from 'components/WDYN/WDYN';
+import SaftyAlerts from 'components/SafetyAlerts/SafetyAlerts';
+import Consent from 'components/Consent/Consent';
+import family from 'assets/familyInformation.json';
+import addressBook from 'assets/addressBook.json';
+import consent from 'assets/consent.json';
+import safetyAlerts from 'assets/safetyAlerts.json';
+import supportPeriodData from 'assets/supportPeriod.json';
+import wdyn from 'assets/wdyn.json';
+import { supportPeriodsTableConfig } from 'components/DynamicTable/TableComponents'
 
 const options = [
   { value: 'Participant', label: 'Participant' },
@@ -132,7 +140,11 @@ const fetchParticipant = async (id) => {
 <TouchPointsTabs>{{
     participantInformation: <ParticipantInformation participant={participant} />,
     familyInformation: <FamilyInformation family={family.familyInformation} />,
-    supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods}></SupportPeriod>
+    supportPeriods: <SupportPeriod supportPeriods={supportPeriodData.supportPeriods} config={supportPeriodsTableConfig} supportPeriodsDetails={supportPeriodData.supportPeriodDetails}></SupportPeriod>,
+    addressBook: <AddressBook addressBook={addressBook.addressBook}></AddressBook>,
+    wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
+    consent: <Consent consent={consent.consent}></Consent>,
+    saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>
   }}</TouchPointsTabs>
 </>}
     </div>

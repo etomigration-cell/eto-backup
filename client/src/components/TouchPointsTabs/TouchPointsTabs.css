@@ -50,7 +50,7 @@
 }
 
 /* On small screens, hide labels and just show icons */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .tab-label {
     display: none;
   }
