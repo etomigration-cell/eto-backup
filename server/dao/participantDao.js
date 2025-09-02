@@ -1,4 +1,5 @@
 const getSqlPool = require('../db/db_connection'); // or your pool function
+const participants = require('../participantData.json');
 
 async function fetchParticipants() {
   const pool = await getSqlPool();
@@ -7,12 +8,9 @@ async function fetchParticipants() {
 }
 
 async function fetchParticipantById(id) {
-  const pool = await getSqlPool();
-  const result = await pool
-    .request()
-    .input('id', getSqlPool().VarChar, id) // or .Int if id is integer
-    .query('SELECT * FROM Participants WHERE id = @id');
-  return result.recordset[0] || null; // Return first result or null
+ // const pool = await getSqlPool();
+  const participant = participants.participants[id];
+  return participant;
 }
 
 module.exports = {
