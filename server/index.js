@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const participantService = require('./services/participantService');
 const participants = require('./participantData.json');
 const PORT = 3001;
 app.use(cors());
@@ -9,14 +10,17 @@ app.get('/', (req, res) => {
   res.send(participants.participants);
 });
 
-app.get('/participant/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  console.log('Requested ID:', id);
-  const participant = participants.participants.find(p => Number(p.id) === id);
-  if (participant) {
-    res.json(participant);
-  } else {
-    res.status(404).json({ error: 'Participant not found' });
+app.get('/participant/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const participant = await participantService.getParticipantById(id);
+    if (participant) {
+      res.json(participant);
+    } else {
+      res.status(404).json({ error: 'Participant not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 });
 
