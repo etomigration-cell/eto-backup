@@ -1,7 +1,7 @@
 {
   "addressBook": [
     {
-      "addressid": 1,
+      "id": 1,
       "dateLastUpdated": "4/2/2025",
       "status":"Current",
       "whoisthis": "Participant's Own",
@@ -16,7 +16,7 @@
       "mobile": "0411777"   
     },
     {
-      "addressid": 2,
+      "id": 2,
       "dateLastUpdated": "4/6/2025",
       "status":"Current",
       "whoisthis": "Participant's Own",
@@ -30,5 +30,24 @@
       "key":26,
       "mobile":"0411778"
     }
-  ]
+  ],
+  "addressBookDetails": [
+    {
+      "id": 1,
+  "program": "The Micah Program",
+  "date": "2/16/2025",
+  "micahTeam": "HFG - Families to Home",
+  "aihwSubmission": "Yes",
+  "aihwOrganizationId": "30190C",
+  "familiesCrisis": true,
+  "doNotEditAihwShsReporting": null,
+  "dateAssistanceRequested": "3/02/2025",
+  "supportPeriodStartDate": "3/02/2025",
+  "participantSpeaksLanguageOtherThanEnglishAtHome": "Yes, Other Language",
+  "languageSpokenAtHome": "Latin",
+  "englishProficiency": "Well",
+  "formalReferralType": "Telephone/crisis referral agency",
+  "receivedServiceFromTeamInPast": null
+}
+]
 }
