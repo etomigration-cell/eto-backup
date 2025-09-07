@@ -1,8 +1,70 @@
-.participant-info table {
-  border-collapse: collapse;
-  margin-top: 1rem;
+.ui-main {
+  display: flex; /* Side by side layout */
 }
-.participant-info td {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #eee;
+
+.participant-content {
+  flex: 1;
+  margin-left: 2rem;
+  display: flex;
+  align-items: flex-start;
+}
+.participant-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  min-width: 400px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.card-header img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #eee;
+  margin-right: 1rem;
+}
+
+.participant-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.participant-info-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.participant-info-label {
+  min-width: 120px; /* Adjust value for consistent colon alignment */
+  font-weight: bold;
+}
+
+.participant-info-colon {
+  margin-right: 0.75em;
+}
+
+.participant-info-value {
+  flex: 1;
+}
+
+.card-footer {
+  margin-top: 1em;
+  text-align: left;
+}
+
+.view-full-profile-button {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  border: none;
+  background: #002a54;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import './AddressBook.css';
+import "./AddressBook.css";
 
 function AddressBook({ addressBook }) {
   if (!addressBook) return <div>No Address Book info available.</div>;
 
   return (
-     <div className="addressbook-panel">
+    <div className="addressbook-panel">
       <div className="panel-header">
         <strong>Address Book</strong>
       </div>
@@ -13,7 +13,6 @@ function AddressBook({ addressBook }) {
         <table className="addressbook-table">
           <thead>
             <tr>
-              
               <th>Date Last Updated</th>
               <th>Status</th>
               <th>Who is this</th>
@@ -29,14 +28,14 @@ function AddressBook({ addressBook }) {
             </tr>
           </thead>
           <tbody>
-            {addressBook.map(row => (
+            {addressBook.map((row) => (
               <tr key={row.addressid}>
                 <td>{row.dateLastUpdated}</td>
                 <td>{row.status}</td>
                 <td>{row.whoisthis}</td>
                 <td>{row.name}</td>
                 <td>{row.type}</td>
-                <td>{row.accommodation}</td>                
+                <td>{row.accommodation}</td>
                 <td>{row.aptunit}</td>
                 <td>{row.streetNo}</td>
                 <td>{row.streetName}</td>

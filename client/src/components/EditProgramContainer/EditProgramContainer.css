@@ -1,7 +1,7 @@
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(40,48,60,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,47 +9,69 @@
 }
 
 .modal-content {
-  background: #F2EFEF;
-  padding: 2rem;
-  border-radius: 8px;
-  min-width: 320px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: #fff;
+  padding: 2.3em 2.2em 1.2em 2.2em;
+  border-radius: 16px;
+  min-width: 340px;
+  box-shadow: 0 6px 32px rgba(45,52,70,0.12);
+  max-width: 95vw;
 }
 
 .close-btn {
-  margin-top: 1rem;
-  background: rgba(0,0,0,0.4);
+  margin-top: 1.5rem;
+  background: #adb5bd;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.65em 1.5em;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1em;
   cursor: pointer;
+  transition: background 0.19s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.close-btn:hover,
+.close-btn:focus {
+  background: #868e96;
+  outline: none;
 }
 
 .program-list {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 0.25rem;
-  margin-top: 0.5rem;
+  gap: 0.25em;
+  margin-bottom: 2em;
+  margin-top: 1em;
 }
 
 .program-btn {
-  padding: 0;       /* top/bottom, left/right */
-  background: #F2EFEF;
-  border: none;
-  border-left: none;
-  border-right: none;
+  padding: 0.25em;
+  background: #f7f9fc;
+  border: 1.5px solid #e0e5ed;
+  border-radius: 7px;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.06em;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.18s, border-color 0.18s, color 0.19s;
+  outline: none;
+}
+
+.program-btn.selected,
+.program-btn:focus {
+  background: #e3f0ff;
+  border-color: #002a54;
+  color: #002a54;
+  font-weight: 700;
 }
 
 .program-btn:hover {
-  background: rgba(0,0,0,0.4);
-  color: rgba(14, 3, 3, 0.868);
+  background: #e9f4ff;
+  border-color: #002a54;
 }
 
-
-
+.program-btn + .program-btn {
+  margin-top: 2px;
+}

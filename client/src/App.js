@@ -1,12 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
-import Login from 'views/Login/Login';
-import Header from 'components/Header/Header';
-import Footer from 'components/Footer/Footer';
-import Search from 'views/Search/Search';
-import programs from 'assets/programs.json';
-import './App.css';
-
+import React, { useState, useContext } from "react";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import Login from "views/Login/Login";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import Search from "views/Search/Search";
+import programs from "assets/programs.json";
+import "./App.css";
 
 const AuthContext = React.createContext();
 
@@ -17,10 +16,9 @@ function PrivateRoute({ children }) {
 
 function App() {
   const [selectedProgram, setSelectedProgram] = useState("762");
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
 
   const login = (username, password) => {
-   
     if (username === "admin@admin.com" && password === "1234") {
       setUser({ name: username });
       return true;
@@ -38,7 +36,6 @@ function App() {
     <AuthContext.Provider value={{ user, login, logout }}>
       <div className="app-container">
         <BrowserRouter>
-          {/* Show header/footer only when logged in */}
           {user && (
             <Header
               selectedProgram={selectedProgram}
@@ -61,8 +58,10 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              {/* Default route */}
-              <Route path="*" element={<Navigate to={user ? "/search" : "/login"} />} />
+              <Route
+                path="*"
+                element={<Navigate to={user ? "/search" : "/login"} />}
+              />
             </Routes>
           </div>
 

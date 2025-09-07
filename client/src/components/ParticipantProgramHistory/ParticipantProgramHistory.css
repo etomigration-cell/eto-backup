@@ -1,0 +1,27 @@
+.program-history-table-wrapper {
+  margin: 1rem 0;
+}
+
+.program-history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.program-history-table th,
+.program-history-table td {
+  padding: 0.6rem 1rem;
+  border: 1px solid #e4e4e4;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.program-history-table th {
+  background: #f5f8fa;
+  font-weight: bold;
+}
+
+.empty-history {
+  padding: 1rem;
+  color: #666;
+  font-style: italic;
+}

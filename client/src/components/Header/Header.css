@@ -1,46 +1,49 @@
 .header {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 12px 40px;
-  }
-  
-  .header-logo-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    height: 40px;
-    width: auto;
-  }
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 12px 40px;
+}
 
-  .selected-program {
-    padding: 0.5rem;
-  }
+.header-logo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav a {
-    margin-left: 24px;
-    color: #002a54;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s;
-  }
-  
-  .nav a:hover {
-    color: #002a54;
-  }
+.logo {
+  height: 40px;
+  width: auto;
+}
 
-  .modal-overlay {
+.selected-program {
+  padding: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav a {
+  margin-left: 24px;
+  color: #002a54;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #002a54;
+}
+
+.modal-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +68,7 @@
   cursor: pointer;
 }
 
-.logout-btn{
+.logout-btn {
   padding: 0.5rem 0.5rem;
   margin-left: 5px;
   font-size: 1rem;
@@ -75,7 +78,7 @@
   background: #002a54;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s;  
+  transition: background 0.2s;
 }
 
 .login-btn {

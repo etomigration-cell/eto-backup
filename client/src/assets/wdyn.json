@@ -3,32 +3,30 @@
     {
       "wdynid": 1,
       "dashboard": "what you need? (support plan goal) dashboard",
-      "dateLastUpdated":"19/03/2025",
+      "dateLastUpdated": "19/03/2025",
       "lastUpdatedby": "Admin. Emily Douglas",
-      "goalStatus":"Ongoing",
-      "scope":"LongerTerm",
-      "isfor":"The Entire family of this headof household",
-      "domain":"family functioning / interactions",
-      "goalLT":"To reduce stress in our family environment",
-      "goalCrisis":"sustain my tenancy",
-      "othergoal":"4102",
-      "currentgoalstatus":"In Progress"
-      
+      "goalStatus": "Ongoing",
+      "scope": "LongerTerm",
+      "isfor": "The Entire family of this headof household",
+      "domain": "family functioning / interactions",
+      "goalLT": "To reduce stress in our family environment",
+      "goalCrisis": "sustain my tenancy",
+      "othergoal": "4102",
+      "currentgoalstatus": "In Progress"
     },
     {
       "wdynid": 2,
       "dashboard": "what you need? (support plan goal) dashboard",
-      "dateLastUpdated":"19/03/2025",
+      "dateLastUpdated": "19/03/2025",
       "lastUpdatedby": "Admin. Emily Douglas",
-      "goalStatus":"Ongoing",
-      "scope":"LongerTerm",
-      "isfor":"The Entire family of this headof household",
-      "domain":"family functioning / interactions",
-      "goalLT":"To reduce stress in our family environment",
-      "goalCrisis":"sustain my tenancy",
-      "othergoal":"4105",
-      "currentgoalstatus":"In Progress"
-      
+      "goalStatus": "Ongoing",
+      "scope": "LongerTerm",
+      "isfor": "The Entire family of this headof household",
+      "domain": "family functioning / interactions",
+      "goalLT": "To reduce stress in our family environment",
+      "goalCrisis": "sustain my tenancy",
+      "othergoal": "4105",
+      "currentgoalstatus": "In Progress"
     }
   ]
 }

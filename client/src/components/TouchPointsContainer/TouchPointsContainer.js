@@ -8,6 +8,6 @@
     collaboration: <CollaborationComponent />,
     support: <SupportSessionComponent />,
     health: <HealthSessionComponent />,
-    brokerage: <BrokerageComponent />
+    brokerage: <BrokerageComponent />,
   }}
-</SideTabs>
+</SideTabs>;

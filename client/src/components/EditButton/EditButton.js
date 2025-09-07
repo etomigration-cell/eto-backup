@@ -1,5 +1,5 @@
-import { FaPencilAlt } from 'react-icons/fa'; // Font Awesome Pencil
-import './EditButton.css';
+import { FaPencilAlt } from "react-icons/fa"; // Font Awesome Pencil
+import "./EditButton.css";
 
 function EditButton({ onClick }) {
   return (

@@ -1,21 +1,61 @@
-.tabs-header {
+.tabs {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #e0e7ef;
+  background: none;
 }
-.tabs-header button {
-  padding: 0.5rem 1.2rem;
+
+/* Tabs Header (Buttons) */
+.tab-buttons {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1.5px solid #e0e7ef;
+  background: #f5f8fa;
+  padding-left: 0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+
+.tab-buttons button,
+.tab-buttons .tab {
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
+  color: #334;
+  padding: 0.85em 1.8em;
+  font-size: 1em;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 1rem;
+  transition:
+    color 0.18s,
+    background 0.21s;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  margin: 0;
 }
-.tabs-header button.active {
-  border-bottom: 2px solid #002a54;
-  font-weight: bold;
+
+.tab-buttons button.active {
   color: #002a54;
-  background: #f5faff;
+  border-bottom: 2px solid #002a54;
+  background: #f5f8fa;
 }
-.tabs-content {
-  padding: 1rem 0 0 0;
+
+.tab-buttons button:not(:last-child) {
+  margin-right: 2px;
+}
+
+/* Tab Content Panel */
+.tab-content {
+  padding: 1.2em 1em 0.85em 1em;
+  margin-left: 0;
+}
+
+@media (max-width: 600px) {
+  .tab-buttons {
+    flex-direction: column;
+    padding-left: 0;
+  }
+  .tab-content {
+    padding: 1em 0.5em;
+  }
 }

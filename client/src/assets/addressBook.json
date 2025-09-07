@@ -3,32 +3,32 @@
     {
       "addressid": 1,
       "dateLastUpdated": "4/2/2025",
-      "status":"Current",
+      "status": "Current",
       "whoisthis": "Participant's Own",
-      "name":"Self",
-      "type":"Car",
-      "accommodation":"Southern Cross Motel",
-      "aptunit":45,
-      "streetNo":"",
-      "streetName":"test",
-      "suburbandpostCode":"4102",
-      "key":26,
-      "mobile": "0411777"   
+      "name": "Self",
+      "type": "Car",
+      "accommodation": "Southern Cross Motel",
+      "aptunit": 45,
+      "streetNo": "",
+      "streetName": "test",
+      "suburbandpostCode": "4102",
+      "key": 26,
+      "mobile": "0411777"
     },
     {
       "addressid": 2,
       "dateLastUpdated": "4/6/2025",
-      "status":"Current",
+      "status": "Current",
       "whoisthis": "Participant's Own",
-      "name":"Self",
-      "type":"Car",
-      "accommodation":"Acacia Ridge Motel",
-      "apt/unit":45,
-      "streetNo":"",
-      "streetName":"test",
-      "suburbandpostCode":"4102",
-      "key":26,
-      "mobile":"0411778"
+      "name": "Self",
+      "type": "Car",
+      "accommodation": "Acacia Ridge Motel",
+      "apt/unit": 45,
+      "streetNo": "",
+      "streetName": "test",
+      "suburbandpostCode": "4102",
+      "key": 26,
+      "mobile": "0411778"
     }
   ]
 }

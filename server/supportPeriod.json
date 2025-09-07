@@ -1,0 +1,50 @@
+{
+  "supportPeriods": [
+    {
+      "id": 1,
+      "action": "Take Action",
+      "program": "The Micah Program",
+      "subjectType": "Participant",
+      "dateLastUpdated": "4/2/2025",
+      "auditCreationDate": "4/2/2025",
+      "lastUpdatedBy": "Admin.Karthika Subramani",
+      "micahTeam": "HFG - Families to Home",
+      "aihwshs": "Yes",
+      "startDate": "04/02/2025",
+      "endDate": "14/02/2025"
+    },
+    {
+      "id": 2,
+      "action": "Take Action",
+      "program": "Family Outreach",
+      "subjectType": "Partner",
+      "dateLastUpdated": "3/1/2025",
+      "auditCreationDate": "3/1/2025",
+      "lastUpdatedBy": "Admin.Emily Douglas",
+      "micahTeam": "FOG - Family Outreach Group",
+      "aihwshs": "No",
+      "startDate": "03/01/2025",
+      "endDate": "13/01/2025"
+    }
+  ],
+  "supportPeriodDetails": [
+    {
+      "id": 1,
+  "program": "The Micah Program",
+  "date": "2/16/2025",
+  "micahTeam": "HFG - Families to Home",
+  "aihwSubmission": "Yes",
+  "aihwOrganizationId": "30190C",
+  "familiesCrisis": true,
+  "doNotEditAihwShsReporting": null,
+  "dateAssistanceRequested": "3/02/2025",
+  "supportPeriodStartDate": "3/02/2025",
+  "participantSpeaksLanguageOtherThanEnglishAtHome": "Yes, Other Language",
+  "languageSpokenAtHome": "Latin",
+  "englishProficiency": "Well",
+  "formalReferralType": "Telephone/crisis referral agency",
+  "receivedServiceFromTeamInPast": null
+}
+
+  ]
+}

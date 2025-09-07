@@ -1,11 +1,11 @@
 import React from "react";
-import './WDYN.css';
+import "./WDYN.css";
 
 function Wdyn({ wdyn }) {
   if (!wdyn) return <div>No WDYN info available.</div>;
 
   return (
-     <div className="wdyn-panel">
+    <div className="wdyn-panel">
       <div className="panel-header">
         <strong>What do you need?</strong>
       </div>
@@ -13,7 +13,6 @@ function Wdyn({ wdyn }) {
         <table className="wdyn-table">
           <thead>
             <tr>
-              
               <th>Dashboard</th>
               <th>Date Last Updated</th>
               <th>Last Updated By</th>
@@ -24,24 +23,23 @@ function Wdyn({ wdyn }) {
               <th>Goal - LT</th>
               <th>Goal - Crisis</th>
               <th>Other Goal</th>
-              <th>Current Goal Status</th>             
+              <th>Current Goal Status</th>
             </tr>
           </thead>
           <tbody>
-            {wdyn.map(row => (
+            {wdyn.map((row) => (
               <tr key={row.wdynid}>
                 <td>{row.dashboard}</td>
                 <td>{row.dateLastUpdated}</td>
                 <td>{row.lastUpdatedby}</td>
                 <td>{row.goalStatus}</td>
                 <td>{row.scope}</td>
-                <td>{row.isfor}</td>                
+                <td>{row.isfor}</td>
                 <td>{row.domain}</td>
                 <td>{row.goalLT}</td>
                 <td>{row.goalCrisis}</td>
                 <td>{row.othergoal}</td>
                 <td>{row.currentgoalstatus}</td>
-                
               </tr>
             ))}
           </tbody>
