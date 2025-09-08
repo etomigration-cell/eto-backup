@@ -1,6 +1,14 @@
 function DynamicTable({ data, config, className }) {
   console.log(data);
   console.log(config);
+  if (!data || data.length === 0) {
+    return (
+      <div className="no-record">
+        No records to display.
+      </div>
+    );
+  }
+  
   return (
     <table className={className}>
       <thead>
@@ -12,10 +20,10 @@ function DynamicTable({ data, config, className }) {
       </thead>
       <tbody>
         {data?.map((row) => (
-          <tr key={row.id}>
+          <tr key={row?.id}>
             {config.columns.map((col) => (
-              <td key={col.key}>
-                {col.render ? col.render(row) : row[col.key]}
+              <td key={col?.key}>
+                {col?.render ? col.render(row) : row[col?.key]}
               </td>
             ))}
           </tr>

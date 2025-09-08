@@ -76,7 +76,7 @@ function SupportPeriods({ participant, config }) {
         <strong>Support Periods</strong>
       </div>
       <div className="panel-section">
-        <DynamicTable data={[supportPeriod]} config={configWithActions} />
+        <DynamicTable data={supportPeriod ? [supportPeriod] : []} config={configWithActions} />
       </div>
       <Sidebar
         visible={!!viewedData}
