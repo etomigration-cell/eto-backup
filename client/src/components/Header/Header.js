@@ -42,9 +42,12 @@ function Header({ selectedProgram, setSelectedProgram, programs }) {
           ) : (
             <div className="user-actions">
               <span className="welcome-text">Welcome, {user.name}</span>
+              
+             
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
+               <span>Staff</span>
             </div>
           )}
         </nav>
