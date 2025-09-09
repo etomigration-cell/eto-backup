@@ -3,7 +3,7 @@ import './WDYN.css';
 import { FaEye } from 'react-icons/fa';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Tabs from 'components/Tabs/Tabs';
-import DynamicTable from 'components/DynamicTable/DynamicTable';
+import DynamicTable from 'common/DynamicTable/DynamicTable';
 import WdynDetailView from '../WDYNDetailView/WDYNDetailView';
 
 function Wdyn({ wdyn, config, wdynDetails }) {

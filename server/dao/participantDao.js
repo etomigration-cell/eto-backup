@@ -3,8 +3,7 @@ const participants = require('../participantData.json');
 const participantAuditReports = require('../participantAuditReports.json');
 const participantProgramHistory = require('../participantProgramHistory.json');
 const familyDetails = require('../familyDetails.json');
-const supportPeriod = require('../supportPeriod.json')
-const { get } = require('lodash');
+const supportPeriod = require('../supportPeriod.json');
 
 async function getParticipants() {
   const pool = await getSqlPool();
