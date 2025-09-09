@@ -77,8 +77,9 @@
   border: none;
   background: #002a54;
   color: #fff;
-  cursor: pointer;
-  transition: background 0.2s;
+  cursor: poin
+  transition: background 0.2s;  
+  float:right;
 }
 
 .login-btn {
@@ -91,4 +92,12 @@
   color: #fff;
   cursor: pointer;
   transition: background 0.2s;
+  
+}
+.welcome-text{
+  font-weight: bold;
+  
+}
+.nxtline{
+    display: block;
 }
