@@ -15,7 +15,7 @@ import consent from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
 import supportPeriodData from "assets/supportPeriod.json";
 import wdyn from "assets/wdyn.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 
@@ -132,18 +132,10 @@ function SearchPage({ selectedProgram, programs }) {
                   participant={participant}
                 ></SupportPeriod>
               ),
-              addressBook: (
-                <AddressBook
-                  addressBook={addressBook.addressBook}
-                ></AddressBook>
-              ),
-              wdyn: <Wdyn wdyn={wdyn.wdyn}></Wdyn>,
-              consent: <Consent consent={consent.consent}></Consent>,
-              saftyalerts: (
-                <SaftyAlerts
-                  saftyalerts={safetyAlerts.saftyalerts}
-                ></SaftyAlerts>
-              ),
+              addressBook: <AddressBook addressBook={addressBookData.addressBook} config={addressBookTableConfig} addressBookDetails={addressBookData.addressBookDetails}></AddressBook>,
+              wdyn: <Wdyn wdyn={wdynData.wdyn} config={wdynTableConfig} wdynDetails={wdynData.wdynDetails}></Wdyn>,
+              consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
+              saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
                 <ServiceAndActivities
                   serviceAndActivities={supportPeriodData.supportPeriods}

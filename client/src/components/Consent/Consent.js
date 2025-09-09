@@ -1,8 +1,58 @@
-import React from "react";
-import "./Consent.css";
+import React, { useState } from 'react';
+import './Consent.css';
+import { FaEye } from 'react-icons/fa';
+import Sidebar from 'components/Sidebar/Sidebar';
+import Tabs from 'components/Tabs/Tabs';
+import DynamicTable from 'components/DynamicTable/DynamicTable';
+import ConsentDetailView from '../WDYNDetailView/WDYNDetailView';
 
-function Consent({ consent }) {
-  if (!consent) return <div>No Consent info available.</div>;
+
+function Consent({ consent, config, consentDetails }) {
+  
+  const [viewedData, setViewedData] = useState(null);
+
+  const handleView = (row) => {
+    console.log(consentDetails)
+    setViewedData(consentDetails[0]); // or load details via API, then setViewedData(result)
+  };
+
+  const handleCloseSidebar = () => setViewedData(null);
+
+  const tabs = [
+    {
+      label: 'Summary',
+      content: <ConsentDetailView detail={viewedData} />
+    },
+    {
+      label: 'Other Info',
+      content: <div>Other tab content or component here</div>
+    },
+  ];
+
+  const configWithActions = {
+    ...config,
+    columns: config.columns.map(col =>
+      col.key === 'actions'
+        ? {
+            ...col,
+            render: (row) => (
+              <button
+                title="View"
+                onClick={() => handleView(row)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0.5rem'
+                }}
+              >
+                <FaEye size={20} color="currentColor" />
+              </button>
+            )
+          }
+        : col
+    )
+  };
 
   return (
     <div className="consent-panel">
@@ -10,29 +60,12 @@ function Consent({ consent }) {
         <strong>Consent</strong>
       </div>
       <div className="panel-section">
-        <table className="consent-table">
-          <thead>
-            <tr>
-              <th>Program</th>
-              <th>Date Completed</th>
-              <th>Last Updated By</th>
-              <th>Status</th>
-              <th>Date Participant Signed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {consent.map((row) => (
-              <tr key={row.consentid}>
-                <td>{row.program}</td>
-                <td>{row.dateCompleted}</td>
-                <td>{row.lastUpdatedby}</td>
-                <td>{row.status}</td>
-                <td>{row.dateParticipantSigned}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <DynamicTable data={consent} config={configWithActions} />
       </div>
+      <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `consent for ${viewedData.program}` : ''}>
+       <Tabs tabs={tabs} />
+      </Sidebar>
+
     </div>
   );
 }
