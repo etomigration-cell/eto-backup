@@ -1,24 +1,23 @@
-import React, { useState, useContext } from 'react';
-import './Login.css';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from 'App';  
+import React, { useState, useContext } from "react";
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "App";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    
     const success = login(email, password);
 
     if (success) {
-      navigate('/search'); 
+      navigate("/search");
     } else {
-      alert('Invalid email or password');
+      alert("Invalid email or password");
     }
   };
 

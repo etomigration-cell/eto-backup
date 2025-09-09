@@ -1,11 +1,11 @@
 import React from "react";
-import './SafetyAlerts.css';
+import "./SafetyAlerts.css";
 
 function SaftyAlerts({ saftyalerts }) {
-  if (!saftyalerts) return <div>No Safty Alerts  info available.</div>;
+  if (!saftyalerts) return <div>No Safty Alerts info available.</div>;
 
   return (
-     <div className="saftyalerts-panel">
+    <div className="saftyalerts-panel">
       <div className="panel-header">
         <strong>Consent</strong>
       </div>
@@ -13,19 +13,16 @@ function SaftyAlerts({ saftyalerts }) {
         <table className="saftyalerts-table">
           <thead>
             <tr>
-              
-               <th>Date Last Updated</th>
+              <th>Date Last Updated</th>
               <th>Micah Team</th>
               <th>External Risk</th>
               <th>Category</th>
               <th>Type</th>
-
-                      
             </tr>
           </thead>
           <tbody>
-            {saftyalerts.map(row => (
-               <tr key={row.saftyalertsid}>
+            {saftyalerts.map((row) => (
+              <tr key={row.saftyalertsid}>
                 <td>{row.dateLastUpdated}</td>
                 <td>{row.micahTeam}</td>
                 <td>{row.externalRisk}</td>

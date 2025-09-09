@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
-import './Header.css';
-import logo from 'images/logo-MicahProjects.svg';
-import Login from 'views/Login/Login';
-import EditProgramContainer from 'components/EditProgramContainer/EditProgramContainer';
-import { find } from 'lodash';
-import { AuthContext } from 'App'; 
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import "./Header.css";
+import logo from "images/logo-MicahProjects.svg";
+import Login from "views/Login/Login";
+import EditProgramContainer from "components/EditProgramContainer/EditProgramContainer";
+import { find } from "lodash";
+import { AuthContext } from "App";
+import { useNavigate } from "react-router-dom";
 
 function Header({ selectedProgram, setSelectedProgram, programs }) {
   const [showLogin, setShowLogin] = useState(false);
@@ -13,11 +13,11 @@ function Header({ selectedProgram, setSelectedProgram, programs }) {
   const navigate = useNavigate();
 
   const programObj = find(programs.programs, { code: selectedProgram });
-  const programName = programObj ? programObj.name : '';
+  const programName = programObj ? programObj.name : "";
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -57,10 +57,7 @@ function Header({ selectedProgram, setSelectedProgram, programs }) {
         <div className="modal-overlay" onClick={() => setShowLogin(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <Login />
-            <button
-              className="close-btn"
-              onClick={() => setShowLogin(false)}
-            >
+            <button className="close-btn" onClick={() => setShowLogin(false)}>
               Close
             </button>
           </div>

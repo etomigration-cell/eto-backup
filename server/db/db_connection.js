@@ -1,19 +1,18 @@
 const sql = require('mssql');
 
 const config = {
-  server: 'SATHISHRAMNATH\\MSSQLSERVER01',          // From "Server name"
-  database: 'Test_DB',                               // Specify your database
-  options: {
-    encrypt: true,                                   // Encryption is mandatory
-    trustServerCertificate: true                     // Trust server certificate is enabled
-  },
+  server: 'nkmanre2rtoenfr6dkk3gsjhb4-y3n5fc7aubuuja37yhj7e3xgli.datawarehouse.fabric.microsoft.com',
+  database: 'lh_bz_eto_migration',
   authentication: {
-    type: 'ntlm',                                   // NTLM for Windows Authentication
+    type: 'azure-active-directory-password',
     options: {
-      domain: 'SATHISHRAMNATH',                     // Taken from user/domain in User name
-      userName: 'SATHISHRAMNATH91961',              // Taken from User name field
-      password: '1811'                              // Use actual password for the account
+      userName: 'karthika.subramani@micahprojects.org.au',
+      password: 'Taari@0109'
     }
+  },
+  options: {
+    encrypt: true,
+    trustServerCertificate: false  
   }
 };
 
@@ -22,17 +21,24 @@ const config = {
 // Exported function to get the pool
 async function getSqlPool() {
   try {
-    // Check if pool already exists (singleton pattern)
+    // If pool already exists, use it
     if (sql.globalConnectionPool) {
       return sql.globalConnectionPool;
     }
 
-    // Create and store the connection pool
+    console.log('Connecting, pool is (should be undefined):', sql.globalConnectionPool);
+    console.log('Connecting config:', JSON.stringify(config, null, 2));
+    // Connect and store pool for future reuse
+    if (config.authentication && config.authentication.options) {
+  delete config.authentication.options.clientId;
+}
     const pool = await sql.connect(config);
-    console.log(pool)
-    sql.globalConnectionPool = pool; // Store pool for reuse
-    return pool;
+   sql.globalConnectionPool = pool;
+   console.log('Pool established:', sql.globalConnectionPool); // Should show pool object
+
+    return 'pool';
   } catch (error) {
+    console.error('SQL pool connection failed:', error);
     throw error;
   }
 }

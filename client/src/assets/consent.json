@@ -3,21 +3,18 @@
     {
       "id": 1,
       "program": "The micah Program",
-      "dateCompleted":"14/04/2025",
+      "dateCompleted": "14/04/2025",
       "lastUpdatedby": "Admin. Emily Douglas",
-      "status":"Expired",
-      "dateParticipantSigned":"LongerTerm"
-      
-      
+      "status": "Expired",
+      "dateParticipantSigned": "LongerTerm"
     },
     {
       "id": 2,
       "program": "The micah Program",
-      "dateCompleted":"14/04/2025",
+      "dateCompleted": "14/04/2025",
       "lastUpdatedby": "Admin. Emily Douglas",
-      "status":"Expired",
-      "dateParticipantSigned":"LongerTerm"
-      
+      "status": "Expired",
+      "dateParticipantSigned": "LongerTerm"
     }
   ],
     "consentDetails": [

@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { FaEye } from 'react-icons/fa';
-import DynamicTable from 'components/DynamicTable/DynamicTable';
-import Sidebar from 'components/Sidebar/Sidebar';
-import Tabs from 'components/Tabs/Tabs';
-import ServiceAndActivitiesDetailView from 'components/ServiceAndActivitiesDetailView/ServiceAndActivitiesDetailView';
-import './ServiceAndActivities.css';
+import React, { useState } from "react";
+import { FaEye } from "react-icons/fa";
+import DynamicTable from "common/DynamicTable/DynamicTable";
+import Sidebar from "components/Sidebar/Sidebar";
+import Tabs from "components/Tabs/Tabs";
+import ServiceAndActivitiesDetailView from "components/ServiceAndActivitiesDetailView/ServiceAndActivitiesDetailView";
+import "./ServiceAndActivities.css";
 
-
-function ServiceAndActivities({ serviceAndActivities, config, serviceAndActivitiesDetails }) {
+function ServiceAndActivities({
+  serviceAndActivities,
+  config,
+  serviceAndActivitiesDetails,
+}) {
   const [viewedData, setViewedData] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const [tabData, setTabData] = useState({});
 
   const handleView = (row) => {
     setViewedData(serviceAndActivitiesDetails[0]);
@@ -18,19 +23,19 @@ function ServiceAndActivities({ serviceAndActivities, config, serviceAndActiviti
 
   const tabs = [
     {
-      label: 'Support Service Activities',
-      content: <ServiceAndActivitiesDetailView detail={viewedData} />
+      label: "Support Service Activities",
+      content: <ServiceAndActivitiesDetailView detail={viewedData} />,
     },
     {
-      label: 'Any Additional Needs Identified',
-      content: <ServiceAndActivitiesDetailView detail={viewedData} />
+      label: "Any Additional Needs Identified",
+      content: <ServiceAndActivitiesDetailView detail={viewedData} />,
     },
   ];
 
   const configWithActions = {
     ...config,
-    columns: config.columns.map(col =>
-      col.key === 'actions'
+    columns: config.columns.map((col) =>
+      col.key === "actions"
         ? {
             ...col,
             render: (row) => (
@@ -38,18 +43,18 @@ function ServiceAndActivities({ serviceAndActivities, config, serviceAndActiviti
                 title="View"
                 onClick={() => handleView(row)}
                 style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '0.5rem'
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "0.5rem",
                 }}
               >
                 <FaEye size={20} color="currentColor" />
               </button>
-            )
+            ),
           }
-        : col
-    )
+        : col,
+    ),
   };
 
   return (
@@ -60,10 +65,17 @@ function ServiceAndActivities({ serviceAndActivities, config, serviceAndActiviti
       <div className="panel-section">
         <DynamicTable data={serviceAndActivities} config={configWithActions} />
       </div>
-      <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `Service And Activities for the ${viewedData.program}` : ''}>
-       <Tabs tabs={tabs} />
+      <Sidebar
+        visible={!!viewedData}
+        onClose={handleCloseSidebar}
+        title={
+          viewedData
+            ? `Service And Activities for the ${viewedData.program}`
+            : ""
+        }
+      >
+        <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </Sidebar>
-
     </div>
   );
 }

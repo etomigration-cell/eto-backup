@@ -1,23 +1,22 @@
 // Tabs.js
-import React, { useState } from 'react';
-import './Tabs.css';
+import React, { useState } from "react";
+import "./Tabs.css";
 
-export default function Tabs({ tabs, initial = 0 }) {
-  const [active, setActive] = useState(initial);
+export default function Tabs({ tabs, activeTab, onTabChange }) {
   return (
     <div className="tabs">
-      <div className="tabs-header">
+      <div className="tab-buttons">
         {tabs.map((tab, idx) => (
           <button
             key={tab.label}
-            className={active === idx ? 'active' : ''}
-            onClick={() => setActive(idx)}
+            className={activeTab === idx ? "active" : ""}
+            onClick={() => onTabChange(idx)}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div className="tabs-content">{tabs[active].content}</div>
+      <div className="tab-content">{tabs[activeTab].content}</div>
     </div>
   );
 }

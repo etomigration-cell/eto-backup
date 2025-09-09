@@ -3,7 +3,7 @@ import './AddressBook.css';
 import { FaEye } from 'react-icons/fa';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Tabs from 'components/Tabs/Tabs';
-import DynamicTable from 'components/DynamicTable/DynamicTable';
+import DynamicTable from 'common/DynamicTable/DynamicTable';
 import AddressBookDetailView from '../AddressBookDetailView/AddressBookDetailView';
 
 function AddressBook({ addressBook, config, addressBookDetails }) {
