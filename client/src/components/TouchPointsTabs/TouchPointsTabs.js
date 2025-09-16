@@ -39,6 +39,11 @@ const tabs = [
     label: "AIHW",
     icon: <FaUser />,
   },
+  {
+    key: "documents",
+    label: "Documents",
+    icon: <FaUser />,
+  },
   { key: "cansas", label: "CANSAS", icon: <FaUsers /> },
   { key: "childSafety", label: "Child Safety", icon: <FaCalendarAlt /> },
   {
