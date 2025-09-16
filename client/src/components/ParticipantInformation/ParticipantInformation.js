@@ -89,7 +89,7 @@ function ParticipantInformation({ participant }) {
       <section className="participant-content">
         <div className="participant-card">
           <div className="card-header">
-            <img src={participant.avatar || defaultAvatar} alt="Avatar" />
+        
             <div>
               <h2>
                 {participant.firstName} {participant.lastName}

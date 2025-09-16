@@ -1,0 +1,10 @@
+export async function fetchDocuments(id) {
+  const response = await fetch(
+    `http://localhost:5001/participant/documents/65995`,
+  );
+  if (!response.ok) {
+    throw new Error("Documents not found");
+  }
+  const data = await response.json();
+  return data;
+}

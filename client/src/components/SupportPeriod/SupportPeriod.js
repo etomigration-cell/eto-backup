@@ -5,6 +5,7 @@ import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 import SupportPeriodDetailView from "components/SupportPeriodDetailView/SupportPeriodDetailView";
 import { fetchSupportedPeriod } from "actions/SupportPeriodAction/SupportPeriodAction";
+import Spinner from "common/Spinner/Spinner";
 
 import "./SupportPeriod.css";
 
@@ -14,13 +15,17 @@ function SupportPeriods({ participant, config }) {
   const [supportPeriod, setSupportPeriod] = useState([]);
   const [supportPeriodDetails, setSupportPeriodDetails] = useState([]);
   const [tabData, setTabData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getSupportedPeriod() {
       try {
+        setLoading(true);
         const result = await fetchSupportedPeriod(participant.id);
-        setSupportPeriod(result.supportPeriod);
-        setSupportPeriodDetails(result.supportPeriodDetails);
+        console.log(result);
+        setSupportPeriod(result);
+        setSupportPeriodDetails(result.full);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching family members:", error);
       }
@@ -32,8 +37,9 @@ function SupportPeriods({ participant, config }) {
   }, [participant.id]);
 
   const handleView = (row) => {
-    console.log(supportPeriodDetails);
-    setViewedData(supportPeriodDetails);
+    console.log(row);
+    console.log(supportPeriodDetails[row]);
+    setViewedData(row);
   };
 
   const handleCloseSidebar = () => setViewedData(null);
@@ -75,9 +81,10 @@ function SupportPeriods({ participant, config }) {
       <div className="panel-header">
         <strong>Support Periods</strong>
       </div>
-      <div className="panel-section">
-        <DynamicTable data={supportPeriod ? [supportPeriod] : []} config={configWithActions} />
-      </div>
+      {loading && <Spinner />}
+      {!loading && <div className="sp-table-wrapper">
+        <DynamicTable data={supportPeriod.minimal} config={configWithActions} className="sp-table" />
+      </div>}
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}

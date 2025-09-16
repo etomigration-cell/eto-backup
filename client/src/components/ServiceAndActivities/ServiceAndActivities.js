@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 import ServiceAndActivitiesDetailView from "components/ServiceAndActivitiesDetailView/ServiceAndActivitiesDetailView";
+import { fetchServiceActivities } from "actions/ServiceAndActivities/ServiceAndActivities";
+import Spinner from "common/Spinner/Spinner";
 import "./ServiceAndActivities.css";
 
-function ServiceAndActivities({
-  serviceAndActivities,
-  config,
-  serviceAndActivitiesDetails,
-}) {
+function ServiceAndActivities({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [tabData, setTabData] = useState({});
+  const [serviceAndActivities, setServiceAndActivities] = useState([]);
+  const [serviceAndActivitiesDetails, setServiceAndActivitiesDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getServiceAndActivities() {
+      try {
+        setLoading(true);
+        const result = await fetchServiceActivities(participant.id);
+        console.log(result);
+        setServiceAndActivities(result);
+        setServiceAndActivitiesDetails(result.full);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching service and activities:", error);
+      }
+    }
+
+    if (participant.id) {
+      getServiceAndActivities();
+    }
+  }, [participant.id]);
 
   const handleView = (row) => {
-    setViewedData(serviceAndActivitiesDetails[0]);
+    // If you want to pass the full detail instead of row
+    const detail = serviceAndActivitiesDetails.find(d => d.id === row.id) || row;
+    setViewedData(detail);
   };
 
   const handleCloseSidebar = () => setViewedData(null);
@@ -62,15 +83,22 @@ function ServiceAndActivities({
       <div className="panel-header">
         <strong>Service And Activities</strong>
       </div>
-      <div className="panel-section">
-        <DynamicTable data={serviceAndActivities} config={configWithActions} />
-      </div>
+      {loading && <Spinner />}
+      {!loading && (
+        <div className="panel-section">
+          <DynamicTable
+            data={serviceAndActivities.minimal}
+            config={configWithActions}
+            className="sa-table"
+          />
+        </div>
+      )}
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `Service And Activities for the ${viewedData.program}`
+            ? `Service And Activities for ${viewedData.program || ""}`
             : ""
         }
       >
