@@ -10,12 +10,13 @@ import Wdyn from "components/WDYN/WDYN";
 import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
 import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActivities";
+import Documents from "components/Documents/Documents";
 import addressBookData from "assets/addressBook.json";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
 import supportPeriodData from "assets/supportPeriod.json";
 import wdynData from "assets/wdyn.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 
@@ -138,13 +139,11 @@ function SearchPage({ selectedProgram, programs }) {
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
                 <ServiceAndActivities
-                  serviceAndActivities={supportPeriodData.supportPeriods}
-                  config={supportPeriodsTableConfig}
-                  serviceAndActivitiesDetails={
-                    supportPeriodData.supportPeriodDetails
-                  }
-                ></ServiceAndActivities>
+                  participant={participant}
+                  config={serviceActivitiesTableConfig}
+                />
               ),
+              documents: <Documents  participant={participant}/>
             }}
           </TouchPointsTabs>
         </>

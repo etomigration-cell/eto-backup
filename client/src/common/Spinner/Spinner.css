@@ -1,0 +1,22 @@
+/* Spinner.css */
+.spinner-backdrop {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(245, 245, 250, 0.6);
+  z-index: 99;
+}
+
+.spinner {
+  width: 48px; height: 48px;
+  border: 6px solid #d1d5db;
+  border-top: 6px solid #002a54;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

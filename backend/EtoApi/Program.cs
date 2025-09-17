@@ -26,9 +26,21 @@ builder.Services.AddSingleton<FamilyRepository>(provider =>
 builder.Services.AddSingleton<ParticipantRepository>(provider =>
     new ParticipantRepository(connectionString)
 );
+builder.Services.AddSingleton<SupportPeriodRepository>(provider =>
+    new SupportPeriodRepository(connectionString)
+);
+builder.Services.AddSingleton<ServiceActivitiesRepository>(provider =>
+    new ServiceActivitiesRepository(connectionString)
+);
+builder.Services.AddSingleton<DocumentsRepository>(provider =>
+    new DocumentsRepository(connectionString)
+);
 
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
+builder.Services.AddSingleton<SupportPeriodService>();
+builder.Services.AddSingleton<ServiceActivitiesService>();
+builder.Services.AddSingleton<DocumentService>();
 
 var app = builder.Build();
 

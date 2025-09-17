@@ -3,15 +3,29 @@ import { Link } from "react-router-dom";
 
 export const supportPeriodsTableConfig = {
   columns: [
-    { key: "program", label: "Program" },
+    { key: "programName", label: "Program" },
     { key: "subjectType", label: "Subject Type" },
     { key: "dateLastUpdated", label: "Date Last Updated" },
-    { key: "auditCreationDate", label: "Audit Creation Date" },
-    { key: "lastUpdatedBy", label: "Last Updated By" },
+    { key: "auditDate", label: "Audit Creation Date" },
+    { key: "dateLastUpdated", label: "Last Updated By" },
     { key: "micahTeam", label: "Micah Team" },
-    { key: "aihwshs", label: "AIHW/SHS" },
+    { key: "submitsReport", label: "AIHW/SHS" },
     { key: "startDate", label: "Start Date" },
     { key: "endDate", label: "End Date" },
+    {
+      key: "actions",
+      label: "Actions",
+    },
+  ],
+};
+
+export const serviceActivitiesTableConfig = {
+  columns: [
+    { key: "programName", label: "Program Name" },
+    { key: "StaffName", label: "Audit Staff" },
+    { key: "dateCompleted", label: "Date Completed" },
+    { key: "micahTeam", label: "Micah Team" },
+    { key: "notes", label: "Notes" },
     {
       key: "actions",
       label: "Actions",
