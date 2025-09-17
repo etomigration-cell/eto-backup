@@ -77,7 +77,7 @@
   border: none;
   background: #002a54;
   color: #fff;
-  cursor: poin
+  cursor: pointer;
   transition: background 0.2s;  
   float:right;
 }
