@@ -74,7 +74,6 @@
 .sp-table-wrapper,
 .panel-section {
   overflow-x: auto;
-  max-height: 72vh; /* enables vertical scroll for lots of notes */
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(60,80,130,0.07);

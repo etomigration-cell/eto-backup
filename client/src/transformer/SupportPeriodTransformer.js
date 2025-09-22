@@ -2,6 +2,7 @@ import moment from "moment";
 
 export function mapSupportPeriod(record) {
   return {
+    id: record.formResponseID,
     programName: record.programName,
     subjectType: record.subjectName,
     startDate: moment(record.whatIsTheStartDateOfTheSupportPeriod_16787).format("DD/MM/YYYY"),
@@ -30,6 +31,7 @@ export function mapSupportPeriod(record) {
 
 export function transformSupportPeriods(records) {
   const minimalKeys = [
+    "id",
     "programName",
     "subjectType",
     "startDate",
@@ -45,11 +47,13 @@ export function transformSupportPeriods(records) {
   // Map all records to frontend format first
   const mapped = records.map(mapSupportPeriod);
 
-  // Then extract minimal information from mapped records
   const minimal = mapped.map(rec =>
-    Object.fromEntries(
-      minimalKeys.map(key => [key, rec[key]])
-    )
+    ({
+      ...Object.fromEntries(
+        minimalKeys.map(key => [key, rec[key]])
+      ),
+      StaffName: `${rec.firstName || ''} ${rec.lastName || ''}`.trim(),
+    })
   );
 
   return {

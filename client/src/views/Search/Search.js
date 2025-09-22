@@ -19,40 +19,57 @@ import wdynData from "assets/wdyn.json";
 import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
+import Pagination from "common/Pagination/Pagination";
+import Spinner from "common/Spinner/Spinner";
 
 import "./Search.css";
 
 const options = [
-  { value: "Participant", label: "Participant" },
-  { value: "Event", label: "Event" },
+  { value: "Participant", label: "Participant" }
 ];
 
 function SearchPage({ selectedProgram, programs }) {
   const [searchText, setSearchText] = useState("");
+  const [searchError, setSearchError] = useState("");
   const [selected, setSelected] = useState("Participant");
   const [results, setResults] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false);
   const [participant, setParticipant] = useState(null);
   const [activeTab, setActiveTab] = useState("participantInformation");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const itemsPerPage = 10;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!searchText.trim()) {
+    setSearchError("Please enter a search term.");
+    return;
+  }
+    setSearchError("");
+
     setShowDashboard(false);
+    setResults([]);
+    setLoading(true);
 
     const params = new URLSearchParams({
       query: searchText,
     });
 
-    const val = await getSearchParticipants(params);
-    console.log(val);
-    setResults(val);
+    const participants = await getSearchParticipants(params);
+    setResults(participants);
+    setLoading(false);
+    setSearchText("");
   };
 
   const fetchParticipant = async (id) => {
     try {
-      const data = await fetchParticipantById(id);
-      setParticipant(data);
+      setLoading(true);
+      const participant = paginatedItems.find(p => p.clid === id);
+      setParticipant(participant);
+      setLoading(false);
       setShowDashboard(true);
+      setActiveTab("participantInformation");
     } catch (error) {
       console.error("Error fetching participant:", error);
       setParticipant(null);
@@ -61,8 +78,9 @@ function SearchPage({ selectedProgram, programs }) {
 
   const handleFamilyMemberClick = async (id) => {
     try {
+      setLoading(true);
       const data = await fetchParticipantById(id);
-      console.log(data);
+      setLoading(false);
       setParticipant(data);
       setShowDashboard(true);
       setActiveTab("participantInformation");
@@ -70,6 +88,16 @@ function SearchPage({ selectedProgram, programs }) {
       setParticipant(null);
     }
   };
+
+  const totalPages = Math.ceil(results.length / itemsPerPage);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatedItems = results.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
   
 
   const programObj = find(programs.programs, { code: selectedProgram });
@@ -81,12 +109,15 @@ function SearchPage({ selectedProgram, programs }) {
     <div>
       <form className="search-form" onSubmit={handleSubmit}>
         <input
-          className="search-input"
-          type="text"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Search..."
-        />
+        className={`search-input${searchError ? " field-error" : ""}`}
+        type="text"
+        value={searchText}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          if (searchError) setSearchError(""); // Clear error as user types
+        }}
+        placeholder={searchError ? searchError : "Search..."}
+      />
         <select
           className="search-dropdown"
           value={selected}
@@ -108,9 +139,12 @@ function SearchPage({ selectedProgram, programs }) {
         </button>
       </form>
 
+      {loading && <Spinner />}
       {!showDashboard && results.length > 0 && (
         <div className="search-table-container">
-          <DynamicTable data={results} config={columns} className="search-results-table"/>
+          <DynamicTable data={results} config={columns} className="search-results-table" enableFilter={false}/>
+          <div className="pagination-wrapper">
+          </div>
         </div>
       )}
 
@@ -133,7 +167,7 @@ function SearchPage({ selectedProgram, programs }) {
                   participant={participant}
                 ></SupportPeriod>
               ),
-              addressBook: <AddressBook addressBook={addressBookData.addressBook} config={addressBookTableConfig} addressBookDetails={addressBookData.addressBookDetails}></AddressBook>,
+              addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
               wdyn: <Wdyn wdyn={wdynData.wdyn} config={wdynTableConfig} wdynDetails={wdynData.wdynDetails}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,

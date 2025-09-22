@@ -1,63 +1,46 @@
 import React from "react";
+import DynamicDetailsTable from "common/DynamicTable/DynamicDetailsTable";
+import './SupportPeriodDetailView.css';
 
 function SupportPeriodDetailView({ detail }) {
   if (!detail) return null;
-  return (
-    <div className="details-vertical-list">
-      <div>
-        <span className="details-label">Program:</span>
-        <span className="details-value">{detail.programID}</span>
-      </div>
-      <div>
-        <span className="details-label">Date:</span>
-        <span className="details-value">{detail.auditDate}</span>
-      </div>
-      <div>
-        <span className="details-label">Micah Team:</span>
-        <span className="details-value">{detail.micahTeam_16790}</span>
-      </div>
-      <div>
-        <span className="details-label">AIHW Submission:</span>
-        <span className="details-value">{detail.submitsSHSAIHWreports_16795}</span>
-      </div>
-      <div>
-        <span className="details-label">Organisation ID:</span>
-        <span className="details-value">{detail.aihwOrganisationID_16875}</span>
-      </div>
-      <div>
-        <span className="details-label">Families Crisis:</span>
-        <span className="details-value">{detail.aihwOrgAgencyName_21813 === "Families Crisis" ? "Yes" : "No"}</span>
-      </div>
-      <div>
-        <span className="details-label">Date Assistance Requested:</span>
-        <span className="details-value">{detail.onwhatdatewasassistanceoriginallyrequested_20036}</span>
-      </div>
-      <div>
-        <span className="details-label">Support Period Start:</span>
-        <span className="details-value">{detail.whatIsTheStartDateOfTheSupportPeriod_16787}</span>
-      </div>
-      <div>
-        <span className="details-label">Speaks Other Language at Home:</span>
-        <span className="details-value">{detail.doestheParticipantspeakalanguageotherthanEnglishathome_24803}</span>
-      </div>
-      <div>
-        <span className="details-label">Language at Home:</span>
-        <span className="details-value">{detail.doestheParticipantspeakalanguageotherthanEnglishathome_24803_ResponseChoiceID}</span>
-      </div>
-      <div>
-        <span className="details-label">English Proficiency:</span>
-        <span className="details-value">{detail.whatistheparticipantsselfassessedEnglishproficiency_24801}</span>
-      </div>
-      <div>
-        <span className="details-label">Referral Type:</span>
-        <span className="details-value">{detail.whatwastheparticipantssourceofformalreferraltothisagency_16876}</span>
-      </div>
-      <div>
-        <span className="details-label">Received Service:</span>
-        <span className="details-value">{detail.hasthispersonfamilyreceivedservicesfromthisteaminthepastRecordedeitherinSRSETOorother_22184 ?? "Not specified"}</span>
-      </div>
-    </div>
+
+  const fieldLabels = {
+    programName: "Program Name",
+    subjectType: "Subject Type",
+    startDate: "What is the start date of Support Period",
+    endDate: "Support Period End Date",
+    auditDate: "Audit Date",
+    dateLastUpdated: "Date Last Updated",
+    firstName: "First Name",
+    lastName: "Last Name",
+    submitsReport: "Submits SHS AIHW Reports",
+    micahTeam: "Entity Name",
+    submitAIHWReports: "Submit AIHW Reports",
+    aihwOrganisationId: "AIHW Organisation ID",
+    dateAssistanceRequested: "Date Assistance Requested",
+    participantSpeaksLanguageOtherThanEnglishAtHome: "Speaks Language Other Than English At Home",
+    languageSpokenAtHome: "Language Spoken At Home (Choice)",
+    englishProficiency: "Self-Assessed English Proficiency",
+    formalReferralType: "Source of Formal Referral",
+    receivedServiceFromTeamInPast: "Received Services From Team In Past",
+    genderFromDemographics: "Gender (Demographics)",
+    aihwSex: "AIHW Gender",
+    housingAtTheCloseOfSupportPeriod: "Housing At End Of Support Period",
+    selectTheReasonThatTheSupportPeriodEnded: "Reason Support Period Ended",
+    wasthecarefinderclientfeedbacksurveyofferred: "Carefinder Client Feedback Survey Offered"
+  };
+
+return (
+  <div className="support-period-detail">
+    <DynamicDetailsTable
+      detail={detail}
+      columnsPerRow={1} // or any other number
+      fieldLabels={fieldLabels}
+    />
+  </div>
   );
 }
+
 
 export default SupportPeriodDetailView;

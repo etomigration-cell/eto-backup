@@ -35,12 +35,32 @@ builder.Services.AddSingleton<ServiceActivitiesRepository>(provider =>
 builder.Services.AddSingleton<DocumentsRepository>(provider =>
     new DocumentsRepository(connectionString)
 );
+builder.Services.AddSingleton<AddressBookRepository>(provider =>
+    new AddressBookRepository(connectionString)
+);
+builder.Services.AddSingleton<PlannedActionRepository>(provider =>
+    new PlannedActionRepository(connectionString)
+);
+builder.Services.AddSingleton<WdynRepository>(provider =>
+    new WdynRepository(connectionString)
+);
+builder.Services.AddSingleton<SearchParticipantRepository>(provider =>
+    new SearchParticipantRepository(connectionString)
+);
+builder.Services.AddSingleton<LoginRepository>(provider =>
+    new LoginRepository(connectionString)
+);
 
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
 builder.Services.AddSingleton<SupportPeriodService>();
 builder.Services.AddSingleton<ServiceActivitiesService>();
 builder.Services.AddSingleton<DocumentService>();
+builder.Services.AddSingleton<AddressBookService>();
+builder.Services.AddSingleton<PlannedActionService>();
+builder.Services.AddSingleton<WdynService>();
+builder.Services.AddSingleton<SearchParticipantService>();
+builder.Services.AddSingleton<LoginService>();
 
 var app = builder.Build();
 

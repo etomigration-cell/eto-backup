@@ -1,0 +1,53 @@
+import moment from "moment";
+
+export function transformParticipant(input) {
+  return {
+    clid: input.clid ?? null,
+    ssn: input.ssn ?? null,
+    caseNumber: isNaN(Number(input.caseNumber)) ? input.caseNumber : Number(input.caseNumber),
+    fName: input.fName ?? null,
+    middleInitial: input.middleInitial ?? null,
+    lName: input.lName ?? null,
+    disabled: Boolean(input.disabled),
+    prefixID: input.prefixID ?? null,
+    suffixID: input.suffixID ?? null,
+    ethnicityID: input.ethnicityID ?? null,
+    dob: moment(input.dob).format("DD/MM/YYYY") ?? null,
+    address1: input.address1 ?? null,
+    address2: input.address2 ?? null,
+    zipCode: input.zipCode ?? null,
+    homePhone: input.homePhone ?? null,
+    cellPhone: input.cellPhone ?? null,
+    workPhone: input.workPhone ?? null,
+    workPhoneExtension: input.workPhoneExtension ?? null,
+    pager: input.pager ?? null,
+    email: input.email === "" ? null : input.email,
+    gender: input.gender ?? null,
+    maritalStatusID: input.maritalStatusID ?? null,
+    fundingEntityID: input.fundingEntityID ?? null,
+    referralEntityID: input.referralEntityID ?? null,
+    auditStaffID: input.auditStaffID ?? null,
+    auditDate: input.auditDate ?? null,
+    assignedStaffID: input.assignedStaffID ?? null,
+    dateCreated: input.dateCreated ?? null,
+    alert: input.alert ?? null,
+    hoR_ID: input.hoR_ID ?? null,
+    hoR_ChildID: input.hoR_ChildID ?? null,
+    hoR_BID: input.hoR_BID ?? null,
+    hoR_IDAbuser: input.hoR_IDAbuser ?? null,
+    hoR_VID: input.hoR_VID ?? null,
+    clientGUID: input.clientGUID ?? null,
+    tigerID: input.tigerID ?? null,
+    censusTract: input.censusTract ?? null,
+    censusBlock: input.censusBlock ?? null,
+    cliD_Source: input.cliD_Source ?? null,
+    zipExtension: input.zipExtension ?? null,
+    optOut: Boolean(input.optOut),
+    referralNotification: Boolean(input.referralNotification),
+    cSiteID: input.cSiteID ?? null
+  };
+}
+
+export function transformParticipantList(participants) {
+  return participants.map(transformParticipant);
+}

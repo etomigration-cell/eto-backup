@@ -19,7 +19,7 @@ function ServiceAndActivities({ participant, config }) {
     async function getServiceAndActivities() {
       try {
         setLoading(true);
-        const result = await fetchServiceActivities(participant.id);
+        const result = await fetchServiceActivities(participant.clid);
         console.log(result);
         setServiceAndActivities(result);
         setServiceAndActivitiesDetails(result.full);
@@ -29,10 +29,10 @@ function ServiceAndActivities({ participant, config }) {
       }
     }
 
-    if (participant.id) {
+    if (participant.clid) {
       getServiceAndActivities();
     }
-  }, [participant.id]);
+  }, [participant.clid]);
 
   const handleView = (row) => {
     // If you want to pass the full detail instead of row
@@ -87,9 +87,10 @@ function ServiceAndActivities({ participant, config }) {
       {!loading && (
         <div className="panel-section">
           <DynamicTable
-            data={serviceAndActivities.minimal}
+            data={serviceAndActivities.minimal || []}
             config={configWithActions}
             className="sa-table"
+            enableFilter={false}
           />
         </div>
       )}

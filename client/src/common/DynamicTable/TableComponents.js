@@ -3,32 +3,34 @@ import { Link } from "react-router-dom";
 
 export const supportPeriodsTableConfig = {
   columns: [
-    { key: "programName", label: "Program" },
-    { key: "subjectType", label: "Subject Type" },
-    { key: "dateLastUpdated", label: "Date Last Updated" },
-    { key: "auditDate", label: "Audit Creation Date" },
-    { key: "dateLastUpdated", label: "Last Updated By" },
-    { key: "micahTeam", label: "Micah Team" },
-    { key: "submitsReport", label: "AIHW/SHS" },
-    { key: "startDate", label: "Start Date" },
-    { key: "endDate", label: "End Date" },
+    { key: "programName", label: "Program",  filter: "text" },
+    { key: "subjectType", label: "Subject Type",  filter: "text" },
+    { key: "dateLastUpdated", label: "Date Last Updated",  filter: "text" },
+    { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
+    { key: "StaffName", label: "Last Updated By",  filter: false },
+    { key: "micahTeam", label: "Micah Team",  filter: "text" },
+    { key: "submitsReport", label: "AIHW/SHS",  filter: "text" },
+    { key: "startDate", label: "Start Date",  filter: "text" },
+    { key: "endDate", label: "End Date",  filter: "text" },
     {
       key: "actions",
       label: "Actions",
+       filter: false
     },
   ],
 };
 
 export const serviceActivitiesTableConfig = {
   columns: [
-    { key: "programName", label: "Program Name" },
-    { key: "StaffName", label: "Audit Staff" },
-    { key: "dateCompleted", label: "Date Completed" },
-    { key: "micahTeam", label: "Micah Team" },
-    { key: "notes", label: "Notes" },
+    { key: "programName", label: "Program Name", filter: "text" },
+    { key: "StaffName", label: "Audit Staff", filter: "text" },
+    { key: "dateCompleted", label: "Date Completed", filter: "text" },
+    { key: "micahTeam", label: "Micah Team", filter: "text" },
+    { key: "notes", label: "Notes", filter: false },
     {
       key: "actions",
       label: "Actions",
+      filter: false
     },
   ],
 };
@@ -42,15 +44,14 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
       render: (row) => (
         <Link
     to="/search"
-    onClick={() => fetchParticipant(row.id)}
+    onClick={() => fetchParticipant(row.clid)}
   >
-    {row.name}
+    {row.fName} {row.lName}
   </Link>
       ),
     },
-    { key: "email", label: "Email" },
     { key: "caseNumber", label: "Case Number" },
-    { key: "DOB", label: "DOB" },
+    { key: "dob", label: "DOB" },
     { key: "Alias", label: "Alias" },
     { key: "RealOrFake", label: "Real or Fake" },
     { key: "ProgramStartDate", label: "Program Start Date" }
@@ -60,21 +61,46 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
 
 export const addressBookTableConfig = {
   columns: [
-    { key: 'dateLastUpdated',         label: 'Date Last Updated' },
-    { key: 'status',     label: 'Status' },
-    { key: 'whoisthis', label: 'Who is this' },
+    { key: 'auditDate', label: 'Audit Date' },
+    { key: 'whoseContactDetails', label: 'Who is This?',  render: row => row.whoseContactDetails?.value || "" },
     { key: 'name', label: 'Name' },
-    { key: 'type',   label: 'Type' },
-    { key: 'accommodation',       label: 'Accommodation' },
-    { key: 'aptunit',         label: 'Apt/Unit' },
-    { key: 'streetNo',       label: 'Street No' },
-    { key: 'streetName',         label: 'Street Name' },
-    { key: 'suburbandpostCode',         label: 'Suburb & Post Code' },
-    { key: 'key',         label: 'Key' },
-    { key: 'mobile',         label: 'Mobile' },
+    {
+      key: 'accommodationType',
+      label: 'Type',
+      render: row => row.accommodationType?.value || ""
+    },
+    { key: 'addressbookStatus', label: 'Status' },
+    {
+      key: 'aptunit',
+      label: 'Apt/Unit',
+      render: row => row.address?.apartmentUnit || ""
+    },
+    {
+      key: 'streetNo',
+      label: 'Street No',
+      render: row => row.address?.streetNumber || ""
+    },
+    {
+      key: 'streetName',
+      label: 'Street Name',
+      render: row => row.address?.streetName || ""
+    },
+    {
+      key: 'suburbandpostCode',
+      label: 'Suburb & Post Code',
+      render: row =>
+        row.address?.suburb
+          ? `${row.address.suburb} ${row.address.postCode || ""}`
+          : row.address?.postCode || ""
+    },
+    { key: 'mobile', label: 'Mobile', render: row => row.phone?.mobile || ""},
     {
       key: 'actions',
-      label: 'Actions'
+      label: 'Actions',
+      render: row => (
+        // Add your custom actions UI here
+        <button>Action</button>
+      )
     }
   ]
 };

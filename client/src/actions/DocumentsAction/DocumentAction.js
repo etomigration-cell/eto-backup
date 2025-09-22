@@ -1,6 +1,6 @@
 export async function fetchDocuments(id) {
   const response = await fetch(
-    `http://localhost:5001/participant/documents/65995`,
+    `http://localhost:5001/participant/documents/${id}`,
   );
   if (!response.ok) {
     throw new Error("Documents not found");
