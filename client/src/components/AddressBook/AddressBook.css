@@ -1,9 +1,6 @@
 .addressbook-panel {
-  border: 1px solid #bbb;
-  border-radius: 5px;
   margin: 8px 0;
   background: #fbfcfd;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
@@ -11,28 +8,12 @@
 
 .panel-header {
   padding: 8px 14px;
-  background: #eaeaea;
-  border-bottom: 1px solid #ccc;
+  background: #002a54;
   font-size: 1.08em;
 }
 
 .panel-section {
   padding: 12px 14px;
-}
-
-.addressbook-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.98em;
-  margin-bottom: 8px;
-}
-
-.addressbook-table th,
-.addressbook-table td {
-  border-bottom: 1px solid #e0e0e0;
-  padding: 6px 10px;
-  text-align: left;
-  white-space: nowrap;
 }
 
 .table-action-btn {
@@ -45,9 +26,92 @@
   font-size: 0.97em;
 }
 
-.addressbook-new {
+.support-periods-new {
   color: #147397;
   font-weight: bold;
   font-size: 1.1em;
   cursor: pointer;
+}
+
+.details-vertical-list {
+  margin-top: 1.2rem;
+}
+.details-vertical-list > div {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+.details-label {
+  display: inline-block;
+  min-width: 180px;
+  font-weight: 600;
+  color: #2c3055;
+}
+.details-value {
+  margin-left: 0.5rem;
+  color: #343a40;
+}
+
+.address-table-wrapper {
+  padding: 16px;
+  background: #f6f8fa;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(60, 60, 60, 0.08);
+  overflow-x: auto;
+}
+
+.address-book-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+
+.address-book-table th, .address-book-table td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.address-book-table th {
+  background: #002a54;
+  color: #fff;
+  font-weight: 600;
+}
+
+.address-book-table tbody tr:nth-child(even) {
+  background: #f5f7fa;
+}
+
+.address-book-table tbody tr:hover {
+  background: #e3eafc;
+}
+
+.address-book-table .date-cell {
+  text-align: right;
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 14px;
+}
+
+.address-book-table .center {
+  text-align: center;
+}
+
+.sp-action {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #3369e8;
+  transition: color 0.16s;
+}
+.sp-action:hover,
+.sp-action:focus {
+  color: #113882;
+  outline: 2px solid #c2dbfe;
+  outline-offset: 2px;
 }

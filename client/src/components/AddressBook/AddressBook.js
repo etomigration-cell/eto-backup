@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import './AddressBook.css';
 import { FaEye } from 'react-icons/fa';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Tabs from 'components/Tabs/Tabs';
 import DynamicTable from 'common/DynamicTable/DynamicTable';
 import AddressBookDetailView from '../AddressBookDetailView/AddressBookDetailView';
+import { fetchAddressBook } from 'actions/AddressBookAction/AddressBookAction';
+import Spinner from "common/Spinner/Spinner";
 
-function AddressBook({ addressBook, config, addressBookDetails }) {
-
+function AddressBook({ participant, config }) {
+  const [ addressBook, setAddressBook ] = useState([]);
+  const [ addressBookDetails, setAddressBookDetails ] = useState([]);
   const [viewedData, setViewedData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+      async function getAddressBook() {
+        try {
+          setLoading(true);
+          const result = await fetchAddressBook(participant.clid);
+          console.log(result);
+          setAddressBook(result);
+          setAddressBookDetails(result.full);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching family members:", error);
+        }
+      }
+  
+      if (participant.clid) {
+        getAddressBook();
+      }
+    }, [participant.clid]);
 
   const handleView = (row) => {
     console.log(addressBookDetails)
@@ -58,13 +81,13 @@ function AddressBook({ addressBook, config, addressBookDetails }) {
       <div className="panel-header">
         <strong>Address Book</strong>
       </div>
-      <div className="panel-section">
-        <DynamicTable data={addressBook} config={configWithActions} />
-      </div>
+       {loading && <Spinner />}
+      {!loading &&  <div className="address-table-wrapper">
+        <DynamicTable data={addressBook.minimal || []} config={configWithActions} className="address-book-table" />
+      </div> }
       <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `addressbook for ${viewedData.program}` : ''}>
        <Tabs tabs={tabs} />
       </Sidebar>
-
     </div>
   );
 }

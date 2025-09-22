@@ -94,9 +94,7 @@ app.get('/participants/search', (req, res) => {
   const type = req.query.type;
 
   let result = participants.participants.filter(p =>
-    p.name.toLowerCase().includes(query) ||
-    (p.Alias && p.Alias.toLowerCase().includes(query)) ||
-    (p.email && p.email.toLowerCase().includes(query))
+    p.name.toLowerCase().includes(query)
   );
 
   if (type && type !== 'Participant') {

@@ -43,18 +43,6 @@ const tabs = [
     key: "documents",
     label: "Documents",
     icon: <FaUser />,
-  },
-  { key: "cansas", label: "CANSAS", icon: <FaUsers /> },
-  { key: "childSafety", label: "Child Safety", icon: <FaCalendarAlt /> },
-  {
-    key: "hiveIntake",
-    label: "Hive Intake",
-    icon: <FaExclamationTriangle />,
-  },
-  {
-    key: "housing",
-    label: "Housing App Progress",
-    icon: <FaClipboardList />,
   }
 ];
 

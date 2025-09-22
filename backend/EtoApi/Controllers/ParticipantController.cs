@@ -15,15 +15,23 @@ namespace EtoApi.Controllers
         private readonly SupportPeriodService _supportPeriodService;
         private readonly ServiceActivitiesService _serviceActivitiesService;
         private readonly DocumentService _documentsService;
+        private readonly AddressBookService _addressService;
+        private readonly PlannedActionService _plannedActionService;
+        private readonly WdynService _wdynService;
+        private readonly SearchParticipantService _searchParticipantService;
 
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService )
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService )
         {
             _familyService = familyService;
             _participantService = participantService;
             _supportPeriodService = supportPeriodService;
             _serviceActivitiesService = serviceActivitiesService;
             _documentsService = documentsService;
+            _addressService = addressService;
+            _plannedActionService = plannedActionService;
+            _wdynService = wdynService;
+            _searchParticipantService = searchParticipantService;
         }
 
         [HttpGet("family-details/{id}")]
@@ -48,6 +56,17 @@ namespace EtoApi.Controllers
             return Ok(participant);
         }
 
+        [HttpGet("search")]
+        public async Task<ActionResult<List<ParticipantDetails>>> GetParticipantDetails([FromQuery] string query)
+        {
+            var participant = await _searchParticipantService.GetSearchParticipantsAsync(query);
+            if (participant == null)
+            {
+                return NotFound();
+            }
+            return Ok(participant);
+        }
+
         [HttpGet("support-period/{id}")]
         public async Task<ActionResult<List<SupportPeriod>>> GetSupportPeriods(int id)
         {
@@ -63,6 +82,39 @@ namespace EtoApi.Controllers
         public async Task<ActionResult<List<ServiceActivity>>> GetServiceActivities(int id)
         {
             var activities = await _serviceActivitiesService.GetServiceActivitiesByIdAsync(id);
+            if (activities == null || activities.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(activities);
+        }
+
+        [HttpGet("address-book/{id}")]
+        public async Task<ActionResult<List<AddressBook>>> GetSAddressBook(int id)
+        {
+            var activities = await _addressService.GetAddressBookByIdAsync(id);
+            if (activities == null || activities.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(activities);
+        }
+
+        [HttpGet("planned-action/{id}")]
+        public async Task<ActionResult<List<PlannedAction>>> GetPlannedAction(int id)
+        {
+            var activities = await _plannedActionService.GetPlannedActionByIdAsync(id);
+            if (activities == null || activities.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(activities);
+        }
+
+        [HttpGet("wdyn/{id}")]
+        public async Task<ActionResult<List<Wdyn>>> GetWdyn(int id)
+        {
+            var activities = await _wdynService.GetWdynByIdAsync(id);
             if (activities == null || activities.Count == 0)
             {
                 return NotFound();

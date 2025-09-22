@@ -1,7 +1,7 @@
 // action/participant.js
 
 export async function fetchParticipantById(id) {
-  const response = await fetch(`http://localhost:3001/participant/${id}`);
+  const response = await fetch(`http://localhost:5001/participant/participant-details/${id}`);
   if (!response.ok) {
     throw new Error("Participant not found");
   }
@@ -22,7 +22,7 @@ export async function fetchParticipantAuditReport(id) {
 
 export async function fetchParticipantProgramHistory(id) {
   const response = await fetch(
-    `http://localhost:3001/participant/program-history/${id}`,
+    `http://localhost:5001/participant/participant-details/${id}`,
   );
   if (!response.ok) {
     throw new Error("Participant program history not found");

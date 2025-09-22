@@ -14,14 +14,13 @@ function SupportPeriods({ participant, config }) {
   const [activeTab, setActiveTab] = useState(0);
   const [supportPeriod, setSupportPeriod] = useState([]);
   const [supportPeriodDetails, setSupportPeriodDetails] = useState([]);
-  const [tabData, setTabData] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getSupportedPeriod() {
       try {
         setLoading(true);
-        const result = await fetchSupportedPeriod(participant.id);
+        const result = await fetchSupportedPeriod(participant.clid);
         console.log(result);
         setSupportPeriod(result);
         setSupportPeriodDetails(result.full);
@@ -31,15 +30,15 @@ function SupportPeriods({ participant, config }) {
       }
     }
 
-    if (participant.id) {
+    if (participant.clid) {
       getSupportedPeriod();
     }
-  }, [participant.id]);
+  }, [participant.clid]);
 
   const handleView = (row) => {
-    console.log(row);
-    console.log(supportPeriodDetails[row]);
-    setViewedData(row);
+    console.log("row-id", row.id);
+    //console.log(supportPeriodDetails.find( suppDetails => suppDetails.id === row.id));
+    setViewedData(supportPeriodDetails.find( suppDetails => suppDetails.id === row.id));
   };
 
   const handleCloseSidebar = () => setViewedData(null);
@@ -83,12 +82,12 @@ function SupportPeriods({ participant, config }) {
       </div>
       {loading && <Spinner />}
       {!loading && <div className="sp-table-wrapper">
-        <DynamicTable data={supportPeriod.minimal} config={configWithActions} className="sp-table" />
+        <DynamicTable data={supportPeriod.minimal || []} config={configWithActions} className="sp-table" enableFilter={true}/>
       </div>}
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}
-        title={viewedData ? `Support Period for ${viewedData.program}` : ""}
+       title={viewedData ? `Support Period for ${participant.fName} ${participant.lName}` : ""}
       >
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </Sidebar>

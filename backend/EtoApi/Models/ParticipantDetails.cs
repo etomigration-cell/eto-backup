@@ -1,48 +1,49 @@
 namespace EtoApi.Models
 {
-public class ParticipantDetails
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? FirstName { get; set; }
-    public string? MiddleName { get; set; }
-    public string? LastName { get; set; }
-    public string? Alias { get; set; }
-    public string? ParticipantImage { get; set; }
-    public int? CaseNumber { get; set; }
-    public string? RealOrFake { get; set; }
-    public DateTime DOB { get; set; }
-    public string? DobAccuracy { get; set; }
-    public DateTime? DateOfDeath { get; set; }
-    public string? CRN { get; set; }
-    public string? SRSID { get; set; }
-    public string? Sex { get; set; }
-    public string? Gender { get; set; }
-    public string? SexualIdentity { get; set; }
-    public string? SexualIdentityOther { get; set; }
-    public DateTime DateOfFirstMicahContact { get; set; }
-    public string? InitialContactType { get; set; }
-    public string? ReferralSourceMP { get; set; }
-    public string? AboriginalTorresStraitIslander { get; set; }
-    public string? SouthSeaIslander { get; set; }
-    public string? CALD { get; set; }
-    public string? CitizenshipStatus { get; set; }
-    public string? CountryOfBirth { get; set; }
-    public int? YearOfArrival { get; set; }
-    public string? CommunicationMethod { get; set; }
-    public string? InterpreterRequired { get; set; }
-    public string? SpokenLanguageOtherThanEnglish { get; set; }
-    public string? NonSpokenLanguage { get; set; }
-    public string? NonSpokenOther { get; set; }
-    public string? AdfMember { get; set; }
-    public string? MedicareNumber { get; set; }
-    public string? MedicareIndividualId { get; set; }
-    public string? AgedCareId { get; set; }
-    public string? NdisNumber { get; set; }
-    public string? Disability { get; set; }
-    public string? PrimaryDisabilityGroup { get; set; }
-    public string? NeedsHelpOrSupervision { get; set; }
-    public string? Email { get; set; }
-    public DateTime ProgramStartDate { get; set; }
-}
+    public class ParticipantDetails
+    {
+        public int CLID { get; set; }
+        public string? SSN { get; set; }
+        public string CaseNumber { get; set; }
+        public string? FName { get; set; }
+        public string? MiddleInitial { get; set; }
+        public string? LName { get; set; }
+        public bool? Disabled { get; set; }
+        public int? PrefixID { get; set; }
+        public int? SuffixID { get; set; }
+        public int? EthnicityID { get; set; }
+        public DateTime DOB { get; set; }
+        public string? Address1 { get; set; }
+        public string? Address2 { get; set; }
+        public string? ZipCode { get; set; }
+        public string? HomePhone { get; set; }
+        public string? CellPhone { get; set; }
+        public string? WorkPhone { get; set; }
+        public string? WorkPhoneExtension { get; set; }
+        public string? Pager { get; set; }
+        public string? Email { get; set; }
+        public bool? Gender { get; set; }
+        public int? MaritalStatusID { get; set; }
+        public int? FundingEntityID { get; set; }
+        public int? ReferralEntityID { get; set; }
+        public int? AuditStaffID { get; set; }
+        public DateTime? AuditDate { get; set; }
+        public int? AssignedStaffID { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public string? Alert { get; set; }
+        public int? HoR_ID { get; set; }
+        public int? HoR_ChildID { get; set; }
+        public int? HoR_BID { get; set; }
+        public int? HoR_IDAbuser { get; set; }
+        public int? HoR_VID { get; set; }
+        public string? ClientGUID { get; set; }
+        public int? TigerID { get; set; }
+        public string? CensusTract { get; set; }
+        public string? CensusBlock { get; set; }
+        public int? CLID_Source { get; set; }
+        public string? ZipExtension { get; set; }
+        public bool? OptOut { get; set; }
+        public bool? ReferralNotification { get; set; }
+        public int? CSiteID { get; set; }
+    }
 }

@@ -89,12 +89,10 @@ function ParticipantInformation({ participant }) {
       <section className="participant-content">
         <div className="participant-card">
           <div className="card-header">
-        
             <div>
               <h2>
-                {participant.firstName} {participant.lastName}
+                {participant.fName} {participant.lName}
               </h2>
-              <span className="program">{participant.programName}</span>
             </div>
           </div>
           <div className="card-body participant-info-list">
@@ -102,20 +100,20 @@ function ParticipantInformation({ participant }) {
               <span className="participant-info-label">First Name</span>
               <span className="participant-info-colon">:</span>
               <span className="participant-info-value">
-                {participant.firstName}
+                {participant.fName}
               </span>
             </div>
             <div className="participant-info-row">
               <span className="participant-info-label">Last Name</span>
               <span className="participant-info-colon">:</span>
               <span className="participant-info-value">
-                {participant.lastName}
+                {participant.lName}
               </span>
             </div>
             <div className="participant-info-row">
               <span className="participant-info-label">Date of Birth</span>
               <span className="participant-info-colon">:</span>
-              <span className="participant-info-value">{participant.DOB}</span>
+              <span className="participant-info-value">{participant.dob}</span>
             </div>
             <div className="participant-info-row">
               <span className="participant-info-label">Case Number</span>
@@ -128,14 +126,14 @@ function ParticipantInformation({ participant }) {
               <span className="participant-info-label">Real or Fake</span>
               <span className="participant-info-colon">:</span>
               <span className="participant-info-value">
-                {participant.status}
+                {participant?.status}
               </span>
             </div>
             <div className="participant-info-row">
               <span className="participant-info-label">Gender</span>
               <span className="participant-info-colon">:</span>
               <span className="participant-info-value">
-                {participant.gender}
+                {participant?.gender}
               </span>
             </div>
           </div>
@@ -153,7 +151,7 @@ function ParticipantInformation({ participant }) {
         visible={!!viewedData}
         onClose={handleCloseSidebar}
         title={
-          viewedData ? `Participant details for ${viewedData.firstName}` : ""
+          viewedData ? `Participant details for ${viewedData.fName}` : ""
         }
       >
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />

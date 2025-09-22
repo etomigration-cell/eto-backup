@@ -12,7 +12,7 @@ function FamilyInformation({ participant, onMemberClick }) {
     async function getFamilyDetails() {
       setLoading(true); // START loading
       try {
-        const result = await fetchFamilyDetails(participant.id);
+        const result = await fetchFamilyDetails(participant.clid);
         setFamily(result);
       } catch (error) {
         console.error("Error fetching family members:", error);
@@ -21,10 +21,10 @@ function FamilyInformation({ participant, onMemberClick }) {
       }
     }
 
-    if (participant.id) {
+    if (participant.clid) {
       getFamilyDetails();
     }
-  }, [participant.id]);
+  }, [participant.clid]);
 
   if (loading) return <Spinner />;
 
@@ -34,28 +34,32 @@ function FamilyInformation({ participant, onMemberClick }) {
         <strong>{family?.[0]?.familyName ?? "Family Members"}</strong>
       </div>
       <div className="panel-section">
-        <table>
-          <tbody>
-            {family?.map((member) => (
-              <tr key={member.caseNumber}>
-                <td>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onMemberClick(member.caseNumber);
-                    }}
-                  >
-                    {member.fName} {member.lName}
-                  </a>
-                </td>
-                <td className="relationship">{member.familyRelationship}</td>
-                <td className="head-of-house">{member.isHeadOfFamily ? "Head of Household" : ""}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  {Array.isArray(family) && family.length > 0 ? (
+    <table>
+      <tbody>
+        {family.map((member) => (
+          <tr key={member.caseNumber}>
+            <td>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onMemberClick(member.caseNumber);
+                }}
+              >
+                {member.fName} {member.lName}
+              </a>
+            </td>
+            <td className="relationship">{member.familyRelationship}</td>
+            <td className="head-of-house">{member.isHeadOfFamily ? "Head of Household" : ""}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <div className="no-family-found">No family found</div>
+  )}
+</div>
     </div>
   );
 }
