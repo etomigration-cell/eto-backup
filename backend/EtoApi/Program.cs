@@ -1,5 +1,6 @@
-using EtoApi.Services;
 using EtoApi.DataAccess;
+using EtoApi.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,12 @@ builder.Services.AddSingleton<LoginRepository>(provider =>
     new LoginRepository(connectionString)
 );
 
+
+builder.Services.AddSingleton<AIHWFormRepository>(provider =>
+    new AIHWFormRepository(connectionString)
+);
+
+
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
 builder.Services.AddSingleton<SupportPeriodService>();
@@ -61,6 +68,7 @@ builder.Services.AddSingleton<PlannedActionService>();
 builder.Services.AddSingleton<WdynService>();
 builder.Services.AddSingleton<SearchParticipantService>();
 builder.Services.AddSingleton<LoginService>();
+builder.Services.AddSingleton<AIHWFormService>();
 
 var app = builder.Build();
 
