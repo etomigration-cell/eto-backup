@@ -310,7 +310,7 @@ namespace EtoApi.DataAccess
                     frm.SHSTypeOfServiceActivityNum_16051,
                     frm.HowmanystaffdidthistogetherAtmost4_16157,
                     frm.Selectyourname_16158,
-                    frm.MicahTeam_16159,
+                    e.EntityName,
                     frm.Start_16161,
                     frm.Endoptional_16162,
                     frm.Selectthe2ndstaffperson_16163,
@@ -362,6 +362,7 @@ namespace EtoApi.DataAccess
                     frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID
 
                 FROM form.f_290 frm
+                JOIN Entities e ON e.EntityID = frm.MicahTeam_16159
                 WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
 
             using var command = new SqlCommand(query, connection);

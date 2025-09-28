@@ -57,6 +57,12 @@ builder.Services.AddSingleton<AIHWFormRepository>(provider =>
     new AIHWFormRepository(connectionString)
 );
 
+builder.Services.AddSingleton<BrokeragePaymentRepository>(provider =>
+    new BrokeragePaymentRepository(connectionString)
+);
+builder.Services.AddSingleton<SaftyAlertsRepository>(provider =>
+    new SaftyAlertsRepository(connectionString)
+);
 
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
@@ -69,6 +75,8 @@ builder.Services.AddSingleton<WdynService>();
 builder.Services.AddSingleton<SearchParticipantService>();
 builder.Services.AddSingleton<LoginService>();
 builder.Services.AddSingleton<AIHWFormService>();
+builder.Services.AddSingleton<BrokeragePaymentService>();
+builder.Services.AddSingleton<SaftyAlertsService>();
 
 var app = builder.Build();
 
