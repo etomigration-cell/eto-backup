@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import { find } from "lodash";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import TouchPointsTabs from "components/TouchPointsTabs/TouchPointsTabs";
@@ -16,7 +16,7 @@ import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
 import supportPeriodData from "assets/supportPeriod.json";
 import wdynData from "assets/wdyn.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Pagination from "common/Pagination/Pagination";
@@ -39,6 +39,8 @@ function SearchPage({ selectedProgram, programs }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 10;
+
+  const documentRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,6 +100,11 @@ function SearchPage({ selectedProgram, programs }) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  
+  const handleDocumentDownload = () => {
+   // documentRef.current.handleDownload();
+  };
   
 
   const programObj = find(programs.programs, { code: selectedProgram });
@@ -168,7 +175,7 @@ function SearchPage({ selectedProgram, programs }) {
                 ></SupportPeriod>
               ),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
-              wdyn: <Wdyn wdyn={wdynData.wdyn} config={wdynTableConfig} wdynDetails={wdynData.wdynDetails}></Wdyn>,
+              wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
@@ -177,7 +184,7 @@ function SearchPage({ selectedProgram, programs }) {
                   config={serviceActivitiesTableConfig}
                 />
               ),
-              documents: <Documents  participant={participant}/>
+              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload}/>
             }}
           </TouchPointsTabs>
         </>

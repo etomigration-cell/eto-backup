@@ -30,7 +30,7 @@
   border-radius: 5px;
   border: 1.5px solid #bbcbe9;
   background: #fff;
-  font-size: 1.09em;
+  font-size: 14px;
   transition: border-color 0.2s;
 }
 .side-tabs-search input:focus {

@@ -6,6 +6,8 @@ import Tabs from "components/Tabs/Tabs";
 import ServiceAndActivitiesDetailView from "components/ServiceAndActivitiesDetailView/ServiceAndActivitiesDetailView";
 import { fetchServiceActivities } from "actions/ServiceAndActivities/ServiceAndActivities";
 import Spinner from "common/Spinner/Spinner";
+import SupportServiceActivities from "./SupportServiceActivities";
+import AdditionalNeeds from "./AdditionalNeeds";
 import "./ServiceAndActivities.css";
 
 function ServiceAndActivities({ participant, config }) {
@@ -36,7 +38,9 @@ function ServiceAndActivities({ participant, config }) {
 
   const handleView = (row) => {
     // If you want to pass the full detail instead of row
-    const detail = serviceAndActivitiesDetails.find(d => d.id === row.id) || row;
+    console.log(row)
+    console.log(serviceAndActivitiesDetails)
+    const detail = serviceAndActivitiesDetails.find(d => d.formResponseID === row.formResponseID) || row;
     setViewedData(detail);
   };
 
@@ -45,11 +49,11 @@ function ServiceAndActivities({ participant, config }) {
   const tabs = [
     {
       label: "Support Service Activities",
-      content: <ServiceAndActivitiesDetailView detail={viewedData} />,
+      content: <SupportServiceActivities detail={viewedData} />,
     },
     {
       label: "Any Additional Needs Identified",
-      content: <ServiceAndActivitiesDetailView detail={viewedData} />,
+      content: <AdditionalNeeds detail={viewedData} />,
     },
   ];
 
@@ -90,18 +94,14 @@ function ServiceAndActivities({ participant, config }) {
             data={serviceAndActivities.minimal || []}
             config={configWithActions}
             className="sa-table"
-            enableFilter={false}
+            enableFilter={true}
           />
         </div>
       )}
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}
-        title={
-          viewedData
-            ? `Service And Activities for ${viewedData.program || ""}`
-            : ""
-        }
+        title={viewedData ? `Service And Activities for ${participant.fName} ${participant.lName}` : ""}
       >
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </Sidebar>

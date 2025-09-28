@@ -139,6 +139,7 @@ export function mapServiceActivities(record) {
 
 export function transformServiceActivities(records) {
   const minimalKeys = [
+    "formResponseID",
     "programName",
     "dateCompleted",
     "micahTeam",
