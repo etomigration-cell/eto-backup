@@ -1,3 +1,5 @@
+import { transformDocumentContent } from 'transformer/documentTransformer';
+
 export async function fetchDocuments(id) {
   const response = await fetch(
     `http://localhost:5001/participant/documents/${id}`,
@@ -6,5 +8,7 @@ export async function fetchDocuments(id) {
     throw new Error("Documents not found");
   }
   const data = await response.json();
-  return data;
+  const transformed = transformDocumentContent(data);
+
+    return transformed;
 }

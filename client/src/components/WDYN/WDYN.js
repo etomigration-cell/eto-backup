@@ -12,18 +12,16 @@ function Wdyn({ participant, config }) {
 const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [wdyn, setWdyn] = useState([]);
-  const [supportPeriodDetails, setSupportPeriodDetails] = useState([]);
-  const [tabData, setTabData] = useState({});
+  const [wdynDetails, setWdynDetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getSupportedPeriod() {
+    async function getWdyn() {
       try {
         setLoading(true);
         const result = await fetchWdyn(participant.clid);
-        console.log(result);
         setWdyn(result);
-        setSupportPeriodDetails(result.full);
+        setWdynDetails(result.full);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching family members:", error);
@@ -31,14 +29,13 @@ const [viewedData, setViewedData] = useState(null);
     }
 
     if (participant.clid) {
-      getSupportedPeriod();
+      getWdyn();
     }
   }, [participant.clid]);
 
   const handleView = (row) => {
-    console.log(row);
-    console.log(supportPeriodDetails[row]);
-    setViewedData(row);
+    const detail = wdynDetails.find(wdyn => wdyn.formResponseID === row.formResponseID) || row;
+    setViewedData(detail);
   };
 
   const handleCloseSidebar = () => setViewedData(null);
@@ -82,7 +79,7 @@ const [viewedData, setViewedData] = useState(null);
       </div>
       {loading && <Spinner />}
       {!loading && <div className="wdyn-table-wrapper">
-        <DynamicTable data={wdyn.minimal} config={configWithActions} className="wdyn-table" />
+        <DynamicTable data={wdyn?.minimal || []} config={configWithActions} className="wdyn-table" />
       </div>}
       <Sidebar
         visible={!!viewedData}

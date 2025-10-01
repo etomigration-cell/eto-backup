@@ -7,17 +7,16 @@ namespace EtoApi.DataAccess
 {
     public class AddressBookRepository
     {
-        private readonly string _connectionString;
+       private readonly ISqlConnectionFactory _connectionFactory;
 
-        public AddressBookRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public AddressBookRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
 
         public async Task<List<AddressBook>> GetAddressBookByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT

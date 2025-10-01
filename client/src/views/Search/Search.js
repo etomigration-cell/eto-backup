@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import { find } from "lodash";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import TouchPointsTabs from "components/TouchPointsTabs/TouchPointsTabs";
@@ -11,15 +11,11 @@ import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
 import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActivities";
 import Documents from "components/Documents/Documents";
-import addressBookData from "assets/addressBook.json";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import supportPeriodData from "assets/supportPeriod.json";
-import wdynData from "assets/wdyn.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
-import Pagination from "common/Pagination/Pagination";
 import Spinner from "common/Spinner/Spinner";
 
 import "./Search.css";
@@ -36,9 +32,9 @@ function SearchPage({ selectedProgram, programs }) {
   const [showDashboard, setShowDashboard] = useState(false);
   const [participant, setParticipant] = useState(null);
   const [activeTab, setActiveTab] = useState("participantInformation");
-  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const itemsPerPage = 10;
+
+  const documentRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +61,7 @@ function SearchPage({ selectedProgram, programs }) {
   const fetchParticipant = async (id) => {
     try {
       setLoading(true);
-      const participant = paginatedItems.find(p => p.clid === id);
+      const participant = results.find(p => p.clid === id);
       setParticipant(participant);
       setLoading(false);
       setShowDashboard(true);
@@ -88,21 +84,14 @@ function SearchPage({ selectedProgram, programs }) {
       setParticipant(null);
     }
   };
-
-  const totalPages = Math.ceil(results.length / itemsPerPage);
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  
+  const handleDocumentDownload = () => {
+   // documentRef.current.handleDownload();
   };
-
-  const paginatedItems = results.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
   
 
   const programObj = find(programs.programs, { code: selectedProgram });
   const programName = programObj ? programObj.name : "";
-  console.log(results, 'results');
   const columns = searchResultsTableConfig(fetchParticipant);
 
   return (
@@ -168,7 +157,7 @@ function SearchPage({ selectedProgram, programs }) {
                 ></SupportPeriod>
               ),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
-              wdyn: <Wdyn wdyn={wdynData.wdyn} config={wdynTableConfig} wdynDetails={wdynData.wdynDetails}></Wdyn>,
+              wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
@@ -177,7 +166,7 @@ function SearchPage({ selectedProgram, programs }) {
                   config={serviceActivitiesTableConfig}
                 />
               ),
-              documents: <Documents  participant={participant}/>
+              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload}/>
             }}
           </TouchPointsTabs>
         </>

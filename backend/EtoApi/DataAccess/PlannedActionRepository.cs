@@ -7,17 +7,16 @@ namespace EtoApi.DataAccess
 {
     public class PlannedActionRepository
     {
-        private readonly string _connectionString;
+        private readonly ISqlConnectionFactory _connectionFactory;
 
-        public PlannedActionRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public PlannedActionRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
 
         public async Task<List<PlannedAction>> GetPlannedActionByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT

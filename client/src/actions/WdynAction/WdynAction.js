@@ -1,4 +1,4 @@
-import { transformSupportPeriods } from 'transformer/SupportPeriodTransformer';
+import { transformWdyn } from 'transformer/wdynTransformer';
 
 export async function fetchWdyn(id) {
   try {
@@ -10,7 +10,7 @@ export async function fetchWdyn(id) {
     }
     const data = await response.json();
 
-    const transformed = transformSupportPeriods(data);
+    const transformed = transformWdyn(data);
 
     return transformed;
   } catch (error) {
