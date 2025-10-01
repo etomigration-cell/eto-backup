@@ -13,7 +13,6 @@ const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [wdyn, setWdyn] = useState([]);
   const [wdynDetails, setWdynDetails] = useState([]);
-  const [tabData, setTabData] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const [viewedData, setViewedData] = useState(null);
       try {
         setLoading(true);
         const result = await fetchWdyn(participant.clid);
-        console.log(result);
         setWdyn(result);
         setWdynDetails(result.full);
         setLoading(false);

@@ -1,4 +1,3 @@
-import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NotesCell from "common/NotesCell/NotesCell";
 

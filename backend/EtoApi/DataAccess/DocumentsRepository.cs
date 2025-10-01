@@ -7,17 +7,16 @@ namespace EtoApi.DataAccess
 {
     public class DocumentsRepository
     {
-        private readonly string _connectionString;
+       private readonly ISqlConnectionFactory _connectionFactory;
 
-        public DocumentsRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public DocumentsRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
 
         public async Task<List<Document>> GetDocumentsByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+           using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT 

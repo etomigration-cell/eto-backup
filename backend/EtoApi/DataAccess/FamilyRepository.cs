@@ -7,17 +7,17 @@ namespace EtoApi.DataAccess
 {
     public class FamilyRepository
     {
-        private readonly string _connectionString;
+        private readonly ISqlConnectionFactory _connectionFactory;
 
-        public FamilyRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public FamilyRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
+
 
         public async Task<List<FamilyMember>> GetFamilyMembersByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT 

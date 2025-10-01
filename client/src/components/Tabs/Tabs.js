@@ -1,5 +1,5 @@
 // Tabs.js
-import React, { useState } from "react";
+import React from "react";
 import "./Tabs.css";
 
 export default function Tabs({ tabs, activeTab, onTabChange }) {

@@ -11,15 +11,11 @@ import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
 import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActivities";
 import Documents from "components/Documents/Documents";
-import addressBookData from "assets/addressBook.json";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import supportPeriodData from "assets/supportPeriod.json";
-import wdynData from "assets/wdyn.json";
 import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
-import Pagination from "common/Pagination/Pagination";
 import Spinner from "common/Spinner/Spinner";
 
 import "./Search.css";
@@ -36,9 +32,7 @@ function SearchPage({ selectedProgram, programs }) {
   const [showDashboard, setShowDashboard] = useState(false);
   const [participant, setParticipant] = useState(null);
   const [activeTab, setActiveTab] = useState("participantInformation");
-  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const itemsPerPage = 10;
 
   const documentRef = useRef();
 
@@ -67,7 +61,7 @@ function SearchPage({ selectedProgram, programs }) {
   const fetchParticipant = async (id) => {
     try {
       setLoading(true);
-      const participant = paginatedItems.find(p => p.clid === id);
+      const participant = results.find(p => p.clid === id);
       setParticipant(participant);
       setLoading(false);
       setShowDashboard(true);
@@ -90,17 +84,6 @@ function SearchPage({ selectedProgram, programs }) {
       setParticipant(null);
     }
   };
-
-  const totalPages = Math.ceil(results.length / itemsPerPage);
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const paginatedItems = results.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   
   const handleDocumentDownload = () => {
    // documentRef.current.handleDownload();
@@ -109,7 +92,6 @@ function SearchPage({ selectedProgram, programs }) {
 
   const programObj = find(programs.programs, { code: selectedProgram });
   const programName = programObj ? programObj.name : "";
-  console.log(results, 'results');
   const columns = searchResultsTableConfig(fetchParticipant);
 
   return (

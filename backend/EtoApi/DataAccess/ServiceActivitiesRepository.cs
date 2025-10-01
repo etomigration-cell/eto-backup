@@ -8,18 +8,17 @@ namespace EtoApi.DataAccess
 {
     public class ServiceActivitiesRepository
     {
-        private readonly string _connectionString;
+       private readonly ISqlConnectionFactory _connectionFactory;
 
-        public ServiceActivitiesRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ServiceActivitiesRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
 
         public async Task<List<ServiceActivity>> GetServiceActivitiesByIdAsync(int id)
         {
             var result = new List<ServiceActivity>();
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT 

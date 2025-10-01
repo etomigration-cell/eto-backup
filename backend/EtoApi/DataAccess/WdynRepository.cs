@@ -7,17 +7,17 @@ namespace EtoApi.DataAccess
 {
     public class WdynRepository
     {
-        private readonly string _connectionString;
+         private readonly ISqlConnectionFactory _connectionFactory;
 
-        public WdynRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public WdynRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
+
 
         public async Task<List<Wdyn>> GetWdynByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT
