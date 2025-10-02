@@ -8,16 +8,20 @@ namespace EtoApi.DataAccess
 {
     public class SaftyAlertsRepository
     {
-        private readonly string _connectionString;
+        
+        private readonly ISqlConnectionFactory _connectionFactory;
+        
 
-        public SaftyAlertsRepository(string connectionString)
+        public SaftyAlertsRepository(ISqlConnectionFactory connectionFactory)
         {
-            _connectionString = connectionString;
+            _connectionFactory = connectionFactory;
         }
 
         public async Task<List<SaftyAlertsModel>> GetSaftyAlertsByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
+
             await connection.OpenAsync();
 
             var query = @"

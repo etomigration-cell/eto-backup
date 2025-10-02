@@ -8,16 +8,18 @@ namespace EtoApi.DataAccess
 {
     public class BrokeragePaymentRepository
     {
-        private readonly string _connectionString;
-
-        public BrokeragePaymentRepository(string connectionString)
+        
+        private readonly ISqlConnectionFactory _connectionFactory;
+        
+        public BrokeragePaymentRepository(ISqlConnectionFactory connectionFactory)
         {
-            _connectionString = connectionString;
+            _connectionFactory = connectionFactory;
         }
-
         public async Task<List<BrokeragePaymentModel>> GetBrokeragePaymentByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
+
             await connection.OpenAsync();
 
             var query = @"
