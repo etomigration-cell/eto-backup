@@ -7,16 +7,19 @@ namespace EtoApi.DataAccess
 {
     public class AIHWFormRepository
     {
-        private readonly string _connectionString;
-
-        public AIHWFormRepository(string connectionString)
+        
+        private readonly ISqlConnectionFactory _connectionFactory;
+        
+        public AIHWFormRepository(ISqlConnectionFactory connectionFactory)
         {
-            _connectionString = connectionString;
+            _connectionFactory = connectionFactory;
         }
 
         public async Task<List<AIHWFormModel>> GetAIHWFormByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
+
             await connection.OpenAsync();
 
             var query = @"

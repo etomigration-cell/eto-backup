@@ -39,24 +39,9 @@ builder.Services.AddTransient<PlannedActionRepository>();
 builder.Services.AddTransient<WdynRepository>();
 builder.Services.AddTransient<SearchParticipantRepository>();
 builder.Services.AddTransient<LoginRepository>();
-builder.Services.AddSingleton<AIHWFormService>();
-builder.Services.AddSingleton<BrokeragePaymentService>();
-builder.Services.AddSingleton<SaftyAlertsService>();
-
-
-// Register services
-
-
-builder.Services.AddSingleton<AIHWFormRepository>(provider =>
-    new AIHWFormRepository(connectionString)
-);
-
-builder.Services.AddSingleton<BrokeragePaymentRepository>(provider =>
-    new BrokeragePaymentRepository(connectionString)
-);
-builder.Services.AddSingleton<SaftyAlertsRepository>(provider =>
-    new SaftyAlertsRepository(connectionString)
-);
+builder.Services.AddTransient<AIHWFormService>();
+builder.Services.AddTransient<BrokeragePaymentService>();
+builder.Services.AddTransient<SaftyAlertsService>();
 
 
 var app = builder.Build();
