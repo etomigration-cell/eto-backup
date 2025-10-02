@@ -25,15 +25,6 @@ function Header({ selectedProgram, setSelectedProgram, programs }) {
       <div className="header-logo-nav">
         <img src={logo} alt="Logo" className="logo" />
         <nav className="nav">
-          {selectedProgram && (
-            <div className="selected-program">{programName}</div>
-          )}
-
-          <EditProgramContainer
-            selectedProgram={selectedProgram}
-            setSelectedProgram={setSelectedProgram}
-            programs={programs}
-          />
 
           {!user ? (
             <button className="login-btn" onClick={() => setShowLogin(true)}>
@@ -41,13 +32,10 @@ function Header({ selectedProgram, setSelectedProgram, programs }) {
             </button>
           ) : (
             <div className="user-actions">
-              <span className="welcome-text">Welcome, {user.name}</span>
-              
-             
+              <div className="welcome-text">Welcome, {user.name}</div>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
-               <span>Staff</span>
             </div>
           )}
         </nav>

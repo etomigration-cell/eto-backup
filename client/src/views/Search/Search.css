@@ -24,7 +24,7 @@
   border-color: #002a54;
 }
 
-.search-dropdown {
+.search-dropdown, .search-program {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1.5px solid #d3d3e7;

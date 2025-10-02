@@ -1,9 +1,6 @@
 .wdyn-panel {
-  border: 1px solid #bbb;
-  border-radius: 8px;
   margin: 8px 0;
   background: #fbfcfd;
-  box-shadow: 0 2px 8px rgba(60,80,130,0.07);
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
@@ -27,7 +24,6 @@
   background: #fff;
   table-layout: fixed;
   width: 100%;
-  max-width: 850px;
   font-size: 12px;
   margin-bottom: 8px;
   padding: 10px;
