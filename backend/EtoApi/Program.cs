@@ -1,7 +1,9 @@
-using EtoApi.Services;
 using EtoApi.DataAccess;
 using Azure.Identity;
 using Microsoft.Data.SqlClient;
+using EtoApi.Services;
+using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,7 @@ var connectionString = builder.Configuration.GetConnectionString("FabricWarehous
 // Register SqlConnectionFactory that handles AAD token auth internally
 builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 
+
 // Register repositories to get ISqlConnectionFactory injected
 builder.Services.AddTransient<FamilyRepository>();
 builder.Services.AddTransient<ParticipantRepository>();
@@ -36,18 +39,25 @@ builder.Services.AddTransient<PlannedActionRepository>();
 builder.Services.AddTransient<WdynRepository>();
 builder.Services.AddTransient<SearchParticipantRepository>();
 builder.Services.AddTransient<LoginRepository>();
+builder.Services.AddSingleton<AIHWFormService>();
+builder.Services.AddSingleton<BrokeragePaymentService>();
+builder.Services.AddSingleton<SaftyAlertsService>();
+
 
 // Register services
-builder.Services.AddSingleton<FamilyService>();
-builder.Services.AddSingleton<ParticipantService>();
-builder.Services.AddSingleton<SupportPeriodService>();
-builder.Services.AddSingleton<ServiceActivitiesService>();
-builder.Services.AddSingleton<DocumentService>();
-builder.Services.AddSingleton<AddressBookService>();
-builder.Services.AddSingleton<PlannedActionService>();
-builder.Services.AddSingleton<WdynService>();
-builder.Services.AddSingleton<SearchParticipantService>();
-builder.Services.AddSingleton<LoginService>();
+
+
+builder.Services.AddSingleton<AIHWFormRepository>(provider =>
+    new AIHWFormRepository(connectionString)
+);
+
+builder.Services.AddSingleton<BrokeragePaymentRepository>(provider =>
+    new BrokeragePaymentRepository(connectionString)
+);
+builder.Services.AddSingleton<SaftyAlertsRepository>(provider =>
+    new SaftyAlertsRepository(connectionString)
+);
+
 
 var app = builder.Build();
 

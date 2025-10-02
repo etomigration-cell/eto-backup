@@ -19,9 +19,12 @@ namespace EtoApi.Controllers
         private readonly PlannedActionService _plannedActionService;
         private readonly WdynService _wdynService;
         private readonly SearchParticipantService _searchParticipantService;
+        private readonly AIHWFormService _aIHWFormService;
+        private readonly BrokeragePaymentService _brokeragePaymentService;
+        private readonly SaftyAlertsService _saftyAlertsService;
 
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService )
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SaftyAlertsService saftyAlertsService)
         {
             _familyService = familyService;
             _participantService = participantService;
@@ -32,6 +35,11 @@ namespace EtoApi.Controllers
             _plannedActionService = plannedActionService;
             _wdynService = wdynService;
             _searchParticipantService = searchParticipantService;
+            _aIHWFormService = aIHWFormService;
+            _brokeragePaymentService = brokeragePaymentService;
+            _saftyAlertsService = saftyAlertsService;
+
+
         }
 
         [HttpGet("family-details/{id}")]
@@ -126,6 +134,39 @@ namespace EtoApi.Controllers
         public async Task<ActionResult<List<Document>>> GetDocuments(int id)
         {
             var documents = await _documentsService.GetDocumentsByIdAsync(id);
+            if (documents == null || documents.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(documents);
+        }
+
+        [HttpGet("aihwform/{id}")]
+        public async Task<ActionResult<List<Document>>> GetAihwForm(int id)
+        {
+            var documents = await _aIHWFormService.GetAIHWFormByIdAsync(id);
+            if (documents == null || documents.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(documents);
+        }
+
+        [HttpGet("brokeragepayment/{id}")]
+        public async Task<ActionResult<List<Document>>> GetBrokeragePayment(int id)
+        {
+            var documents = await _documentsService.GetDocumentsByIdAsync(id);
+            if (documents == null || documents.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(documents);
+        }
+
+        [HttpGet("saftyalerts/{id}")]
+        public async Task<ActionResult<List<Document>>> GetSaftyAlerts(int id)
+        {
+            var documents = await _saftyAlertsService.GetSaftyAlertsAsync(id);
             if (documents == null || documents.Count == 0)
             {
                 return NotFound();
