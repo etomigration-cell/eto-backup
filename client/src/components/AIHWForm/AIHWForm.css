@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+.AIHWForm-panel .sa-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  background: #fff;
+  table-layout: fixed; /* Ensures columns use the specified widths */
+}
+
+/* Header Row */
+.AIHWForm-panel th {
+  background: #002a54;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 8px;
+  border-bottom: 1px solid #e3e8ee;
+  text-align: left;
+  font-size: 16px;
+}
+
+/* Body Rows */
+.AIHWForm-panel td {
+  padding: 8px 8px;
+  border-bottom: 1px solid #e7eaed;
+  font-size: 15px;
+  vertical-align: top;
+  color: #262d3d;
+}
+
+/* Thin columns for IDs, staff, etc., wide column for Notes */
+.AIHWForm-panel th:nth-child(1),
+.AIHWForm-panel td:nth-child(1) {
+  width: 92px;
+  border-top-left-radius: 8px;
+}
+.AIHWForm-panel th:nth-child(2),
+.AIHWForm-panel td:nth-child(2) {
+  width: 80px;
+}
+
+.AIHWForm-panel th:nth-child(3),
+.AIHWForm-panel td:nth-child(3) {
+  width: 90px;
+}
+
+.AIHWForm-panel th:nth-child(4),
+.AIHWForm-panel td:nth-child(4) {
+  width: 130px;
+}
+/* Notes column */
+.AIHWForm-panel th.notes,
+.AIHWForm-panel td.notes {
+  width: 65vw; /* or 900px, adapt to layout */
+  max-width: 65vw;
+  min-width: 300px;
+  word-break: break-word;
+  white-space: pre-line; /* preserves line breaks */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 15px;
+  background: #fcfcfc;
+}
+
+/* Actions column, right aligned, minimal width */
+.AIHWForm-panel th:last-child,
+.AIHWForm-panel td:last-child {
+  width: 72px;
+  text-align: center;
+  vertical-align: middle;
+  border-top-right-radius: 8px;
+}
+
+/* Overflow scroll for table wrapper/panel */
+.sp-table-wrapper,
+.panel-section {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(60,80,130,0.07);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .AIHWForm-panel th.notes,
+  .AIHWForm-panel td.notes {
+    width: 100vw;
+    min-width: 180px;
+    font-size: 14px;
+  }
+}
+
+/* Optional: expandable notes for very long text */
+.AIHWForm-panel td.notes {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.AIHWForm-panel td.notes:hover {
+  background: #f3f7fd;
+}
