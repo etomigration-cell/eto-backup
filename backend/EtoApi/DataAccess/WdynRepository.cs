@@ -7,17 +7,17 @@ namespace EtoApi.DataAccess
 {
     public class WdynRepository
     {
-        private readonly string _connectionString;
+         private readonly ISqlConnectionFactory _connectionFactory;
 
-        public WdynRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public WdynRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
+
 
         public async Task<List<Wdyn>> GetWdynByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT
@@ -29,12 +29,12 @@ namespace EtoApi.DataAccess
                 ResponseSetID,
                 FormID,
                 CollectionTypeID,
-                SubjectTypeID,
+                sub.SubjectTypeID,
                 CollectionID,
                 ResponseCreatedDate,
-                ProgramID,
-                AuditStaffID,
-                AuditDate,
+                prg.ProgramName,
+                s.AuditStaffID,
+                s.AuditDate,
                 DataEnteredByID,
                 DraftSavedOn,
                 RemovedDate,
@@ -81,7 +81,7 @@ namespace EtoApi.DataAccess
                 PhoneContactType_15504_ResponseChoiceID,
                 Totalefforttimeforparticipant_15587,
                 SHSTypeOfServiceActivityNum_16066,
-                MicahTeam_16083,
+                e.EntityName,
                 TimespenttravellingNotwithparticipantPerstaffmember_16086,
                 PlanType_16365,
                 PlanType_16365_ResponseChoiceID,
@@ -102,8 +102,14 @@ namespace EtoApi.DataAccess
                 Whattypeofhousingisit_28334,
                 Whattypeofhousingisit_28334_ResponseChoiceID,
                 Istheparticipantfamilysleepingroughatthispresentation_28911,
-                Istheparticipantfamilysleepingroughatthispresentation_28911_ResponseChoiceID
+                Istheparticipantfamilysleepingroughatthispresentation_28911_ResponseChoiceID,
+                s.FName,
+                s.LName
                 FROM form.f_293 frm
+                JOIN Staff s ON frm.AuditStaffID = s.StaffID
+                JOIN Entities e ON e.EntityID = frm.MicahTeam_16083
+                JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
+                JOIN Programs prg ON prg.ProgramID = frm.ProgramID
                 WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
@@ -126,7 +132,7 @@ namespace EtoApi.DataAccess
                 SubjectTypeID = reader.IsDBNull(8) ? (int?)null : reader.GetInt32(8),
                 CollectionID = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
                 ResponseCreatedDate = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10),
-                ProgramID = reader.IsDBNull(11) ? (int?)null : reader.GetInt16(11),
+                ProgramID = reader.IsDBNull(11) ? null : reader.GetString(11),
                 AuditStaffID = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
                 AuditDate = reader.IsDBNull(13) ? (DateTime?)null : reader.GetDateTime(13),
                 DataEnteredByID = reader.IsDBNull(14) ? (int?)null : reader.GetInt32(14),
@@ -175,7 +181,7 @@ namespace EtoApi.DataAccess
                 PhoneContactType_15504_ResponseChoiceID = reader.IsDBNull(57) ? (int?)null : reader.GetInt32(57),
                 Totalefforttimeforparticipant_15587 = reader.IsDBNull(58) ? (int?)null : reader.GetInt32(58),
                 SHSTypeOfServiceActivityNum_16066 = reader.IsDBNull(59) ? null : reader.GetString(59),
-                MicahTeam_16083 = reader.IsDBNull(60) ? (int?)null : reader.GetInt32(60),
+                MicahTeam_16083 = reader.IsDBNull(60) ? null : reader.GetString(60),
                 TimespenttravellingNotwithparticipantPerstaffmember_16086 = reader.IsDBNull(61) ? (int?)null : reader.GetInt32(61),
                 PlanType_16365 = reader.IsDBNull(62) ? null : reader.GetString(62),
                 PlanType_16365_ResponseChoiceID = reader.IsDBNull(63) ? (int?)null : reader.GetInt32(63),
@@ -196,7 +202,9 @@ namespace EtoApi.DataAccess
                 Whattypeofhousingisit_28334 = reader.IsDBNull(78) ? null : reader.GetString(78),
                 Whattypeofhousingisit_28334_ResponseChoiceID = reader.IsDBNull(79) ? (int?)null : reader.GetInt32(79),
                 Istheparticipantfamilysleepingroughatthispresentation_28911 = reader.IsDBNull(80) ? null : reader.GetString(80),
-                Istheparticipantfamilysleepingroughatthispresentation_28911_ResponseChoiceID = reader.IsDBNull(81) ? (int?)null : reader.GetInt32(81)
+                Istheparticipantfamilysleepingroughatthispresentation_28911_ResponseChoiceID = reader.IsDBNull(81) ? (int?)null : reader.GetInt32(81),
+                fName = reader.IsDBNull(82) ? null : reader.GetString(82),
+                lName = reader.IsDBNull(83) ? null : reader.GetString(83),
             });
 
             }

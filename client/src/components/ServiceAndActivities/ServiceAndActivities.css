@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 .service-and-activities-panel .sa-table {
-  width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
   background: #fff;
@@ -9,65 +7,67 @@
 }
 
 /* Header Row */
-.service-and-activities-panel th {
+.service-and-activities-panel .sa-table th {
   background: #002a54;
   font-weight: bold;
   color: #fff;
   padding: 10px 8px;
   border-bottom: 1px solid #e3e8ee;
   text-align: left;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 /* Body Rows */
-.service-and-activities-panel td {
+.service-and-activities-panel .sa-table td {
   padding: 8px 8px;
   border-bottom: 1px solid #e7eaed;
-  font-size: 15px;
+  font-size: 12px;
   vertical-align: top;
   color: #262d3d;
 }
 
 /* Thin columns for IDs, staff, etc., wide column for Notes */
-.service-and-activities-panel th:nth-child(1),
-.service-and-activities-panel td:nth-child(1) {
+.service-and-activities-panel .sa-table th:nth-child(1),
+.service-and-activities-panel .sa-table td:nth-child(1) {
   width: 92px;
-  border-top-left-radius: 8px;
 }
-.service-and-activities-panel th:nth-child(2),
-.service-and-activities-panel td:nth-child(2) {
+.service-and-activities-panel .sa-table th:nth-child(2),
+.service-and-activities-panel .sa-table td:nth-child(2) {
   width: 80px;
 }
 
-.service-and-activities-panel th:nth-child(3),
-.service-and-activities-panel td:nth-child(3) {
+.service-and-activities-panel .sa-table th:nth-child(3),
+.service-and-activities-panel .sa-table td:nth-child(3) {
   width: 90px;
 }
 
-.service-and-activities-panel th:nth-child(4),
-.service-and-activities-panel td:nth-child(4) {
-  width: 130px;
+.service-and-activities-panel .sa-table th:nth-child(4),
+.service-and-activities-panel .sa-table td:nth-child(4) {
+  width: 200px;
 }
 /* Notes column */
-.service-and-activities-panel th.notes,
-.service-and-activities-panel td.notes {
-  width: 65vw; /* or 900px, adapt to layout */
-  max-width: 65vw;
-  min-width: 300px;
+
+.service-and-activities-panel .sa-table td:nth-child(5) {
+  width: 450px;
   word-break: break-word;
-  white-space: pre-line; /* preserves line breaks */
-  font-family: 'Segoe UI', Arial, sans-serif;
-  font-size: 15px;
-  background: #fcfcfc;
+  white-space: pre-line; 
+  font-size: 12px;
 }
 
 /* Actions column, right aligned, minimal width */
-.service-and-activities-panel th:last-child,
-.service-and-activities-panel td:last-child {
+.service-and-activities-panel .sa-table th:last-child,
+.service-and-activities-panel .sa-table td:last-child {
   width: 72px;
   text-align: center;
   vertical-align: middle;
-  border-top-right-radius: 8px;
+}
+
+.service-and-activities-panel .sa-table th:nth-child(1) {
+ border-top-left-radius: 8px;
+}
+
+.service-and-activities-panel .sa-table th:last-child {
+ border-top-right-radius: 8px;
 }
 
 /* Overflow scroll for table wrapper/panel */
@@ -85,7 +85,7 @@
   .service-and-activities-panel td.notes {
     width: 100vw;
     min-width: 180px;
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 

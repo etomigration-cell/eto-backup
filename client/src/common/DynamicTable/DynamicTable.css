@@ -95,7 +95,6 @@
 
 .dynamic-table {
   width: 100%;
-  border-collapse: collapse;
   background: #fff;
 }
 
@@ -138,12 +137,25 @@
 
 .rows-per-page {
   color: #222;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .table-page-size-select {
+  font-size: 0.75rem;
   margin-left: 6px;
   padding: 4px 8px;
   border-radius: 4px;
   border: 1px solid #bbb;
+}
+
+.dynamic-table tbody tr:nth-child(even) {
+  background: #f5f7fa;
+}
+
+.dynamic-table tbody tr:hover {
+  background: #e3eafc;
+}
+
+.dynamic-table .center {
+  text-align: center;
 }

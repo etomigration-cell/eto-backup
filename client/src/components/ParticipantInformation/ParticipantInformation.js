@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-import defaultAvatar from "images/defaultAvatar.svg";
 import ParticipantDetailView from "components/ParticipantDetailView/ParticipantDetailView";
 import ParticipantAuditReport from "components/ParticipantAuditReport/ParticipantAuditReport";
 import ParticipantProgramHistory from "components/ParticipantProgramHistory/ParticipantProgramHistory";
@@ -29,8 +28,6 @@ function ParticipantInformation({ participant }) {
 
   useEffect(() => {
     const loadTabData = async () => {
-      console.log("Active Tab:", activeTab);
-      console.log("Calling endpoint for tab:", tabEndpoints[activeTab]);
       if (!viewedData) return;
       setLoading(true);
       try {
@@ -49,10 +46,6 @@ function ParticipantInformation({ participant }) {
     };
     loadTabData();
   }, [activeTab, viewedData]);
-
-  console.log(activeTab);
-  console.log(viewedData);
-  console.log(tabData);
 
   const tabs = [
     {

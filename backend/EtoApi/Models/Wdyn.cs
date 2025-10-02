@@ -13,7 +13,7 @@ namespace EtoApi.Models
         public int? SubjectTypeID { get; set; }
         public int? CollectionID { get; set; }
         public DateTime? ResponseCreatedDate { get; set; }
-        public int? ProgramID { get; set; }
+        public string? ProgramID { get; set; }
         public int? AuditStaffID { get; set; }
         public DateTime? AuditDate { get; set; }
         public int? DataEnteredByID { get; set; }
@@ -62,7 +62,7 @@ namespace EtoApi.Models
         public int? PhoneContactType_15504_ResponseChoiceID { get; set; }
         public int? Totalefforttimeforparticipant_15587 { get; set; }
         public string? SHSTypeOfServiceActivityNum_16066 { get; set; }
-        public int? MicahTeam_16083 { get; set; }
+        public string? MicahTeam_16083 { get; set; }
         public int? TimespenttravellingNotwithparticipantPerstaffmember_16086 { get; set; }
         public string? PlanType_16365 { get; set; }
         public int? PlanType_16365_ResponseChoiceID { get; set; }
@@ -84,5 +84,7 @@ namespace EtoApi.Models
         public int? Whattypeofhousingisit_28334_ResponseChoiceID { get; set; }
         public string? Istheparticipantfamilysleepingroughatthispresentation_28911 { get; set; }
         public int? Istheparticipantfamilysleepingroughatthispresentation_28911_ResponseChoiceID { get; set; }
+        public string? fName { get; set;}
+        public string? lName { get; set;}
     }
 }

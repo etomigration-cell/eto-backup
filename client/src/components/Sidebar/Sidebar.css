@@ -42,12 +42,8 @@
 }
 
 .sidebar-title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
-}
-
-.sidebar-content {
-  margin-top: 3rem;
 }
 
 @media (max-width: 768px) {
