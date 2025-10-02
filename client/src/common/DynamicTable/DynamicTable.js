@@ -8,6 +8,8 @@ function DynamicTable({ data, config, className, pageSizeOptions = [5, 10, 20], 
   const [pageSize, setPageSize] = useState(pageSizeOptions[0]);
   const [page, setPage] = useState(1);
 
+  console.log("dynamic table", data);
+
   const filteredData = useMemo(() => {
     return data?.filter(row =>
       config.columns.every(col => {
@@ -37,7 +39,7 @@ function DynamicTable({ data, config, className, pageSizeOptions = [5, 10, 20], 
 
   return (
     <div>
-      <table className={className}>
+      <table className={`${className} dynamic-table`}>
         <thead>
           <tr>
             {config.columns.map((col) => (

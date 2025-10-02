@@ -7,17 +7,16 @@ namespace EtoApi.DataAccess
 {
     public class ParticipantRepository
     {
-        private readonly string _connectionString;
+        private readonly ISqlConnectionFactory _connectionFactory;
 
-        public ParticipantRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ParticipantRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
 
         public async Task<ParticipantDetails?> GetParticipantByIdAsync(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
+             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT

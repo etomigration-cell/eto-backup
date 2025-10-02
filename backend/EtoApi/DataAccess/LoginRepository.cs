@@ -5,13 +5,16 @@ using Microsoft.Data.SqlClient;
 
 public class LoginRepository
 {
-    private readonly string _connectionString;
-    public LoginRepository(string connectionString) => _connectionString = connectionString;
+    private readonly ISqlConnectionFactory _connectionFactory;
 
+        public LoginRepository(ISqlConnectionFactory connectionFactory)
+            {
+                _connectionFactory = connectionFactory;
+            }
+    
     public async Task<User?> GetUserByUsernameAndPasswordHashAsync(string username, byte[] passwordHash)
     {
-        using var connection = new SqlConnection(_connectionString);
-        await connection.OpenAsync();
+        using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
         var sql = @"SELECT StaffID, Email FROM Staff WHERE Email = @username AND Password = @passwordHash";
         using var command = new SqlCommand(sql, connection);

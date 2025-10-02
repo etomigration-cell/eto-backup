@@ -1,34 +1,97 @@
 import React from "react";
 import DynamicDetailsTable from "common/DynamicTable/DynamicDetailsTable";
-import './SupportPeriodDetailView.css';
 
 function SupportServiceActivities({ detail }) {
   if (!detail) return null;
 
+  console.log("support", detail)
+
   const fieldLabels = {
-    programName: "Program Name",
-    subjectType: "Subject Type",
-    startDate: "What is the start date of Support Period",
-    endDate: "Support Period End Date",
+    dateCompleted: "Date completed",
+    micahTeam: "Micah Team",
+    startTime: "Start Time",
+    endTime: "End Time",
+    formIdentifier: "Form Identifier",
+    collectionTypeID: "Collection Type ID",
+    dataEnteredByID: "Data Entered By ID",
+    draftSavedOn: "Draft Saved On",
+    removedDate: "Removed Date",
+    howManyStaffDidThisTogether: "How Many Staff Participated",
+
+    shsGeneralAssistanceAndSupportActivities_16201: "SHS General Assistance & Support Activities",
+   
+
+    visitSite_16219: "Visit Site",
+    presentingReason: "Presenting Reason",
+    inclusiveHealthReferralSource: "Inclusive Health Referral Source",
+    postcodeOfServiceDelivery: "Postcode of Service Delivery",
+
+    episodeOfCareOutcome: "Episode of Care Outcome",
+
+    accommodationStartDate: "Accommodation Start Date",
+    accommodationProvider: "Accommodation Provider",
+    accommodationExitDate: "Accommodation Exit Date",
+    numberNights: "Number of Nights",
+
+    wasFamilyPresent: "Was Family Present",
+    contactMethod: "Contact Method",
+    contactLocation: "Contact Location",
+
+    housingAccommodationSHS: "Housing/Accommodation (SHS)",
+    withWhichProviderLiaised: "Provider Contacted/Liaised With",
+    needsIdentifiedHousing: "Needs Identified: Housing Accommodation",
+    needsIdentifiedGeneralAssistanceAndSupport: "Needs Identified: General Assistance & Support",
+    needsIdentifiedSpecialisedServices: "Needs Identified: Specialised Services",
+    
+    selectThe2ndStaffPerson: "Second Staff Person",
+
+    whatOtherTeamAssisted: "Other Team(s) Assisted",
+    timespentWithParticipant: "Time Spent With Participant (mins)",
+    timespentOnBehalf: "Time Spent On Behalf of Participant (mins)",
+    timespentTravelling: "Time Spent Travelling (mins)",
+    totalEffortTime: "Total Effort Time (mins)",
+
+    whichGoalWasThisFor: { label: "Associated Goal", type: "textarea" },
+    // Timespent & Service Activities
+    timespentWithParticipantSA1: "Time Spent With Participant (SA1)",
+    timespentOnBehalfSA1: "Time Spent On Behalf (SA1)",
+    timespentTravellingSA2: "Time Spent Travelling (SA2)",
+    ifProvidedSecondService: "Second Service/Activity (If Provided)",
+    timespentWithParticipantSA2: "Time Spent With Participant (SA2)",
+    // ...repeat for SA3, SA4 as needed
+    totalTimespentWithParticipant: "Total Time With Participant",
+    totalTimespentOnBehalf: "Total Time On Behalf",
+    totalTimespentTravelling: "Total Time Travelling",
+
+    aihwServiceActivitySA1: "AIHW Service Activity (SA1)",
+    aihwServiceActivitySA2: "AIHW Service Activity (SA2)",
+    aihwServiceActivitySA3: "AIHW Service Activity (SA3)",
+    aihwServiceActivitySA4: "AIHW Service Activity (SA4)",
+
+    
+    notes: { label: "Notes", type: "textarea" },
+
+    // Staff identity
+    staffID: "Staff ID",
+    fName: "First Name",
+    middleInitial: "Middle Initial",
+    lName: "Last Name",
+
+    // Dates
     auditDate: "Audit Date",
-    dateLastUpdated: "Date Last Updated",
-    firstName: "First Name",
-    lastName: "Last Name",
-    submitsReport: "Submits SHS AIHW Reports",
-    micahTeam: "Entity Name",
-    submitAIHWReports: "Submit AIHW Reports",
-    aihwOrganisationId: "AIHW Organisation ID",
-    dateAssistanceRequested: "Date Assistance Requested",
-    participantSpeaksLanguageOtherThanEnglishAtHome: "Speaks Language Other Than English At Home",
-    languageSpokenAtHome: "Language Spoken At Home (Choice)",
-    englishProficiency: "Self-Assessed English Proficiency",
-    formalReferralType: "Source of Formal Referral",
-    receivedServiceFromTeamInPast: "Received Services From Team In Past",
-    genderFromDemographics: "Gender (Demographics)",
-    aihwSex: "AIHW Gender",
-    housingAtTheCloseOfSupportPeriod: "Housing At End Of Support Period",
-    selectTheReasonThatTheSupportPeriodEnded: "Reason Support Period Ended",
-    wasthecarefinderclientfeedbacksurveyofferred: "Carefinder Client Feedback Survey Offered"
+    transactionDate: "Transaction Date",
+
+    // Payment & finance
+    financeProjectCode: "Finance Project Code",
+    briefTransactionDescription: "Brief Transaction Description",
+    supplierProvider: "Supplier/Provider",
+    howWasPaymentMade: "How Payment Was Made",
+    authorisedBy: "Authorised By",
+
+    // Clinical observations & vitals
+    temperature: "Temperature",
+    bloodPressure: "Blood Pressure (mmHg)",
+    heartRate: "Heart Rate (beats per minute)"
   };
 
 return (

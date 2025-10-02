@@ -12,7 +12,7 @@
   outline: none;
   background: #fff;
   color: #333;
-  font-size: 1rem;
+  font-size: 0.75rem;
   padding: 7px 14px;
   margin: 0 2px;
   border-radius: 6px;
@@ -22,7 +22,7 @@
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #4CAF50;
+  background: #002a54;
   color: #fff;
   box-shadow: 0 2px 8px rgba(76,175,80,0.12);
 }

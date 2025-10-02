@@ -101,3 +101,8 @@
 .nxtline{
     display: block;
 }
+
+.user-actions {
+   display: flex;
+   align-items: center;                    
+}

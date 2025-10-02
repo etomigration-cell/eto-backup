@@ -9,6 +9,8 @@ import {
   FaTasks,
   FaQuestionCircle,
   FaClipboardCheck,
+  FaFileAlt,
+  FaNotesMedical,
 } from "react-icons/fa";
 import "./TouchPointsTabs.css";
 
@@ -21,11 +23,6 @@ const tabs = [
   { key: "familyInformation", label: "Family Information", icon: <FaUsers /> },
   { key: "supportPeriods", label: "Support Periods", icon: <FaCalendarAlt /> },
   {
-    key: "safetyAlerts",
-    label: "Safety Alerts",
-    icon: <FaExclamationTriangle />,
-  },
-  {
     key: "serviceAndActivities",
     label: "Service And Activities",
     icon: <FaClipboardList />,
@@ -33,17 +30,22 @@ const tabs = [
   { key: "addressBook", label: "Address Book", icon: <FaAddressBook /> },
   { key: "plannedAction", label: "Planned Action", icon: <FaTasks /> },
   { key: "wdyn", label: "What do you need?", icon: <FaQuestionCircle /> },
-  { key: "consent", label: "Consent", icon: <FaClipboardCheck /> },
   {
     key: "aihw",
     label: "AIHW",
-    icon: <FaUser />,
+    icon: <FaNotesMedical />,
   },
   {
     key: "documents",
     label: "Documents",
-    icon: <FaUser />,
-  }
+    icon: <FaFileAlt />,
+  },
+  {
+    key: "safetyAlerts",
+    label: "Safety Alerts",
+    icon: <FaExclamationTriangle />,
+  },
+  { key: "consent", label: "Consent", icon: <FaClipboardCheck /> },
 ];
 
 function TouchPointsTabs({ children, activeTab, onTabChange }) {

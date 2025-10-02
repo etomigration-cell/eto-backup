@@ -1,6 +1,9 @@
 using EtoApi.DataAccess;
+using Azure.Identity;
+using Microsoft.Data.SqlClient;
 using EtoApi.Services;
 using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,36 +24,27 @@ builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("FabricWarehouse");
 
-builder.Services.AddSingleton<FamilyRepository>(provider =>
-    new FamilyRepository(connectionString)
-);
-builder.Services.AddSingleton<ParticipantRepository>(provider =>
-    new ParticipantRepository(connectionString)
-);
-builder.Services.AddSingleton<SupportPeriodRepository>(provider =>
-    new SupportPeriodRepository(connectionString)
-);
-builder.Services.AddSingleton<ServiceActivitiesRepository>(provider =>
-    new ServiceActivitiesRepository(connectionString)
-);
-builder.Services.AddSingleton<DocumentsRepository>(provider =>
-    new DocumentsRepository(connectionString)
-);
-builder.Services.AddSingleton<AddressBookRepository>(provider =>
-    new AddressBookRepository(connectionString)
-);
-builder.Services.AddSingleton<PlannedActionRepository>(provider =>
-    new PlannedActionRepository(connectionString)
-);
-builder.Services.AddSingleton<WdynRepository>(provider =>
-    new WdynRepository(connectionString)
-);
-builder.Services.AddSingleton<SearchParticipantRepository>(provider =>
-    new SearchParticipantRepository(connectionString)
-);
-builder.Services.AddSingleton<LoginRepository>(provider =>
-    new LoginRepository(connectionString)
-);
+// Register SqlConnectionFactory that handles AAD token auth internally
+builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+
+
+// Register repositories to get ISqlConnectionFactory injected
+builder.Services.AddTransient<FamilyRepository>();
+builder.Services.AddTransient<ParticipantRepository>();
+builder.Services.AddTransient<SupportPeriodRepository>();
+builder.Services.AddTransient<ServiceActivitiesRepository>();
+builder.Services.AddTransient<DocumentsRepository>();
+builder.Services.AddTransient<AddressBookRepository>();
+builder.Services.AddTransient<PlannedActionRepository>();
+builder.Services.AddTransient<WdynRepository>();
+builder.Services.AddTransient<SearchParticipantRepository>();
+builder.Services.AddTransient<LoginRepository>();
+builder.Services.AddSingleton<AIHWFormService>();
+builder.Services.AddSingleton<BrokeragePaymentService>();
+builder.Services.AddSingleton<SaftyAlertsService>();
+
+
+// Register services
 
 
 builder.Services.AddSingleton<AIHWFormRepository>(provider =>
@@ -64,19 +58,6 @@ builder.Services.AddSingleton<SaftyAlertsRepository>(provider =>
     new SaftyAlertsRepository(connectionString)
 );
 
-builder.Services.AddSingleton<FamilyService>();
-builder.Services.AddSingleton<ParticipantService>();
-builder.Services.AddSingleton<SupportPeriodService>();
-builder.Services.AddSingleton<ServiceActivitiesService>();
-builder.Services.AddSingleton<DocumentService>();
-builder.Services.AddSingleton<AddressBookService>();
-builder.Services.AddSingleton<PlannedActionService>();
-builder.Services.AddSingleton<WdynService>();
-builder.Services.AddSingleton<SearchParticipantService>();
-builder.Services.AddSingleton<LoginService>();
-builder.Services.AddSingleton<AIHWFormService>();
-builder.Services.AddSingleton<BrokeragePaymentService>();
-builder.Services.AddSingleton<SaftyAlertsService>();
 
 var app = builder.Build();
 

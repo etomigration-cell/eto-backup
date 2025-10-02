@@ -1,5 +1,5 @@
-import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import NotesCell from "common/NotesCell/NotesCell";
 
 export const supportPeriodsTableConfig = {
   columns: [
@@ -8,7 +8,6 @@ export const supportPeriodsTableConfig = {
     { key: "dateLastUpdated", label: "Date Last Updated",  filter: "text" },
     { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
     { key: "StaffName", label: "Last Updated By",  filter: false },
-    { key: "micahTeam", label: "Micah Team",  filter: "text" },
     { key: "submitsReport", label: "AIHW/SHS",  filter: "text" },
     { key: "startDate", label: "Start Date",  filter: "text" },
     { key: "endDate", label: "End Date",  filter: "text" },
@@ -26,7 +25,7 @@ export const serviceActivitiesTableConfig = {
     { key: "StaffName", label: "Audit Staff", filter: "text" },
     { key: "dateCompleted", label: "Date Completed", filter: "text" },
     { key: "micahTeam", label: "Micah Team", filter: "text" },
-    { key: "notes", label: "Notes", filter: false },
+    { key: "notes", label: "Notes", filter: false , render: (row) => <NotesCell value={row.notes} />},
     {
       key: "actions",
       label: "Actions",
@@ -34,6 +33,7 @@ export const serviceActivitiesTableConfig = {
     },
   ],
 };
+
 
 export const searchResultsTableConfig = ( fetchParticipant ) => {
   return {
@@ -107,17 +107,14 @@ export const addressBookTableConfig = {
 
 export const wdynTableConfig = {
   columns: [
-    { key: 'dashboard',         label: 'dashboard' },
-    { key: 'dateLastUpdated',     label: 'Date Last Updated' },
-    { key: 'lastUpdatedby', label: 'Last Updated By' },
-    { key: 'goalStatus', label: 'Goal Status' },
-    { key: 'scope',   label: 'Scope' },
-    { key: 'isfor',       label: 'Is For' },
+    { key: 'dateGoalClosed',     label: 'Date Last Updated' },
+    { key: 'StaffName', label: 'Last Updated By' },
+    { key: 'wdynStatus', label: 'Goal Status' },
+    { key: 'scopeOfGoal',   label: 'Scope' },
+    { key: 'isThisGoalFor',       label: 'Is For' },
     { key: 'domain',         label: 'Domain' },
-    { key: 'goalLT',       label: 'Goal LT' },
-    { key: 'goalCrisis',         label: 'Goal Crisis' },
-    { key: 'othergoal',         label: 'Other Goal' },
-    { key: 'currentgoalstatus',         label: 'Current Goal Status' },
+    { key: 'goalLongerTerm',       label: 'Goal LT' },
+    { key: 'currentGoalStatus',         label: 'Current Goal Status' },
     {
       key: 'actions',
       label: 'Actions'
@@ -139,5 +136,29 @@ export const consentTableConfig = {
   ]
 };
 
+export const documentTableConfig = ( handleDocumentDownload ) => {
+  return {
+  columns: [
+    { key: 'responseCreatedDate',     label: 'Date Completed' },
+    { key: 'documentType', label: 'Document Type' },
+    { key: 'shortDescription', label: 'Short Description' },
+    {
+      key: "fileName",
+      label: "File Name",
+      render: (row) => (
+        <Link
+    to="/search"
+    onClick={() => handleDocumentDownload(row)}
+  >
+    {row.fileName}
+  </Link>
+      ),
+    }, 
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]}
+}
 
 
