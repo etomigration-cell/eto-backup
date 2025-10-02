@@ -28,11 +28,14 @@ function SearchPage({ selectedProgram, programs }) {
   const [searchText, setSearchText] = useState("");
   const [searchError, setSearchError] = useState("");
   const [selected, setSelected] = useState("Participant");
+  const [program, setProgram] = useState({ code: "762"});
   const [results, setResults] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false);
   const [participant, setParticipant] = useState(null);
   const [activeTab, setActiveTab] = useState("participantInformation");
   const [loading, setLoading] = useState(false);
+
+  console.log(programs)
 
   const documentRef = useRef();
 
@@ -118,11 +121,17 @@ function SearchPage({ selectedProgram, programs }) {
             </option>
           ))}
         </select>
-        <input
-          className="program-name-input"
-          value={programName}
-          onChange={(e) => setSelected(e.target.value)}
-        />
+        <select
+          className="search-program"
+          value={program.code}
+          onChange={(e) => setProgram(e.target.value)}
+        >
+          {programs.programs.map((opt) => (
+            <option key={opt.code} value={opt.code}>
+              {opt.name}
+            </option>
+          ))}
+        </select>
         <button className="search-button" type="submit">
           Search
         </button>
