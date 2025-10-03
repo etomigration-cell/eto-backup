@@ -15,7 +15,7 @@ function SaftyAlerts({ saftyalerts }) {
             <tr>
               <th>Date Last Updated</th>
               <th>Micah Team</th>
-              <th>External Risk</th>
+              <th>Extreme Risk</th>
               <th>Category</th>
               <th>Type</th>
             </tr>

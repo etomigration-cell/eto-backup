@@ -1,6 +1,7 @@
-import { transformBrokeragePayment } from 'transformer/BrokeragePaymentTransformer'; 
-import {BrokeragePaymentdata} from '../BrokeragePaymentAction/BrokeragePaymentData.json';
-export async function fetchBrokeragePayment(id) {
+import { safetyalertsTransformerPayment } from 'transformer/safetyalertsTransformerTransformer'; 
+import {SaftyAlertsDatadata} from '../SaftyAlertsAction/SaftyAlertsData.json';
+import { transformSafetyAlerts } from 'transformer/safetyalertsTransformer';
+export async function fetchSaftyAlerts(id) {
   try {
     const response = await fetch(
       `http://localhost:5001/participant/service-activities/${id}`,
@@ -12,7 +13,7 @@ export async function fetchBrokeragePayment(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformBrokeragePayment(BrokeragePaymentdata);
+    const transformed = transformSafetyAlerts(SaftyAlertsDatadata);
 
     return transformed;
   } catch (error) {
