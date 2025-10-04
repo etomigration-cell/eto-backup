@@ -20,8 +20,6 @@ namespace EtoApi.DataAccess
             
             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
-            await connection.OpenAsync();
-
             var query = @"
                 SELECT                    
                     frm.FormResponseID,

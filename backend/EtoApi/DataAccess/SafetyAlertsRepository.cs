@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 
 namespace EtoApi.DataAccess
 {
-    public class SaftyAlertsRepository
+    public class SafetyAlertsRepository
     {
         
         private readonly ISqlConnectionFactory _connectionFactory;
         
 
-        public SaftyAlertsRepository(ISqlConnectionFactory connectionFactory)
+        public SafetyAlertsRepository(ISqlConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<SaftyAlertsModel>> GetSaftyAlertsByIdAsync(int id)
+        public async Task<List<SafetyAlertsModel>> GetSafetyAlertsByIdAsync(int id)
         {
             
             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
-
-            await connection.OpenAsync();
 
             var query = @"
                 SELECT    
@@ -71,12 +69,12 @@ namespace EtoApi.DataAccess
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
 
-            var saftyAlerts = new List<SaftyAlertsModel>();
+            var saftyAlerts = new List<SafetyAlertsModel>();
             using var reader = await command.ExecuteReaderAsync();
 
             while (await reader.ReadAsync())
             {
-                saftyAlerts.Add(new SaftyAlertsModel
+                saftyAlerts.Add(new SafetyAlertsModel
                 {
 
                     FormResponseID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
