@@ -1,6 +1,6 @@
 namespace EtoApi.Models
 {
-    public class SaftyAlertsModel
+    public class SafetyAlertsModel
     {
         public int? FormResponseID { get; set; }
         public string? FormIdentifier { get; set; }

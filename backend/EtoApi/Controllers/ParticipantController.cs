@@ -21,10 +21,10 @@ namespace EtoApi.Controllers
         private readonly SearchParticipantService _searchParticipantService;
         private readonly AIHWFormService _aIHWFormService;
         private readonly BrokeragePaymentService _brokeragePaymentService;
-        private readonly SaftyAlertsService _saftyAlertsService;
+        private readonly SafetyAlertsService _safetyAlertsService;
 
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SaftyAlertsService saftyAlertsService)
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService)
         {
             _familyService = familyService;
             _participantService = participantService;
@@ -37,7 +37,7 @@ namespace EtoApi.Controllers
             _searchParticipantService = searchParticipantService;
             _aIHWFormService = aIHWFormService;
             _brokeragePaymentService = brokeragePaymentService;
-            _saftyAlertsService = saftyAlertsService;
+            _safetyAlertsService = safetyAlertsService;
 
 
         }
@@ -142,36 +142,36 @@ namespace EtoApi.Controllers
         }
 
         [HttpGet("aihwform/{id}")]
-        public async Task<ActionResult<List<Document>>> GetAihwForm(int id)
+        public async Task<ActionResult<List<AIHWFormModel>>> GetAihwForm(int id)
         {
-            var documents = await _aIHWFormService.GetAIHWFormByIdAsync(id);
-            if (documents == null || documents.Count == 0)
+            var aihwForms = await _aIHWFormService.GetAIHWFormByIdAsync(id);
+            if (aihwForms == null || aihwForms.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(documents);
+            return Ok(aihwForms);
         }
 
-        [HttpGet("brokeragepayment/{id}")]
-        public async Task<ActionResult<List<Document>>> GetBrokeragePayment(int id)
+        [HttpGet("brokerage-payment/{id}")]
+        public async Task<ActionResult<List<BrokeragePaymentModel>>> GetBrokeragePaymentAsync(int id)
         {
-            var documents = await _documentsService.GetDocumentsByIdAsync(id);
-            if (documents == null || documents.Count == 0)
+            var brokeragePayments = await _brokeragePaymentService.GetBrokeragePaymentAsync(id);
+            if (brokeragePayments == null || brokeragePayments.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(documents);
+            return Ok(brokeragePayments);
         }
 
-        [HttpGet("saftyalerts/{id}")]
-        public async Task<ActionResult<List<Document>>> GetSaftyAlerts(int id)
+        [HttpGet("safety-alerts/{id}")]
+        public async Task<ActionResult<List<SafetyAlertsModel>>> GetSafetyAlerts(int id)
         {
-            var documents = await _saftyAlertsService.GetSaftyAlertsAsync(id);
-            if (documents == null || documents.Count == 0)
+            var safetyAlerts = await _safetyAlertsService.GetSafetyAlertsAsync(id);
+            if (safetyAlerts == null || safetyAlerts.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(documents);
+            return Ok(safetyAlerts);
         }
     }
 }

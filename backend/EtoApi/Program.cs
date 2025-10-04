@@ -39,9 +39,23 @@ builder.Services.AddTransient<PlannedActionRepository>();
 builder.Services.AddTransient<WdynRepository>();
 builder.Services.AddTransient<SearchParticipantRepository>();
 builder.Services.AddTransient<LoginRepository>();
-builder.Services.AddTransient<AIHWFormService>();
-builder.Services.AddTransient<BrokeragePaymentService>();
-builder.Services.AddTransient<SaftyAlertsService>();
+builder.Services.AddTransient<AIHWFormRepository>();
+builder.Services.AddTransient<BrokeragePaymentRepository>();
+builder.Services.AddTransient<SafetyAlertsRepository>();
+
+builder.Services.AddSingleton<FamilyService>();
+builder.Services.AddSingleton<ParticipantService>();
+builder.Services.AddSingleton<SupportPeriodService>();
+builder.Services.AddSingleton<ServiceActivitiesService>();
+builder.Services.AddSingleton<DocumentService>();
+builder.Services.AddSingleton<AddressBookService>();
+builder.Services.AddSingleton<PlannedActionService>();
+builder.Services.AddSingleton<WdynService>();
+builder.Services.AddSingleton<SearchParticipantService>();
+builder.Services.AddSingleton<LoginService>();
+builder.Services.AddSingleton<AIHWFormService>();
+builder.Services.AddSingleton<SafetyAlertsService>();
+builder.Services.AddSingleton<BrokeragePaymentService>();
 
 
 var app = builder.Build();

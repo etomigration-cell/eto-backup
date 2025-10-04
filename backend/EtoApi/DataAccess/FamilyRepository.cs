@@ -30,7 +30,7 @@ namespace EtoApi.DataAccess
                 WHERE 
                     fmd.FamilyID = (SELECT FamilyID FROM FamilyMemberDetail WHERE CLID = @Id) 
                     AND fmd.EndDate IS NULL
-            ";
+                ORDER BY fmd.IsHeadOfFamily DESC";
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);

@@ -20,8 +20,6 @@ namespace EtoApi.DataAccess
             
             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
-            await connection.OpenAsync();
-
             var query = @"
                 SELECT
                     frm.FormResponseID,
@@ -389,7 +387,7 @@ namespace EtoApi.DataAccess
                     SubjectTypeID = reader.IsDBNull(8) ? (int?)null : reader.GetInt32(8),
                     CollectionID = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
                     ResponseCreatedDate = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10),
-                    ProgramID = reader.IsDBNull(11) ? (int?)null : reader.GetInt32(11),
+                    ProgramID = reader.IsDBNull(11) ? (int?)null : reader.GetInt16(11),
                     AuditStaffID = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
                     AuditDate = reader.IsDBNull(13) ? (DateTime?)null : reader.GetDateTime(13),
                     DataEnteredByID = reader.IsDBNull(14) ? (int?)null : reader.GetInt32(14),
