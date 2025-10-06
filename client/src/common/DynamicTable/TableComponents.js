@@ -25,7 +25,7 @@ export const serviceActivitiesTableConfig = {
     { key: "StaffName", label: "Audit Staff", filter: "text" },
     { key: "dateCompleted", label: "Date Completed", filter: "text" },
     { key: "micahTeam", label: "Micah Team", filter: "text" },
-    { key: "notes", label: "Notes", filter: false , render: (row) => <NotesCell value={row.notes} />},
+    { key: "notes", label: "Notes", filter: false , render: (row) => <NotesCell value={row.notes} heading={"Notes"}/>},
     {
       key: "actions",
       label: "Actions",
@@ -160,5 +160,21 @@ export const documentTableConfig = ( handleDocumentDownload ) => {
     }
   ]}
 }
+
+export const plannedActionTableConfig = {
+  columns: [
+    { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
+    { key: "StaffName", label: "Audit Staff", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },
+    { key: "actionDescription", label: "Action Description", render: (row) => <NotesCell value={row.actionDescription} heading={"Action Description"}/> },
+    { key: "actionDueDate", label: "Action Due Date",  filter: "text" },
+    { key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    },
+  ],
+};
 
 

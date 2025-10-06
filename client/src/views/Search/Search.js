@@ -13,10 +13,11 @@ import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActi
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
+import PlannedActions from "components/PlannedAction/PlannedAction";
 
 import "./Search.css";
 
@@ -165,6 +166,7 @@ function SearchPage({ selectedProgram, programs }) {
                   participant={participant}
                 ></SupportPeriod>
               ),
+              plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant}></PlannedActions>),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
               wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,

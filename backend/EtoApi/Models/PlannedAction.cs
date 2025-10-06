@@ -13,7 +13,7 @@ namespace EtoApi.Models
         public int? SubjectTypeID { get; set; }
         public int? CollectionID { get; set; }
         public DateTime? ResponseCreatedDate { get; set; }
-        public int? ProgramID { get; set; }
+        public string? ProgramID { get; set; }
         public int? AuditStaffID { get; set; }
         public DateTime? AuditDate { get; set; }
         public int? DataEnteredByID { get; set; }
@@ -25,7 +25,7 @@ namespace EtoApi.Models
         public string? ActionComment_15704 { get; set; }
         public DateTime? ActionDueDate_15705 { get; set; }
         public DateTime? CompletionDateLeaveBlankIfGoalIncomplete_15706 { get; set; }
-        public int? MicahTeam_15707 { get; set; }
+        public string? MicahTeam_15707 { get; set; }
         public int? ParentFormResponseID_293 { get; set; }
         public int? ThisactionisinresponsetothisLTgoal_16960 { get; set; }
         public string? ThisactionisinresponsetothisLTgoal_16960_DisplayStr { get; set; }
@@ -50,5 +50,7 @@ namespace EtoApi.Models
         public string? Actioncreatedby_29503 { get; set; }
         public string? RiskLevel_33169 { get; set; }
         public int? RiskLevel_33169_ResponseChoiceID { get; set; }
+        public string? FName { get; set; }
+        public string? LName { get; set; }
     }
 }
