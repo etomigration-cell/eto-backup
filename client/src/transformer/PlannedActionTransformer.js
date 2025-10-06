@@ -1,4 +1,6 @@
-function transformAddressBook(input) {
+import moment from "moment";
+
+function transformPlannedAction(input) {
   return {
     formResponseID: input.formResponseID ?? null,
     formIdentifier: input.formIdentifier ?? null,
@@ -13,7 +15,7 @@ function transformAddressBook(input) {
     responseCreatedDate: input.responseCreatedDate ?? null,
     programID: input.programID ?? null,
     auditStaffID: input.auditStaffID ?? null,
-    auditDate: input.auditDate ?? null,
+    auditDate: input.auditDate ? moment(input.auditDate).format("DD/MM/YYYY") : "",
     dataEnteredByID: input.dataEnteredByID ?? null,
     draftSavedOn: input.draftSavedOn ?? null,
     removedDate: input.removedDate ?? null,
@@ -23,8 +25,8 @@ function transformAddressBook(input) {
     },
     actionDescription: input.actionDescription_15703 ?? null,
     actionComment: input.actionComment_15704 ?? null,
-    actionDueDate: input.actionDueDate_15705 ?? null,
-    completionDate: input.completionDateLeaveBlankIfGoalIncomplete_15706 ?? null,
+    actionDueDate: input.actionDueDate_15705 ? moment(input.actionDueDate_15705).format("DD/MM/YYYY") : "",
+    completionDate: input.completionDateLeaveBlankIfGoalIncomplete_15706 ? moment(input.completionDateLeaveBlankIfGoalIncomplete_15706).format("DD/MM/YYYY") : "",
     micahTeam: input.micahTeam_15707 ?? null,
     parentFormResponseID: input.parentFormResponseID_293 ?? null,
     actionLTGoal: {
@@ -67,32 +69,34 @@ function transformAddressBook(input) {
     riskLevel: {
       level: input.riskLevel_33169 ?? null,
       choiceID: input.riskLevel_33169_ResponseChoiceID ?? null
-    }
+    },
+    fName: input.fName,
+    lName: input.lName,
   };
 }
 
-export function transformAllAddressBook(records) {
+
+export function transformAllPlannedAction(records) {
   const minimalKeys = [
     "auditDate",
-    "subjectType",
-    "startDate",
-    "endDate",
-    "auditDate",
-    "dateLastUpdated",
-    "firstName",
-    "lastName",
-    "submitsReport",
-    "micahTeam"
+    "micahTeam",
+    "actionDescription",
+    "actionDueDate",
+    "completionDate"
   ];
 
   // Map all records to frontend format first
-  const mapped = records.map(mapSupportPeriod);
+  const mapped = records.map(transformPlannedAction);
 
-  // Then extract minimal information from mapped records
+  console.log(mapped);
+
   const minimal = mapped.map(rec =>
-    Object.fromEntries(
-      minimalKeys.map(key => [key, rec[key]])
-    )
+    ({
+      ...Object.fromEntries(
+        minimalKeys.map(key => [key, rec[key]])
+      ),
+      StaffName: `${rec.fName || ''} ${rec.lName || ''}`.trim(),
+    })
   );
 
   return {

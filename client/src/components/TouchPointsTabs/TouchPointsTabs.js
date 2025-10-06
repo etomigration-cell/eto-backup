@@ -11,6 +11,9 @@ import {
   FaClipboardCheck,
   FaFileAlt,
   FaNotesMedical,
+  FaDollarSign,
+  FaChartLine,
+  FaUserFriends
 } from "react-icons/fa";
 import "./TouchPointsTabs.css";
 
@@ -41,11 +44,26 @@ const tabs = [
     icon: <FaFileAlt />,
   },
   {
+    key: "brokeragePayment",
+    label: "Brokerage Payment",
+    icon: <FaDollarSign />,
+  },
+  {
     key: "safetyAlerts",
     label: "Safety Alerts",
     icon: <FaExclamationTriangle />,
   },
   { key: "consent", label: "Consent", icon: <FaClipboardCheck /> },
+  {
+    key: "msu",
+    label: "MSU",
+    icon: <FaChartLine />,
+  },
+  {
+    key: "incomingReferral",
+    label: "Incoming Referrral",
+    icon: <FaUserFriends />,
+  },
 ];
 
 function TouchPointsTabs({ children, activeTab, onTabChange }) {

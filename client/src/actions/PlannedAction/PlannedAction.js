@@ -1,4 +1,4 @@
-import { transformSupportPeriods } from 'transformer/SupportPeriodTransformer';
+import { transformAllPlannedAction } from 'transformer/PlannedActionTransformer';
 
 export async function fetchPlannedAction(id) {
   try {
@@ -10,7 +10,7 @@ export async function fetchPlannedAction(id) {
     }
     const data = await response.json();
 
-    const transformed = transformSupportPeriods(data);
+    const transformed = transformAllPlannedAction(data);
 
     return transformed;
   } catch (error) {

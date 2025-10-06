@@ -28,12 +28,12 @@ namespace EtoApi.DataAccess
             ResponseSetID,
             FormID,
             CollectionTypeID,
-            SubjectTypeID,
+            frm.SubjectTypeID,
             CollectionID,
             ResponseCreatedDate,
-            ProgramID,
-            AuditStaffID,
-            AuditDate,
+            prg.ProgramName,
+            frm.AuditStaffID,
+            frm.AuditDate,
             DataEnteredByID,
             DraftSavedOn,
             RemovedDate,
@@ -43,7 +43,7 @@ namespace EtoApi.DataAccess
             ActionComment_15704,
             ActionDueDate_15705,
             CompletionDateLeaveBlankIfGoalIncomplete_15706,
-            MicahTeam_15707,
+            e.EntityName,
             ParentFormResponseID_293,
             ThisactionisinresponsetothisLTgoal_16960,
             ThisactionisinresponsetothisLTgoal_16960_DisplayStr,
@@ -67,9 +67,16 @@ namespace EtoApi.DataAccess
             Whichgoalwasthisfor_29382_DisplayStr,
             Actioncreatedby_29503,
             RiskLevel_33169,
-            RiskLevel_33169_ResponseChoiceID
+            RiskLevel_33169_ResponseChoiceID,
+            s.FName,
+            s.LName
             FROM form.f_295 frm
+            JOIN Staff s ON frm.AuditStaffID = s.StaffID
+            JOIN Entities e ON e.EntityID = frm.MicahTeam_15707
+            JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
+            JOIN Programs prg ON prg.ProgramID = frm.ProgramID
             WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
 
@@ -91,7 +98,7 @@ namespace EtoApi.DataAccess
         SubjectTypeID = reader.IsDBNull(8) ? (int?)null : reader.GetInt32(8),
         CollectionID = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9),
         ResponseCreatedDate = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10),
-        ProgramID = reader.IsDBNull(11) ? (int?)null : reader.GetInt16(11),
+        ProgramID = reader.IsDBNull(11) ? null : reader.GetString(11),
         AuditStaffID = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
         AuditDate = reader.IsDBNull(13) ? (DateTime?)null : reader.GetDateTime(13),
         DataEnteredByID = reader.IsDBNull(14) ? (int?)null : reader.GetInt32(14),
@@ -103,7 +110,7 @@ namespace EtoApi.DataAccess
         ActionComment_15704 = reader.IsDBNull(20) ? null : reader.GetString(20),
         ActionDueDate_15705 = reader.IsDBNull(21) ? (DateTime?)null : reader.GetDateTime(21),
         CompletionDateLeaveBlankIfGoalIncomplete_15706 = reader.IsDBNull(22) ? (DateTime?)null : reader.GetDateTime(22),
-        MicahTeam_15707 = reader.IsDBNull(23) ? (int?)null : reader.GetInt32(23),
+        MicahTeam_15707 = reader.IsDBNull(23) ? null : reader.GetString(23),
         ParentFormResponseID_293 = reader.IsDBNull(24) ? (int?)null : reader.GetInt32(24),
         ThisactionisinresponsetothisLTgoal_16960 = reader.IsDBNull(25) ? (int?)null : reader.GetInt32(25),
         ThisactionisinresponsetothisLTgoal_16960_DisplayStr = reader.IsDBNull(26) ? null : reader.GetString(26),
@@ -127,7 +134,9 @@ namespace EtoApi.DataAccess
         Whichgoalwasthisfor_29382_DisplayStr = reader.IsDBNull(44) ? null : reader.GetString(44),
         Actioncreatedby_29503 = reader.IsDBNull(45) ? null : reader.GetString(45),
         RiskLevel_33169 = reader.IsDBNull(46) ? null : reader.GetString(46),
-        RiskLevel_33169_ResponseChoiceID = reader.IsDBNull(47) ? (int?)null : reader.GetInt32(47)
+        RiskLevel_33169_ResponseChoiceID = reader.IsDBNull(47) ? (int?)null : reader.GetInt32(47),
+        FName = reader.IsDBNull(48) ? null : reader.GetString(48),
+        LName = reader.IsDBNull(49) ? null : reader.GetString(49)
     });
 
 }
