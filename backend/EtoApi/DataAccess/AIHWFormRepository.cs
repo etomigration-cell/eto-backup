@@ -1,7 +1,8 @@
+using EtoApi.Models;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EtoApi.Models;
-using Microsoft.Data.SqlClient;
 
 namespace EtoApi.DataAccess
 {
@@ -14,7 +15,7 @@ namespace EtoApi.DataAccess
         {
             _connectionFactory = connectionFactory;
         }
-
+        
         public async Task<List<AIHWFormModel>> GetAIHWFormByIdAsync(int id)
         {
             
@@ -364,7 +365,10 @@ namespace EtoApi.DataAccess
 
                 FROM form.f_290 frm
                 JOIN Entities e ON e.EntityID = frm.MicahTeam_16159
-                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+                JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
+                JOIN Programs prg ON prg.ProgramID = frm.ProgramID
+                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";        
+
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
@@ -665,7 +669,7 @@ namespace EtoApi.DataAccess
                     SHSTypeOfServiceActivityNum_16051 = reader.IsDBNull(286) ? null : reader.GetString(286),
                     HowmanystaffdidthistogetherAtmost4_16157 = reader.IsDBNull(287) ? (decimal?)null : reader.GetDecimal(287),
                     Selectyourname_16158 = reader.IsDBNull(288) ? (int?)null : reader.GetInt32(288),
-                    MicahTeam_16159 = reader.IsDBNull(289) ? (int?)null : reader.GetInt32(289),
+                    MicahTeam_16159 = reader.IsDBNull(289) ? null : reader.GetString(289),
                     Start_16161 = reader.IsDBNull(290) ? null : reader.GetString(290),
                     Endoptional_16162 = reader.IsDBNull(291) ? null : reader.GetString(291),
                     Selectthe2ndstaffperson_16163 = reader.IsDBNull(292) ? (int?)null : reader.GetInt32(292),

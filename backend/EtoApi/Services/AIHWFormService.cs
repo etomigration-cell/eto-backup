@@ -13,7 +13,7 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<AIHWFormModel>> GetAIHWFormByIdAsync(int id)
+        public Task<List<AIHWFormModel>> GetAIHWFormAsync(int id)
         {
             return _repository.GetAIHWFormByIdAsync(id);
         }

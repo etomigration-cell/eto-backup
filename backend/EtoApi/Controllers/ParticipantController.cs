@@ -144,7 +144,7 @@ namespace EtoApi.Controllers
         [HttpGet("aihwform/{id}")]
         public async Task<ActionResult<List<AIHWFormModel>>> GetAihwForm(int id)
         {
-            var aihwForms = await _aIHWFormService.GetAIHWFormByIdAsync(id);
+            var aihwForms = await _aIHWFormService.GetAIHWFormAsync(id);
             if (aihwForms == null || aihwForms.Count == 0)
             {
                 return NotFound();

@@ -146,7 +146,7 @@ namespace EtoApi.DataAccess
 
                 FROM form.f_200 frm
                 JOIN Staff s ON frm.AuditStaffID = s.StaffID
-                JOIN Entities e ON e.EntityID = frm.MicahTeam_16790
+                JOIN Entities e ON e.EntityID = frm.MicahTeam_11295
                 JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = frm.ProgramID
                 WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";

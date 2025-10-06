@@ -293,7 +293,7 @@ namespace EtoApi.Models
         public string? SHSTypeOfServiceActivityNum_16051 { get; set; }
         public decimal? HowmanystaffdidthistogetherAtmost4_16157 { get; set; }
         public int? Selectyourname_16158 { get; set; }
-        public int? MicahTeam_16159 { get; set; }
+        public string? MicahTeam_16159 { get; set; }
         public string? Start_16161 { get; set; }
         public string? Endoptional_16162 { get; set; }
         public int? Selectthe2ndstaffperson_16163 { get; set; }
