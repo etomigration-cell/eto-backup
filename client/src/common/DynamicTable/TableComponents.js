@@ -159,7 +159,8 @@ export const documentTableConfig = ( handleDocumentDownload ) => {
       label: 'Actions'
     }
   ]}
-}
+};
+
 
 export const plannedActionTableConfig = {
   columns: [
@@ -176,5 +177,22 @@ export const plannedActionTableConfig = {
     },
   ],
 };
+
+export const AIHWFormTableConfig = {
+  columns: [
+   { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
+    { key: "StaffName", label: "Audit Staff", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },
+    { key: "actionDescription", label: "Action Description", render: (row) => <NotesCell value={row.actionDescription} heading={"Action Description"}/> },
+    { key: "actionDueDate", label: "Action Due Date",  filter: "text" },
+    { key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
 
 

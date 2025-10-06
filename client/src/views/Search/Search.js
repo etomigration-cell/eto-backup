@@ -6,6 +6,7 @@ import ParticipantInformation from "components/ParticipantInformation/Participan
 import FamilyInformation from "components/FamilyInformation/FamilyInformation";
 import SupportPeriod from "components/SupportPeriod/SupportPeriod";
 import AddressBook from "components/AddressBook/AddressBook";
+import AIHWForm from "components/AIHWForm/AIHWForm";
 import Wdyn from "components/WDYN/WDYN";
 import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
@@ -13,7 +14,7 @@ import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActi
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, AIHWFormTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
@@ -168,6 +169,7 @@ function SearchPage({ selectedProgram, programs }) {
               ),
               plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant}></PlannedActions>),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
+              aIHWForm: <AIHWForm participant={participant} config={AIHWFormTableConfig}></AIHWForm>,
               wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,

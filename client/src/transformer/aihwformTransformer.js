@@ -362,7 +362,7 @@ export function transformAihwform(records) {
   ];
 
   // Map all records to frontend format first
-  const mapped = records.map(mapServiceActivities);
+  const mapped = records.map(transformaihwform);
 
   // Then extract minimal information from mapped records
   const minimal = mapped.map(rec =>

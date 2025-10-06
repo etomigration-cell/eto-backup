@@ -3,8 +3,8 @@ import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-import AIHWFormDetailView from "components/AIHWFormsDetailView/AIHWFormDetailView";
-import { fetchAIHWForm } from "actions/AIHWForm/AIHWForm";
+import AIHWFormDetailView from "../AIHWFormDetailView/AIHWFormDetailView";
+import { fetchaihwForm } from "actions/AIHWFormAction/AIHWFormAction";
 import Spinner from "common/Spinner/Spinner";
 import "./AIHWForm.css";
 
@@ -19,7 +19,7 @@ function AIHWForm({ participant, config }) {
     async function getAIHWForm() {
       try {
         setLoading(true);
-        const result = await fetchAIHWForm(participant.clid);
+        const result = await fetchaihwForm(participant.clid);
         console.log(result);
         setAIHWForm(result);
         setAIHWFormDetails(result.full);

@@ -4,7 +4,7 @@ import { transformSafetyAlerts } from 'transformer/safetyalertsTransformer';
 export async function fetchSaftyAlerts(id) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/service-activities/${id}`,
+      `http://localhost:5001/participant/safety-alerts/${id}`,
     );
     if (!response.ok) {
       // Return empty results if API call fails
@@ -13,7 +13,7 @@ export async function fetchSaftyAlerts(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformSafetyAlerts(SaftyAlertsDatadata);
+    const transformed = transformSafetyAlerts(data);
 
     return transformed;
   } catch (error) {
