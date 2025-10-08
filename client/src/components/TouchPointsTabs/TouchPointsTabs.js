@@ -49,7 +49,7 @@ const tabs = [
     icon: <FaDollarSign />,
   },
   {
-    key: "safetyAlerts",
+    key: "safetyAlert",
     label: "Safety Alerts",
     icon: <FaExclamationTriangle />,
   },

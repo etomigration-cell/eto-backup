@@ -3,7 +3,7 @@ import moment from "moment";
 /**
  * Map all aihwform record fields for full detail view.
  */
-export function transformSafetyAlerts(record) {
+export function transformSafetyAlert(record) {
   return {
     // Identifiers
 FormResponseID:record.FormResponseID,
@@ -44,7 +44,7 @@ Safetydocuments_31786:record.Safetydocuments_31786
 }
 
 
-export function transformSaftyalertsform(records) {
+export function transformSafetyAlerts(records) {
   const minimalKeys = [
     "dateLastUpdated",
     "micahTeam",
@@ -56,7 +56,7 @@ export function transformSaftyalertsform(records) {
   ];
 
   // Map all records to frontend format first
-  const mapped = records.map(mapServiceActivities);
+  const mapped = records.map(transformSafetyAlert);
 
   // Then extract minimal information from mapped records
   const minimal = mapped.map(rec =>

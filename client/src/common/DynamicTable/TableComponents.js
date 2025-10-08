@@ -177,15 +177,47 @@ export const plannedActionTableConfig = {
     },
   ],
 };
-
+ 
 export const AIHWFormTableConfig = {
   columns: [
-   { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
-    { key: "StaffName", label: "Audit Staff", filter: "text" },
-    { key: "micahTeam", label: "Micah Team",  filter: false },
-    { key: "actionDescription", label: "Action Description", render: (row) => <NotesCell value={row.actionDescription} heading={"Action Description"}/> },
-    { key: "actionDueDate", label: "Action Due Date",  filter: "text" },
-    { key: "completionDate", label: "Close Date",  filter: "text" },
+   { key: "subjectID", label: "Subject Type",  filter: "text" },
+    { key: "auditDate", label: "Audit Staff", filter: "text" },
+     { key: "createdby", label: "Created By", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },  
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
+export const brokeragePaymentTableConfig = {
+  columns: [
+   { key: "subjectID", label: "Subject Type",  filter: "text" },
+    { key: "auditDate", label: "Audit Staff", filter: "text" },
+     { key: "createdby", label: "Created By", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },  
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
+export const SafetyAlertsTableConfig = {
+  columns: [
+   { key: "subjectID", label: "Subject Type",  filter: "text" },
+    { key: "auditDate", label: "Audit Staff", filter: "text" },
+     { key: "createdby", label: "Created By", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },  
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
     {
       key: "actions",
       label: "Actions",

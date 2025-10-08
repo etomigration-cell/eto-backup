@@ -1,4 +1,5 @@
-import { transformBrokeragePayment } from 'transformer/BrokeragePaymentTransformer'; 
+
+import { transformBrokeragePayment } from '../../transformer/brokeragepaymentTransformer'; 
 import {BrokeragePaymentdata} from '../BrokeragePaymentAction/BrokeragePaymentData.json';
 export async function fetchBrokeragePayment(id) {
   try {

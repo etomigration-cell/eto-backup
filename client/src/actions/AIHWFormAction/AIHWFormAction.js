@@ -1,4 +1,4 @@
-import { transformaihwform } from '../../transformer/aihwformTransformer'; 
+import { transformAihwform } from '../../transformer/aihwformTransformer'; 
 //import {aihwdata} from '../AIHWFormAction/AiHWFormData.json';
 export async function fetchaihwForm(id) {
   try {
@@ -12,7 +12,7 @@ export async function fetchaihwForm(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformaihwform(data);
+    const transformed = transformAihwform(data);
 
     return transformed;
   } catch (error) {

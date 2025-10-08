@@ -3,8 +3,9 @@ import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-import BrokeragePaymentetailView from "components/BrokeragePaymentDetailView/BrokeragePaymentDetailView";
-import { fetchBrokeragePayment } from "actions/AIHWForm/AIHWForm";
+
+import BrokeragePaymentDetailView from "../BrokeragePaymentDetailView/BrokeragePaymentDetailView";
+import { fetchBrokeragePayment } from "actions/BrokeragePaymentAction/BrokeragePaymentAction";
 import Spinner from "common/Spinner/Spinner";
 import "./BrokeragePayment.css";
 
@@ -30,7 +31,7 @@ function BrokeragePayment({ participant, config }) {
     }
 
     if (participant.clid) {
-      getAIHWForm();
+      getBrokeragePayment();
     }
   }, [participant.clid]);
 
@@ -77,13 +78,13 @@ function BrokeragePayment({ participant, config }) {
   return (
     <div className="BrokeragePayment-panel">
       <div className="panel-header">
-        <strong>AIHW Form</strong>
+        <strong>Brokerage Payment</strong>
       </div>
       {loading && <Spinner />}
       {!loading && (
         <div className="panel-section">
           <DynamicTable
-            data={AIHWForm.minimal || []}
+            data={BrokeragePayment.minimal || []}
             config={configWithActions}
             className="sa-table"
             enableFilter={false}

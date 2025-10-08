@@ -7,6 +7,8 @@ import FamilyInformation from "components/FamilyInformation/FamilyInformation";
 import SupportPeriod from "components/SupportPeriod/SupportPeriod";
 import AddressBook from "components/AddressBook/AddressBook";
 import AIHWForm from "components/AIHWForm/AIHWForm";
+import  BrokeragePayment from "components/BrokeragePayment/BrokeragePayment";
+import SafetyAlerts  from "components/SafetyAlerts/SafetyAlerts";
 import Wdyn from "components/WDYN/WDYN";
 import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
@@ -14,7 +16,7 @@ import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActi
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, AIHWFormTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, AIHWFormTableConfig, brokeragePaymentTableConfig, SafetyAlertsTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
@@ -169,10 +171,13 @@ function SearchPage({ selectedProgram, programs }) {
               ),
               plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant}></PlannedActions>),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
-              aIHWForm: <AIHWForm participant={participant} config={AIHWFormTableConfig}></AIHWForm>,
+              aihw: <AIHWForm participant={participant} config={AIHWFormTableConfig}></AIHWForm>,
+              brokeragePayment:<BrokeragePayment participant={participant} config={brokeragePaymentTableConfig}></BrokeragePayment>,
               wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
-              saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
+           
+              safetyAlert:<SafetyAlerts participant={participant} config={SafetyAlertsTableConfig}></SafetyAlerts>,
+
               serviceAndActivities: (
                 <ServiceAndActivities
                   participant={participant}

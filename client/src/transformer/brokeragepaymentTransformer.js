@@ -3,7 +3,7 @@ import moment from "moment";
 /**
  * Map all aihwform record fields for full detail view.
  */
-export function transformBrokeragePayment(record) {
+export function transformBrokeragePayments(record) {
   return {
     // Identifiers
 FormResponseID:record.FormResponseID,
@@ -132,7 +132,7 @@ childrenbetween13and18_32026:record.childrenbetween13and18_32026
 }
 
 
-export function transformAihwform(records) {
+export function transformBrokeragePayment(records) {
   const minimalKeys = [
     "SubjectTypeID",
     "Status",
@@ -144,7 +144,7 @@ export function transformAihwform(records) {
   ];
 
   // Map all records to frontend format first
-  const mapped = records.map(mapServiceActivities);
+  const mapped = records.map(transformBrokeragePayments);
 
   // Then extract minimal information from mapped records
   const minimal = mapped.map(rec =>
