@@ -31,7 +31,7 @@ namespace EtoApi.DataAccess
                     frm.ResponseSetID,
                     frm.FormID,
                     frm.CollectionTypeID,
-                    frm.SubjectTypeID,
+                    sub.SubjectTypeID,
                     frm.CollectionID,
                     frm.ResponseCreatedDate,
                     frm.ProgramID,
@@ -361,10 +361,14 @@ namespace EtoApi.DataAccess
                     frm.SubmitsSHSAIHWreports_21832,
                     frm.SummaryObservations_23040,
                     frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805,
-                    frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID
+                    frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID,
+                     s.FName,
+                    s.LName
+                
 
                 FROM form.f_290 frm
                 JOIN Entities e ON e.EntityID = frm.MicahTeam_16159
+                JOIN Staff s ON frm.AuditStaffID = s.StaffID
                 JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = frm.ProgramID
                 WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";        
@@ -719,7 +723,8 @@ namespace EtoApi.DataAccess
                     SummaryObservations_23040 = reader.IsDBNull(336) ? null : reader.GetString(336),
                     IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805 = reader.IsDBNull(337) ? null : reader.GetString(337),
                     IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID = reader.IsDBNull(338) ? (int?)null : reader.GetInt32(338),
-
+                    FName = reader.IsDBNull(339) ? null : reader.GetString(339),
+                    LName = reader.IsDBNull(340) ? null : reader.GetString(340)
                 });
             }
 

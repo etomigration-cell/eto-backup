@@ -6,39 +6,39 @@ import moment from "moment";
 export function transformSafetyAlert(record) {
   return {
     // Identifiers
-FormResponseID:record.FormResponseID,
-FormIdentifier:record.FormIdentifier,
-SubjectID:record.SubjectID,
-GroupID:record.GroupID,
-FamilyID:record.FamilyID,
-ResponseSetID:record.ResponseSetID,
-FormID:record.FormID,
-CollectionTypeID:record.CollectionTypeID,
-SubjectTypeID:record.SubjectTypeID,
-CollectionID:record.CollectionID,
-ResponseCreatedDate:record.ResponseCreatedDate,
-ProgramID:record.ProgramID,
-AuditStaffID:record.AuditStaffID,
-AuditDate:record.AuditDate,
-DataEnteredByID:record.DataEnteredByID,
-DraftSavedOn:record.DraftSavedOn,
-RemovedDate:record.RemovedDate,
-MicahTeam_9597:record.MicahTeam_9597,
-MicahTeam_9597_ResponseChoiceID:record.MicahTeam_9597_ResponseChoiceID,
-Enteryourname_9598:record.Enteryourname_9598,
-AlertCategory_9599:record.AlertCategory_9599,
-AlertCategory_9599_ResponseChoiceID:record.AlertCategory_9599_ResponseChoiceID,
-AlertType_9600:record.AlertType_9600,
-AlertType_9600_ResponseChoiceID:record.AlertType_9600_ResponseChoiceID,
-OtherAlertType_9601:record.OtherAlertType_9601,
-Notes_9602:record.Notes_9602,
-Reviewdate_9603:record.Reviewdate_9603,
-ExpirationDate_9604:record.ExpirationDate_9604,
-Datealertceasedbeingactive_9605:record.Datealertceasedbeingactive_9605,
-MicahTeam_11292:record.MicahTeam_11292,
-ExtremeRisk_23528:record.ExtremeRisk_23528,
-ExtremeRisk_23528_ResponseChoiceID:record.ExtremeRisk_23528_ResponseChoiceID,
-Safetydocuments_31786:record.Safetydocuments_31786
+formResponseID:record.formResponseID,
+formIdentifier:record.formIdentifier,
+subjectID:record.subjectID,
+groupID:record.groupID,
+familyID:record.familyID,
+responseSetID:record.responseSetID,
+formID:record.formID,
+collectionTypeID:record.collectionTypeID,
+subjectTypeID:record.subjectTypeID,
+collectionID:record.CollectionID,
+responseCreatedDate:record.responseCreatedDate,
+programID:record.programID,
+auditStaffID:record.auditStaffID,
+auditDate:record.auditDate,
+dataEnteredByID:record.dataEnteredByID,
+draftSavedOn:record.draftSavedOn,
+removedDate:record.removedDate,
+micahTeam_9597:record.micahTeam_9597,
+micahTeam_9597_ResponseChoiceID:record.micahTeam_9597_ResponseChoiceID,
+enteryourname_9598:record.enteryourname_9598,
+alertCategory_9599:record.alertCategory_9599,
+alertCategory_9599_ResponseChoiceID:record.alertCategory_9599_ResponseChoiceID,
+alertType_9600:record.alertType_9600,
+alertType_9600_ResponseChoiceID:record.alertType_9600_ResponseChoiceID,
+otherAlertType_9601:record.otherAlertType_9601,
+notes_9602:record.notes_9602,
+reviewdate_9603:record.reviewdate_9603,
+expirationDate_9604:record.expirationDate_9604,
+datealertceasedbeingactive_9605:record.datealertceasedbeingactive_9605,
+micahTeam_11292:record.micahTeam_11292,
+extremeRisk_23528:record.extremeRisk_23528,
+extremeRisk_23528_ResponseChoiceID:record.extremeRisk_23528_ResponseChoiceID,
+safetydocuments_31786:record.safetydocuments_31786
 
   };
 }
@@ -46,12 +46,12 @@ Safetydocuments_31786:record.Safetydocuments_31786
 
 export function transformSafetyAlerts(records) {
   const minimalKeys = [
-    "dateLastUpdated",
-    "micahTeam",
-    "ExtremeRisk",
-    "Category",
-    "Type",
-    "datenolongerused"
+    "reviewdate_9603",
+    "micahTeam_11292",
+    "extremeRisk_23528",
+    "alertCategory_9599",
+    "alertType_9600",
+    "expirationDate_9604"
     
   ];
 

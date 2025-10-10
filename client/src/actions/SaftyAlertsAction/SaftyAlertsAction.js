@@ -1,6 +1,5 @@
-import { safetyalertsTransformerPayment } from 'transformer/safetyalertsTransformerTransformer'; 
 import {SaftyAlertsDatadata} from '../SaftyAlertsAction/SaftyAlertsData.json';
-import { transformSafetyAlerts } from '../../transformer/safetyalertsTransformer'; 
+import { transformSafetyAlerts } from '../../transformer/safetyalertsTransformer';
 export async function fetchSaftyAlerts(id) {
   try {
     const response = await fetch(

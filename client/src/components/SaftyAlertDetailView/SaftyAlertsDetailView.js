@@ -1,8 +1,8 @@
 import React from "react";
 import DynamicDetailsTable from "common/DynamicTable/DynamicDetailsTable";
-import './BrokeragePaymentDetailView.css';
+import './SaftyAlertsDetailView.css';
 
-function BrokeragePaymentDetailView({ detail }) {
+function SaftyAlertsDetailView({ detail }) {
   if (!detail) return null;
 
   const fieldLabels = {
@@ -43,4 +43,4 @@ return (
 }
 
 
-export default BrokeragePaymentDetailView;
+export default SaftyAlertsDetailView;

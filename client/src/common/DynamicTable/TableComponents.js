@@ -210,12 +210,17 @@ export const brokeragePaymentTableConfig = {
     ]
 };
 
+
+
 export const SafetyAlertsTableConfig = {
   columns: [
-   { key: "subjectID", label: "Subject Type",  filter: "text" },
-    { key: "auditDate", label: "Audit Staff", filter: "text" },
-     { key: "createdby", label: "Created By", filter: "text" },
-    { key: "micahTeam", label: "Micah Team",  filter: false },  
+   { key: "reviewdate_9603", label: "Date Last Updated",  filter: "text" },
+   { key: "micahTeam_11292", label: "Micah Team",  filter: false }, 
+   { key: "extremeRisk_23528", label: "Extreme Risk", filter: "text" },
+     { key: "alertCategory_9599", label: "Category", filter: "text" },
+     { key: "alertType_9600", label: "Type", filter: "text" },
+     { key: "expirationDate_9604", label: "Date no longer active", filter: "text" },
+      
   
     //{ key: "completionDate", label: "Close Date",  filter: "text" },
     {
