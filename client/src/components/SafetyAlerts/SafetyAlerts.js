@@ -37,7 +37,7 @@ function SaftyAlerts({ participant, config }) {
 
   const handleView = (row) => {
     // If you want to pass the full detail instead of row
-    const detail = setSaftyAlertsDetails.find(d => d.id === row.id) || row;
+    const detail = SaftyAlertsDetails.find(d => d.id === row.id) || row;
     setViewedData(detail);
   };
 
@@ -45,7 +45,7 @@ function SaftyAlerts({ participant, config }) {
 
   const tabs = [
     {
-      label: "General Details, Brokerage Payment Detail",
+      label: "Details",
       content: <SaftyAlertsDetailView detail={viewedData} />,
     }    
   ];
