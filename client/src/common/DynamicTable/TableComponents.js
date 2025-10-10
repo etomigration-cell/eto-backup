@@ -193,13 +193,14 @@ export const AIHWFormTableConfig = {
     }
     ]
 };
-
+ 
 export const brokeragePaymentTableConfig = {
   columns: [
-   { key: "subjectID", label: "Subject Type",  filter: "text" },
-    { key: "auditDate", label: "Audit Staff", filter: "text" },
-     { key: "createdby", label: "Created By", filter: "text" },
-    { key: "micahTeam", label: "Micah Team",  filter: false },  
+   { key: "vouchertype_6553", label: "Voucher Type",  filter: "text" },
+    { key: "purpose_6508", label: "Purpose", filter: "text" },
+    
+    { key: "chequePayableTo_6554", label: "Cheque Payable",  filter: false },  
+    { key: "micahTeam_11295", label: "Micah Team",  filter: false },
   
     //{ key: "completionDate", label: "Close Date",  filter: "text" },
     {

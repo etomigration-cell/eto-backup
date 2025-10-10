@@ -135,12 +135,11 @@ childrenbetween13and18_32026:record.childrenbetween13and18_32026
 
 export function transformBrokeragePayment(records) {
   const minimalKeys = [
-    "SubjectTypeID",
+    "vouchertype_6553",
     "Status",
-    "dateCompleted",
-    "dateLastUpdated",
-    "LastUpdatedBy",
-    "micahTeam",
+    "purpose_6508",    
+    "chequePayableTo_6554",
+    "micahTeam_11295",
     
   ];
 
