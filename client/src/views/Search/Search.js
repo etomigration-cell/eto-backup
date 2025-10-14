@@ -13,13 +13,14 @@ import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActi
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, incomingReferralConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
 import PlannedActions from "components/PlannedAction/PlannedAction";
 
 import "./Search.css";
+import IncomingReferral from "components/IncomingReferral/IncomingReferral";
 
 const options = [
   { value: "Participant", label: "Participant" }
@@ -177,7 +178,8 @@ function SearchPage({ selectedProgram, programs }) {
                   config={serviceActivitiesTableConfig}
                 />
               ),
-              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload}/>
+              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload}/>,
+              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig}/>
             }}
           </TouchPointsTabs>
         </>

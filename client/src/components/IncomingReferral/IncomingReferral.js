@@ -3,51 +3,49 @@ import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-import { fetchPlannedAction } from "actions/PlannedAction/PlannedAction";
+import { fetchIncomingReferrals } from "actions/IncomingReferralAction/IncomingReferralAction";
 import Spinner from "common/Spinner/Spinner";
-import SupportPlanAction from "./SupportPlanAction";
+import IncomingReferralDetails from "./IncomingReferralDetails";
+import "./IncomingReferral.css";
 
-import "./PlannedAction.css";
-
-function PlannedActions({ participant, config }) {
+function IncomingReferral({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [plannedActions, setPlannedActions] = useState([]);
-  const [plannedActionDetails, setPlannedActionDetails] = useState([]);
+  const [incomingReferral, setIncomingReferral] = useState([]);
+  const [incomingReferralDetails, setIncomingReferralDetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getPlannedAction() {
+    async function getIncomingReferrals() {
       try {
         setLoading(true);
-        const result = await fetchPlannedAction(participant.clid);
+        const result = await fetchIncomingReferrals(participant.clid);
         console.log(result);
-        setPlannedActions(result);
-        setPlannedActionDetails(result.full);
+        setIncomingReferral(result);
+        setIncomingReferralDetails(result.full);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching planned action:", error);
+        console.error("Error fetching service and activities:", error);
       }
     }
 
     if (participant.clid) {
-      getPlannedAction();
+      getIncomingReferrals();
     }
   }, [participant.clid]);
 
   const handleView = (row) => {
-    console.log("row-id", row.formResponseID);
-    //console.log(supportPeriodDetails.find( suppDetails => suppDetails.id === row.id));
-    setViewedData(plannedActionDetails.find( plannedAction => plannedAction.formResponseID === row.formResponseID));
+    const detail = incomingReferralDetails.find(d => d.formResponseID === row.formResponseID) || row;
+    setViewedData(detail);
   };
 
   const handleCloseSidebar = () => setViewedData(null);
 
   const tabs = [
     {
-      label: "Support Plan Goal Action",
-      content: <SupportPlanAction detail={viewedData} />,
-    },
+      label: "Incoming Referral",
+      content: <IncomingReferralDetails detail={viewedData} />,
+    }
   ];
 
   const configWithActions = {
@@ -76,18 +74,25 @@ function PlannedActions({ participant, config }) {
   };
 
   return (
-    <div className="planned-actions-panel">
+    <div className="incoming-referral-panel">
       <div className="panel-header">
-        <strong>Planned Action</strong>
+        <strong>Incoming referral</strong>
       </div>
       {loading && <Spinner />}
-      {!loading && <div className="pa-table-wrapper">
-        <DynamicTable data={plannedActions.minimal || []} config={configWithActions} className="pa-table" enableFilter={true}/>
-      </div>}
+      {!loading && (
+        <div className="panel-section">
+          <DynamicTable
+            data={incomingReferral.minimal || []}
+            config={configWithActions}
+            className="incoming-referral-table"
+            enableFilter={true}
+          />
+        </div>
+      )}
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}
-       title={viewedData ? `Planned Action for ${participant.fName} ${participant.lName}` : ""}
+        title={viewedData ? `Incoming Referral for ${participant.fName} ${participant.lName}` : ""}
       >
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </Sidebar>
@@ -95,4 +100,4 @@ function PlannedActions({ participant, config }) {
   );
 }
 
-export default PlannedActions;
+export default IncomingReferral;

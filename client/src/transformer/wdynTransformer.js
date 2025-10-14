@@ -62,6 +62,7 @@ export function mapWdyn(record) {
     totalTimeSpentOnBehalf: record.totaltimespentonbehalfofparticipant_15497,
     totalTimeSpentTravelling: record.totaltimespenttravelling_15498,
     totalTimeSpentWithParticipant: record.totaltimespentwithparticipant_15499,
+    totalTimeSpentTravellingPerStaffMember: record.timespenttravellingNotwithparticipantPerstaffmember_16086,
 
     // Contact Details
     contactMethod: record.contactMethod_15501,
