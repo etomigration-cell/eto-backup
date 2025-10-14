@@ -4,15 +4,17 @@ import { FaEye } from 'react-icons/fa';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Tabs from 'components/Tabs/Tabs';
 import DynamicTable from 'common/DynamicTable/DynamicTable';
-import AddressBookDetailView from '../AddressBookDetailView/AddressBookDetailView';
+import AddressDetails from "./AddressDetails";
+import PhoneNumberAndEmail from "./PhoneNumberAndEmail";
 import { fetchAddressBook } from 'actions/AddressBookAction/AddressBookAction';
 import Spinner from "common/Spinner/Spinner";
 
 function AddressBook({ participant, config }) {
   const [ addressBook, setAddressBook ] = useState([]);
   const [ addressBookDetails, setAddressBookDetails ] = useState([]);
-  const [viewedData, setViewedData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+  const [ viewedData, setViewedData] = useState(null);
+  const [ loading, setLoading] = useState(false);
 
   useEffect(() => {
       async function getAddressBook() {
@@ -34,20 +36,21 @@ function AddressBook({ participant, config }) {
     }, [participant.clid]);
 
   const handleView = (row) => {
-    console.log(addressBookDetails)
-    setViewedData(addressBookDetails[0]); // or load details via API, then setViewedData(result)
+    console.log("row-id", row.formResponseID);
+    //console.log(supportPeriodDetails.find( suppDetails => suppDetails.id === row.id));
+    setViewedData(addressBookDetails.find( addressBook => addressBook.formResponseID === row.formResponseID));
   };
 
   const handleCloseSidebar = () => setViewedData(null);
 
   const tabs = [
     {
-      label: 'Summary',
-      content: <AddressBookDetailView detail={viewedData} />
+      label: 'Address Details',
+      content: <AddressDetails detail={viewedData} />
     },
     {
-      label: 'Other Info',
-      content: <div>Other tab content or component here</div>
+      label: 'Phone Numbers and email',
+      content: <PhoneNumberAndEmail detail={viewedData} />
     },
   ];
 
@@ -85,8 +88,8 @@ function AddressBook({ participant, config }) {
       {!loading &&  <div className="address-table-wrapper">
         <DynamicTable data={addressBook.minimal || []} config={configWithActions} className="address-book-table" />
       </div> }
-      <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `addressbook for ${viewedData.program}` : ''}>
-       <Tabs tabs={tabs} />
+      <Sidebar visible={!!viewedData} onClose={handleCloseSidebar} title={viewedData ? `Addressbook for ${participant.fName} ${participant.lName}` : ''}>
+       <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab}/>
       </Sidebar>
     </div>
   );

@@ -6,24 +6,13 @@
   background: none;
 }
 
-/* Tabs Header (Buttons) */
-.tab-buttons {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1.5px solid #e0e7ef;
-  background: #f5f8fa;
-  padding-left: 0.5em;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
-}
-
 .tab-buttons button,
 .tab-buttons .tab {
   background: none;
   border: none;
   color: #334;
-  padding: 0.85em 1.8em;
-  font-size: 1em;
+  padding: 0.5em 0.5em;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   transition:

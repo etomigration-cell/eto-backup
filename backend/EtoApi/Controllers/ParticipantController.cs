@@ -23,8 +23,10 @@ namespace EtoApi.Controllers
         private readonly BrokeragePaymentService _brokeragePaymentService;
         private readonly SafetyAlertsService _safetyAlertsService;
 
+        private readonly IncomingReferralService _incomingReferralService;
+
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService)
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService, IncomingReferralService incomingReferralService)
         {
             _familyService = familyService;
             _participantService = participantService;
@@ -38,6 +40,7 @@ namespace EtoApi.Controllers
             _aIHWFormService = aIHWFormService;
             _brokeragePaymentService = brokeragePaymentService;
             _safetyAlertsService = safetyAlertsService;
+            _incomingReferralService = incomingReferralService;
 
 
         }
@@ -172,6 +175,17 @@ namespace EtoApi.Controllers
                 return NotFound();
             }
             return Ok(safetyAlerts);
+        }
+
+        [HttpGet("incoming-referral/{id}")]
+        public async Task<ActionResult<List<IncomingReferral>>> GetIncomingReferral(int id)
+        {
+            var incomingReferral = await _incomingReferralService.GetIncomingReferralByIdAsync(id);
+            if (incomingReferral == null || incomingReferral.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(incomingReferral);
         }
     }
 }

@@ -62,45 +62,33 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
 export const addressBookTableConfig = {
   columns: [
     { key: 'auditDate', label: 'Audit Date' },
-    { key: 'whoseContactDetails', label: 'Who is This?',  render: row => row.whoseContactDetails?.value || "" },
+    { key: 'whoseContactDetails_value', label: 'Who is This?' },
     { key: 'name', label: 'Name' },
     {
-      key: 'accommodationType',
-      label: 'Type',
-      render: row => row.accommodationType?.value || ""
+      key: 'accommodationType_value',
+      label: 'Type'
     },
     { key: 'addressbookStatus', label: 'Status' },
     {
-      key: 'aptunit',
-      label: 'Apt/Unit',
-      render: row => row.address?.apartmentUnit || ""
+      key: 'address_apartmentUnit',
+      label: 'Apt/Unit'
     },
     {
-      key: 'streetNo',
-      label: 'Street No',
-      render: row => row.address?.streetNumber || ""
+      key: 'address_streetNumber',
+      label: 'Street No'
     },
     {
-      key: 'streetName',
-      label: 'Street Name',
-      render: row => row.address?.streetName || ""
+      key: 'address_streetName',
+      label: 'Street Name'
     },
     {
-      key: 'suburbandpostCode',
-      label: 'Suburb & Post Code',
-      render: row =>
-        row.address?.suburb
-          ? `${row.address.suburb} ${row.address.postCode || ""}`
-          : row.address?.postCode || ""
+      key: 'address_suburb',
+      label: 'Suburb & Post Code'
     },
-    { key: 'mobile', label: 'Mobile', render: row => row.phone?.mobile || ""},
+    { key: 'phone_mobile', label: 'Mobile'},
     {
       key: 'actions',
-      label: 'Actions',
-      render: row => (
-        // Add your custom actions UI here
-        <button>Action</button>
-      )
+      label: 'Actions'
     }
   ]
 };
@@ -175,6 +163,20 @@ export const plannedActionTableConfig = {
        filter: false
     },
   ],
+};
+
+export const incomingReferralConfig = {
+  columns: [
+    { key: 'auditDate',     label: 'Last Updated' },
+    { key: 'referralReviewedOn', label: 'Referral reviewed on' },
+    { key: 'programID',   label: 'Program' },
+    { key: 'micahTeam', label: 'Micah Team'},
+    { key: 'StaffName',       label: 'Staff' },
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]
 };
 
 

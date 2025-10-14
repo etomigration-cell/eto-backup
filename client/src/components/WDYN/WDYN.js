@@ -4,7 +4,10 @@ import { FaEye } from 'react-icons/fa';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Tabs from 'components/Tabs/Tabs';
 import DynamicTable from 'common/DynamicTable/DynamicTable';
-import WdynDetailView from '../WDYNDetailView/WDYNDetailView';
+import SupportPlanGoal from './SupportPlanGoal';
+import EffortDetails from './EffortDetails';
+import HousingSpecificGoal from './HousingSpecificGoal';
+import GoalStatus from './GoalStatus';
 import Spinner from "common/Spinner/Spinner";
 import { fetchWdyn } from "actions/WdynAction/WdynAction"
 
@@ -38,13 +41,29 @@ const [viewedData, setViewedData] = useState(null);
     setViewedData(detail);
   };
 
-  const handleCloseSidebar = () => setViewedData(null);
+  const handleCloseSidebar = () => {
+  setViewedData(null);
+  setActiveTab(0);
+  };
+
 
   const tabs = [
     {
-      label: "Wdyn",
-      content: <WdynDetailView detail={viewedData} />,
+      label: "Support Plan Goal",
+      content: <SupportPlanGoal detail={viewedData} />,
     },
+    {
+      label: "Effort Details",
+      content: <EffortDetails detail={viewedData} />,
+    },
+    {
+      label: "Housing Specific Goal",
+      content: <HousingSpecificGoal detail={viewedData} />,
+    },
+    {
+      label: "Goal status / Close Goal",
+      content: <GoalStatus detail={viewedData} />,
+    }
   ];
 
   const configWithActions = {
@@ -84,7 +103,7 @@ const [viewedData, setViewedData] = useState(null);
       <Sidebar
         visible={!!viewedData}
         onClose={handleCloseSidebar}
-        title={viewedData ? `WDYN for ${viewedData.program}` : ""}
+        title={viewedData ? `WDYN for ${participant.fName} ${participant.lName}` : ""}
       >
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </Sidebar>

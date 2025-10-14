@@ -1,0 +1,72 @@
+
+.incoming-referral-panel .incoming-referral-table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  background: #fff;
+  table-layout: fixed; /* Ensures columns use the specified widths */
+}
+
+/* Header Row */
+.incoming-referral-panel .incoming-referral-table th {
+  background: #002a54;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 8px;
+  border-bottom: 1px solid #e3e8ee;
+  text-align: left;
+  font-size: 12px;
+}
+
+/* Body Rows */
+.incoming-referral-panel .incoming-referral-table td {
+  padding: 8px 8px;
+  border-bottom: 1px solid #e7eaed;
+  font-size: 12px;
+  vertical-align: top;
+  color: #262d3d;
+}
+/* Notes column */
+
+/* Actions column, right aligned, minimal width */
+.incoming-referral-panel .incoming-referral-table th:last-child,
+.incoming-referral-panel .incoming-referral-table td:last-child {
+  width: 72px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.incoming-referral-panel .incoming-referral-table th:nth-child(1) {
+ border-top-left-radius: 8px;
+}
+
+.incoming-referral-panel .incoming-referral-table th:last-child {
+ border-top-right-radius: 8px;
+}
+
+/* Overflow scroll for table wrapper/panel */
+.sp-table-wrapper,
+.panel-section {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(60,80,130,0.07);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .incoming-referral-panel th.notes,
+  .incoming-referral-panel td.notes {
+    width: 100vw;
+    min-width: 180px;
+    font-size: 12px;
+  }
+}
+
+/* Optional: expandable notes for very long text */
+.incoming-referral-panel td.notes {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.incoming-referral-panel td.notes:hover {
+  background: #f3f7fd;
+}
