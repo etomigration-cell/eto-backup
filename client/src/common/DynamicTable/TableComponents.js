@@ -232,5 +232,22 @@ export const SafetyAlertsTableConfig = {
     ]
 };
 
+export const msuTableConfig = {
+  columns: [
+   { key: "vouchertype_6553", label: "Voucher Type",  filter: "text" },
+    { key: "purpose_6508", label: "Purpose", filter: "text" },
+    
+    { key: "chequePayableTo_6554", label: "Cheque Payable",  filter: false },  
+    { key: "micahTeam_11295", label: "Micah Team",  filter: false },
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
 
 

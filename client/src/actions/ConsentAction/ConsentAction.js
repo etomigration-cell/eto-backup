@@ -1,8 +1,8 @@
-import { transformMSU } from 'transformer/msuTransformer';
-export async function fetchMSU(id) {
+import { transformConsent } from 'transformer/msuTransformer';
+export async function fetchSaftyConsent(id) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/msu/${id}`,
+      `http://localhost:5001/participant/consent/${id}`,
     );
     if (!response.ok) {
       // Return empty results if API call fails
@@ -11,7 +11,7 @@ export async function fetchMSU(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformMSU(data);
+    const transformed = transformConsent(data);
 
     return transformed;
   } catch (error) {
