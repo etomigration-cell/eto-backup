@@ -9,6 +9,7 @@ import AddressBook from "components/AddressBook/AddressBook";
 import AIHWForm from "components/AIHWForm/AIHWForm";
 import  BrokeragePayment from "components/BrokeragePayment/BrokeragePayment";
 import SafetyAlerts  from "components/SafetyAlerts/SafetyAlerts";
+import MSU  from "components/MSU/MSU";
 import Wdyn from "components/WDYN/WDYN";
 import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
@@ -16,7 +17,7 @@ import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActi
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, AIHWFormTableConfig, brokeragePaymentTableConfig, SafetyAlertsTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, AIHWFormTableConfig, brokeragePaymentTableConfig, SafetyAlertsTableConfig, msuTableConfig} from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
@@ -177,6 +178,7 @@ function SearchPage({ selectedProgram, programs }) {
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
            
               safetyAlert:<SafetyAlerts participant={participant} config={SafetyAlertsTableConfig}></SafetyAlerts>,
+              msu:<MSU participant={participant} config={msuTableConfig}></MSU>,
 
               serviceAndActivities: (
                 <ServiceAndActivities

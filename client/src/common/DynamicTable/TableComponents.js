@@ -231,14 +231,14 @@ export const SafetyAlertsTableConfig = {
     }
     ]
 };
-
+   
 export const msuTableConfig = {
   columns: [
-   { key: "vouchertype_6553", label: "Voucher Type",  filter: "text" },
-    { key: "purpose_6508", label: "Purpose", filter: "text" },
+   { key: "labourForceStatus_16397", label: "Labour Force Status",  filter: "text" },
+    { key: "micahTeam_16473", label: "Micah Team", filter: "text" },
     
-    { key: "chequePayableTo_6554", label: "Cheque Payable",  filter: false },  
-    { key: "micahTeam_11295", label: "Micah Team",  filter: false },
+    { key: "age_16522", label: "Age",  filter: false },  
+    { key: "totalefforttimeforparticipant_33292", label: "total effort time for participant",  filter: false },
   
     //{ key: "completionDate", label: "Close Date",  filter: "text" },
     {

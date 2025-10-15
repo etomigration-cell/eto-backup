@@ -1,4 +1,4 @@
-import { transformMSU } from 'transformer/msuTransformer';
+import { transformmsu } from '../../transformer/msuTransformer';
 export async function fetchMSU(id) {
   try {
     const response = await fetch(
@@ -11,7 +11,7 @@ export async function fetchMSU(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformMSU(data);
+    const transformed = transformmsu(data);
 
     return transformed;
   } catch (error) {

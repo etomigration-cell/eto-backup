@@ -4,40 +4,40 @@ import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 
-import SaftyAlertsDetailView from "../../components/SaftyAlertDetailView/SaftyAlertsDetailView";
-import { fetchSaftyAlerts } from "../../actions/SaftyAlertsAction/SaftyAlertsAction";
+import MSUDetailView from "../MSUDetailView/MSUDetailView";
+import { fetchMSU } from "../../actions/MSUAction/MSUAction";
 import Spinner from "common/Spinner/Spinner";
 
 
-function SaftyAlerts({ participant, config }) {
+function MSU({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [SaftyAlerts, setSaftyAlerts] = useState([]);
-  const [SaftyAlertsDetails, setSaftyAlertsDetails] = useState([]);
+  const [MSU, setMSU] = useState([]);
+  const [MSUDetails, setMSUDetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getSaftyAlerts() {
+    async function getMSU() {
       try {
         setLoading(true);
-        const result = await fetchSaftyAlerts(participant.clid);
+        const result = await fetchMSU(participant.clid);
         console.log(result);
-        setSaftyAlerts(result);
-        setSaftyAlertsDetails(result.full);
+        setMSU(result);
+        setMSUDetails(result.full);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching Safty Alerts:", error);
+        console.error("Error fetching  MSU:", error);
       }
     }
 
     if (participant.clid) {
-      getSaftyAlerts();
+      getMSU();
     }
   }, [participant.clid]);
 
   const handleView = (row) => {
     // If you want to pass the full detail instead of row
-    const detail = SaftyAlertsDetails.find(d => d.id === row.id) || row;
+    const detail = MSUDetails.find(d => d.id === row.id) || row;
     setViewedData(detail);
   };
 
@@ -46,7 +46,7 @@ function SaftyAlerts({ participant, config }) {
   const tabs = [
     {
       label: "Details",
-      content: <SaftyAlertsDetailView detail={viewedData} />,
+      content: <MSUDetailView detail={viewedData} />,
     }    
   ];
 
@@ -76,15 +76,15 @@ function SaftyAlerts({ participant, config }) {
   };
 
   return (
-    <div className="saftyalerts-panel">
+    <div className="msu-panel">
       <div className="panel-header">
-        <strong>Safty Alert</strong>
+        <strong>Monthly Status Update</strong>
       </div>
       {loading && <Spinner />}
       {!loading && (
         <div className="panel-section">
           <DynamicTable
-            data={SaftyAlerts.minimal || []}
+            data={MSU.minimal || []}
             config={configWithActions}
             className="sa-table"
             enableFilter={false}
@@ -96,7 +96,7 @@ function SaftyAlerts({ participant, config }) {
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `Safty Alerts for ${viewedData.program || ""}`
+            ? `MSU for ${viewedData.program || ""}`
             : ""
         }
       >
@@ -106,4 +106,4 @@ function SaftyAlerts({ participant, config }) {
   );
 }
 
-export default SaftyAlerts;
+export default MSU;
