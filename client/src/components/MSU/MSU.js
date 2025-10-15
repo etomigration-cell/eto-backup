@@ -5,6 +5,9 @@ import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 
 import MSUDetailView from "../MSUDetailView/MSUDetailView";
+import MSUMCQDetailView from "../MSUDetailView/MSUMCQDetailView";
+import MSUEffortDetailView from "../MSUDetailView/MSUEffortDetailView";
+import MSUECDetailView from "../MSUDetailView/MSUECDetailView";
 import { fetchMSU } from "../../actions/MSUAction/MSUAction";
 import Spinner from "common/Spinner/Spinner";
 
@@ -47,7 +50,20 @@ function MSU({ participant, config }) {
     {
       label: "Details",
       content: <MSUDetailView detail={viewedData} />,
-    }    
+    },
+    {
+      label: "Monthly Circumstances Questions",
+      content: <MSUMCQDetailView detail={viewedData} />,
+    },
+     {
+      label: "Efforts Details",
+      content: <MSUEffortDetailView detail={viewedData} />,
+    },
+    {
+      label: "Exclusions to Consent",
+      content: <MSUECDetailView detail={viewedData} />,
+    }
+    
   ];
 
   const configWithActions = {

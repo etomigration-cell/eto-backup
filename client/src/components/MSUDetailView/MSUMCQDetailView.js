@@ -2,7 +2,7 @@ import React from "react";
 import DynamicDetailsTable from "common/DynamicTable/DynamicDetailsTable";
 import './MSUDetailView.css';
 
-function MSUDetailView({ detail }) {
+function MSUMCQDetailView({ detail }) {
   if (!detail) return null;
 
   const fieldLabels = {
@@ -20,7 +20,7 @@ return (
   <div className="MSUDetailView-detail">
     <DynamicDetailsTable
       detail={detail}
-      columnsPerRow={1} // or any other number
+      columnsPerRow={2} // or any other number
       fieldLabels={fieldLabels}
     />
   </div>
@@ -28,4 +28,4 @@ return (
 }
 
 
-export default MSUDetailView;
+export default MSUMCQDetailView;

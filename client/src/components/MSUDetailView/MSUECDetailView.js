@@ -2,7 +2,7 @@ import React from "react";
 import DynamicDetailsTable from "common/DynamicTable/DynamicDetailsTable";
 import './MSUDetailView.css';
 
-function MSUDetailView({ detail }) {
+function MSUECDetailView({ detail }) {
   if (!detail) return null;
 
   const fieldLabels = {
@@ -28,4 +28,4 @@ return (
 }
 
 
-export default MSUDetailView;
+export default MSUECDetailView;
