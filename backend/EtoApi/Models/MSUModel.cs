@@ -1,0 +1,103 @@
+using System;
+
+namespace EtoApi.Models
+{
+    public class MSUModel
+    {
+        public int? FormResponseID { get; set; }
+        public string? FormIdentifier { get; set; }
+        public int? SubjectID { get; set; }
+        public int? GroupID { get; set; }
+        public int? FamilyID { get; set; }
+        public int? ResponseSetID { get; set; }
+        public int? FormID { get; set; }
+        public int? CollectionTypeID { get; set; }
+        public int? SubjectTypeID { get; set; }
+        public int? CollectionID { get; set; }
+        public DateTime? ResponseCreatedDate { get; set; }
+        public int? ProgramID { get; set; }
+        public int? AuditStaffID { get; set; }
+        public DateTime? AuditDate { get; set; }
+        public int? DataEnteredByID { get; set; }
+        public DateTime? DraftSavedOn { get; set; }
+        public DateTime? RemovedDate { get; set; }
+        public string? DwellingType_16392 { get; set; }
+        public int? DwellingType_16392_ResponseChoiceID { get; set; }
+        public string? EpisodeOfHomelessness_16393 { get; set; }
+        public int? EpisodeOfHomelessness_16393_ResponseChoiceID { get; set; }
+        public string? IfTheParticipantIsUnderTheAgeOf18AndHasACareOrProtectionOrderWhatWereTheirCareArrangements_16394 { get; set; }
+        public int? IfTheParticipantIsUnderTheAgeOf18AndHasACareOrProtectionOrderWhatWereTheirCareArrangements_16394_ResponseChoiceID { get; set; }
+        public string? LivingArrangements_16395 { get; set; }
+        public int? LivingArrangements_16395_ResponseChoiceID { get; set; }
+        public string? ConditionsOfOccupancy_16396 { get; set; }
+        public int? ConditionsOfOccupancy_16396_ResponseChoiceID { get; set; }
+        public string? LabourForceStatus_16397 { get; set; }
+        public int? LabourForceStatus_16397_ResponseChoiceID { get; set; }
+        public string? IfTheParticipantIs15yrsWhatIsTheirEmploymentStatus_16398 { get; set; }
+        public int? IfTheParticipantIs15yrsWhatIsTheirEmploymentStatus_16398_ResponseChoiceID { get; set; }
+        public string? MainSourceOfIncome_16399 { get; set; }
+        public int? MainSourceOfIncome_16399_ResponseChoiceID { get; set; }
+        public string? IsTheParticipantCurrentlyRegisteredForAGovernmentBenefitPensionOrAllowanceButAwaitingTheFirstP_16400 { get; set; }
+        public int? IsTheParticipantCurrentlyRegisteredForAGovernmentBenefitPensionOrAllowanceButAwaitingTheFirstP_16400_ResponseChoiceID { get; set; }
+        public string? IsTheParticipantUndertakingFormalStudyOrTrainingEgSchoolUniversityVocationalStudiesSuchAsTafe_16401 { get; set; }
+        public int? IsTheParticipantUndertakingFormalStudyOrTrainingEgSchoolUniversityVocationalStudiesSuchAsTafe_16401_ResponseChoiceID { get; set; }
+        public string? Tenure_16402 { get; set; }
+        public int? Tenure_16402_ResponseChoiceID { get; set; }
+        public string? DoesThePublicTrusteeAdministerTheParticipantsPersonalFinancesMp_16420 { get; set; }
+        public int? DoesThePublicTrusteeAdministerTheParticipantsPersonalFinancesMp_16420_ResponseChoiceID { get; set; }
+        public string? WhatTypeOfEducationtrainingIsTheParticipantEnrolledIn_16426 { get; set; }
+        public int? WhatTypeOfEducationtrainingIsTheParticipantEnrolledIn_16426_ResponseChoiceID { get; set; }
+        public int? MicahTeam_16473 { get; set; }
+        public int? SelectYourName_16475 { get; set; }
+        public int? AtIntakeThisCareArrangementsQuestionWasAnsweredAs_16477 { get; set; }
+        public string? AtIntakeThisCareArrangementsQuestionWasAnsweredAs_16477_DisplayStr { get; set; }
+        public int? AtIntakeThisHomelessnessQuestionWasAnsweredAs_16478 { get; set; }
+        public string? AtIntakeThisHomelessnessQuestionWasAnsweredAs_16478_DisplayStr { get; set; }
+        public int? AtIntakeThisPublicGuardianQuestionWasAnsweredAs_16479 { get; set; }
+        public string? AtIntakeThisPublicGuardianQuestionWasAnsweredAs_16479_DisplayStr { get; set; }
+        public int? AtIntakeThisPublicTrusteeQuestionWasAnsweredAs_16480 { get; set; }
+        public string? AtIntakeThisPublicTrusteeQuestionWasAnsweredAs_16480_DisplayStr { get; set; }
+        public int? AtIntakeLivingArrangementsWasAnsweredAs_16481 { get; set; }
+        public string? AtIntakeLivingArrangementsWasAnsweredAs_16481_DisplayStr { get; set; }
+        public int? AtIntakeDwellingTypeWasAnsweredAs_16482 { get; set; }
+        public string? AtIntakeDwellingTypeWasAnsweredAs_16482_DisplayStr { get; set; }
+        public int? AtIntakeTenureWasAnsweredAs_16483 { get; set; }
+        public string? AtIntakeTenureWasAnsweredAs_16483_DisplayStr { get; set; }
+        public int? AtIntakeConditionOfOccupancyWasAnsweredAs_16484 { get; set; }
+        public string? AtIntakeConditionOfOccupancyWasAnsweredAs_16484_DisplayStr { get; set; }
+        public int? AtIntakeLabourForceStatusWasAnsweredAs_16485 { get; set; }
+        public string? AtIntakeLabourForceStatusWasAnsweredAs_16485_DisplayStr { get; set; }
+        public int? AtIntakeEmploymentStatusWasAnsweredAs_16486 { get; set; }
+        public string? AtIntakeEmploymentStatusWasAnsweredAs_16486_DisplayStr { get; set; }
+        public int? AtIntakeMainSourceOfIncomeWasAnsweredAs_16487 { get; set; }
+        public string? AtIntakeMainSourceOfIncomeWasAnsweredAs_16487_DisplayStr { get; set; }
+        public int? AtIntakeCurrentlyRegisteredAndAwaitingFirstPaymentWasAnsweredAs_16488 { get; set; }
+        public string? AtIntakeCurrentlyRegisteredAndAwaitingFirstPaymentWasAnsweredAs_16488_DisplayStr { get; set; }
+        public int? AtIntakeUndertakingFormalTrainingWasAnsweredAs_16489 { get; set; }
+        public string? AtIntakeUndertakingFormalTrainingWasAnsweredAs_16489_DisplayStr { get; set; }
+        public int? AtIntakeEnrolledEducationtrainingWasAnsweredAs_16490 { get; set; }
+        public string? AtIntakeEnrolledEducationtrainingWasAnsweredAs_16490_DisplayStr { get; set; }
+        public string? Doyouhaveanappointedsubstitutedecisionmakermp_16498 { get; set; }
+        public int? Doyouhaveanappointedsubstitutedecisionmakermp_16498_ResponseChoiceID { get; set; }
+        public int? Selectwhichgoalmostreflectstheprogressofthesupportmanagementplaniftherearenocurrentgoalsleavet_16500 { get; set; }
+        public int? Selectwhichgoalmostreflectstheprogressofthesupportmanagementplaniftherearenocurrentgoalsleavet_16500_SourceFormID { get; set; }
+        public string? Selectwhichgoalmostreflectstheprogressofthesupportmanagementplaniftherearenocurrentgoalsleavet_16500_DisplayStr { get; set; }
+        public string? YouindicatedthattherearenocurrentopengoalsforthisparticipantIndicatereason_16501 { get; set; }
+        public int? YouindicatedthattherearenocurrentopengoalsforthisparticipantIndicatereason_16501_ResponseChoiceID { get; set; }
+        public string? Ifotherreasonpleasespecify_16502 { get; set; }
+        public string? Thinkingaboutthegoalyouselectedandothergoalstowhatextentweretheparticipantsmanagementplangoals_16503 { get; set; }
+        public int? Thinkingaboutthegoalyouselectedandothergoalstowhatextentweretheparticipantsmanagementplangoals_16503_ResponseChoiceID { get; set; }
+        public string? Wasthereacasemanagementplanfortheparticipant_16504 { get; set; }
+        public int? Wasthereacasemanagementplanfortheparticipant_16504_ResponseChoiceID { get; set; }
+        public decimal? Age_16522 { get; set; }
+        public string? SubmitsSHSAIHWreports_21833 { get; set; }
+        public int? TimespentonbehalfofparticipantPerstaffmember_23288 { get; set; }
+        public decimal? HowmanystaffdidthistogetherAtmost4_23289 { get; set; }
+        public int? Totaltimespentonbehalfofparticipant_23290 { get; set; }
+        public string? Hastheparticipantreturnedhome_28343 { get; set; }
+        public int? Hastheparticipantreturnedhome_28343_ResponseChoiceID { get; set; }
+        public decimal? ParticipantAge_29347 { get; set; }
+        public int? Totalefforttimeforparticipant_33292 { get; set; }
+
+    }
+}

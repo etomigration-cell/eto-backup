@@ -22,9 +22,11 @@ namespace EtoApi.Controllers
         private readonly AIHWFormService _aIHWFormService;
         private readonly BrokeragePaymentService _brokeragePaymentService;
         private readonly SafetyAlertsService _safetyAlertsService;
+        private readonly MSUService _msuService;
+        private readonly ConsentService _consentService;
 
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService)
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService, MSUService msuService, ConsentService consentService)
         {
             _familyService = familyService;
             _participantService = participantService;
@@ -38,8 +40,8 @@ namespace EtoApi.Controllers
             _aIHWFormService = aIHWFormService;
             _brokeragePaymentService = brokeragePaymentService;
             _safetyAlertsService = safetyAlertsService;
-
-
+            _msuService = msuService;
+            _consentService = consentService;
         }
 
         [HttpGet("family-details/{id}")]
@@ -172,6 +174,28 @@ namespace EtoApi.Controllers
                 return NotFound();
             }
             return Ok(safetyAlerts);
+        }
+
+        [HttpGet("msu/{id}")]
+        public async Task<ActionResult<List<SafetyAlertsModel>>> GetMSU(int id)
+        {
+            var msu = await _msuService.GetMSUAsync(id);
+            if (msu == null || msu.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(msu);
+        }
+
+        [HttpGet("consent/{id}")]
+        public async Task<ActionResult<List<ConsentModel>>> GetConsent(int id)
+        {
+            var consent = await _consentService.GetConsentAsync(id);
+            if (consent == null || consent.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(consent);
         }
     }
 }
