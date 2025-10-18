@@ -48,21 +48,21 @@ function MSU({ participant, config }) {
 
   const tabs = [
     {
-      label: "Details",
+      label: "Monthly Status Update - SHS Reporting",
       content: <MSUDetailView detail={viewedData} />,
     },
-    {
-      label: "Monthly Circumstances Questions",
-      content: <MSUMCQDetailView detail={viewedData} />,
-    },
-     {
-      label: "Efforts Details",
-      content: <MSUEffortDetailView detail={viewedData} />,
-    },
-    {
-      label: "Exclusions to Consent",
-      content: <MSUECDetailView detail={viewedData} />,
-    }
+    // {
+    //   label: "Monthly Circumstances Questions",
+    //   content: <MSUMCQDetailView detail={viewedData} />,
+    // },
+    //  {
+    //   label: "Efforts Details",
+    //   content: <MSUEffortDetailView detail={viewedData} />,
+    // },
+    // {
+    //   label: "Exclusions to Consent",
+    //   content: <MSUECDetailView detail={viewedData} />,
+    // }
     
   ];
 

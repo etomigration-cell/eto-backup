@@ -4,6 +4,7 @@ import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 import AIHWFormDetailView from "../AIHWFormDetailView/AIHWFormDetailView";
+import AIHWFormPresentingDetailView from "../AIHWFormDetailView/AIHWFormPresentingDetailView";
 import { fetchaihwForm } from "actions/AIHWFormAction/AIHWFormAction";
 import Spinner from "common/Spinner/Spinner";
 import "./AIHWForm.css";
@@ -49,7 +50,7 @@ function AIHWForm({ participant, config }) {
     },
     {
       label: "Presenting Reasons",
-      content: <AIHWFormDetailView detail={viewedData} />,
+      content: <AIHWFormPresentingDetailView detail={viewedData} />,
     },
   ];
 
