@@ -51,10 +51,9 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
       ),
     },
     { key: "caseNumber", label: "Case Number" },
-    { key: "dob", label: "DOB" },
-    { key: "Alias", label: "Alias" },
     { key: "RealOrFake", label: "Real or Fake" },
-    { key: "ProgramStartDate", label: "Program Start Date" }
+    { key: "genderIfincorrect", label: "Gender" },
+    { key: "dateCreated", label: "Program Start Date" },
   ]
 }
 };

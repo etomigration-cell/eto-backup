@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "./Header.css";
 import logo from "images/logo-MicahProjects.svg";
 import Login from "views/Login/Login";
-import EditProgramContainer from "components/EditProgramContainer/EditProgramContainer";
 import { find } from "lodash";
 import { AuthContext } from "App";
 import { useNavigate } from "react-router-dom";

@@ -8,7 +8,7 @@ import Spinner from "common/Spinner/Spinner";
 import IncomingReferralDetails from "./IncomingReferralDetails";
 import "./IncomingReferral.css";
 
-function IncomingReferral({ participant, config }) {
+function IncomingReferral({ participant, config, programCode }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [incomingReferral, setIncomingReferral] = useState([]);
@@ -16,10 +16,10 @@ function IncomingReferral({ participant, config }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getIncomingReferrals() {
+    async function getIncomingReferrals(params) {
       try {
         setLoading(true);
-        const result = await fetchIncomingReferrals(participant.clid);
+        const result = await fetchIncomingReferrals(params);
         console.log(result);
         setIncomingReferral(result);
         setIncomingReferralDetails(result.full);
@@ -29,8 +29,13 @@ function IncomingReferral({ participant, config }) {
       }
     }
 
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
+
     if (participant.clid) {
-      getIncomingReferrals();
+      getIncomingReferrals(params);
     }
   }, [participant.clid]);
 

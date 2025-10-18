@@ -126,17 +126,30 @@ function ParticipantInformation({ participant }) {
               <span className="participant-info-label">Gender</span>
               <span className="participant-info-colon">:</span>
               <span className="participant-info-value">
-                {participant?.gender}
+                {participant?.genderIfincorrect}
               </span>
             </div>
-          </div>
-          <div className="card-footer">
-            <button
-              className="view-full-profile-button"
-              onClick={() => handleView(participant)}
-            >
-              View Full Profile
-            </button>
+            <div className="participant-info-row">
+              <span className="participant-info-label">CRN</span>
+              <span className="participant-info-colon">:</span>
+              <span className="participant-info-value">
+                {participant?.crn}
+              </span>
+            </div>
+            <div className="participant-info-row">
+              <span className="participant-info-label">Aboriginal Torres</span>
+              <span className="participant-info-colon">:</span>
+              <span className="participant-info-value">
+                {participant?.aboriginalTorresStraitSouthSeaIslander}
+              </span>
+            </div>
+            <div className="participant-info-row">
+              <span className="participant-info-label">Language</span>
+              <span className="participant-info-colon">:</span>
+              <span className="participant-info-value">
+                {participant?.inwhatlanguagedoyoufeelbestabletoexpressyourself}
+              </span>
+            </div>
           </div>
         </div>
       </section>

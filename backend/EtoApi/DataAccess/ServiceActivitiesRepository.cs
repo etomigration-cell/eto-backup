@@ -15,7 +15,7 @@ namespace EtoApi.DataAccess
                 _connectionFactory = connectionFactory;
             }
 
-        public async Task<List<ServiceActivity>> GetServiceActivitiesByIdAsync(int id)
+        public async Task<List<ServiceActivity>> GetServiceActivitiesByIdAsync(int id, int programCode)
         {
             var result = new List<ServiceActivity>();
             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
@@ -292,10 +292,12 @@ namespace EtoApi.DataAccess
                     JOIN Entities e ON e.EntityID = frm.MicahTeam_16280
                     JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                     JOIN Programs prg ON prg.ProgramID = frm.ProgramID
-                    WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+                    Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
+                    WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode";
     
     using var command = new SqlCommand(query, connection);
-    command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@programCode", programCode);
 
           var serviceActivities = new List<ServiceActivity>();
             using var reader = await command.ExecuteReaderAsync();

@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<Wdyn>> GetWdynByIdAsync(int id)
+        public Task<List<Wdyn>> GetWdynByIdAsync(int id, int programCode)
         {
-            return _repository.GetWdynByIdAsync(id);
+            return _repository.GetWdynByIdAsync(id, programCode);
         }
     }
 }

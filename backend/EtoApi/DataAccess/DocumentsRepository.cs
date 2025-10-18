@@ -14,7 +14,7 @@ namespace EtoApi.DataAccess
                 _connectionFactory = connectionFactory;
             }
 
-        public async Task<List<Document>> GetDocumentsByIdAsync(int id)
+        public async Task<List<Document>> GetDocumentsByIdAsync(int id, int programCode)
         {
            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
@@ -29,12 +29,14 @@ namespace EtoApi.DataAccess
                 JOIN Staff s ON fm.AuditStaffID = s.StaffID
                 JOIN SubjectType sub ON sub.SubjectTypeID = fm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = fm.ProgramID
+                Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
                 WHERE 
-                    fm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+                    fm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and fm.ProgramID = @programCode";
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
-
+            command.Parameters.AddWithValue("@programCode", programCode);
+            
             var documents = new List<Document>();
             using var reader = await command.ExecuteReaderAsync();
 

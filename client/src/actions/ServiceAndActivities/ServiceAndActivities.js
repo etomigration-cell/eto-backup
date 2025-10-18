@@ -1,9 +1,9 @@
 import { transformServiceActivities } from 'transformer/ServiceAndActivitiesTransformer';
 
-export async function fetchServiceActivities(id) {
+export async function fetchServiceActivities(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/service-activities/${id}`,
+      `http://localhost:5001/participant/service-activities?${params.toString()}`,
     );
     if (!response.ok) {
       // Return empty results if API call fails

@@ -14,7 +14,7 @@ namespace EtoApi.DataAccess
                 _connectionFactory = connectionFactory;
             }
 
-        public async Task<List<AddressBook>> GetAddressBookByIdAsync(int id)
+        public async Task<List<AddressBook>> GetAddressBookByIdAsync(int id, int programCode)
         {
              using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
@@ -31,9 +31,9 @@ namespace EtoApi.DataAccess
                 SubjectTypeID,
                 CollectionID,
                 ResponseCreatedDate,
-                ProgramID,
-                AuditStaffID,
-                AuditDate,
+                frm.ProgramID,
+                frm.AuditStaffID,
+                frm.AuditDate,
                 DataEnteredByID,
                 DraftSavedOn,
                 RemovedDate,
@@ -155,10 +155,12 @@ namespace EtoApi.DataAccess
                 SuburbandPostCode_28290,
                 Datethisceasedasserviceprovider_29299
                 FROM form.f_236 frm
+                Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
                 WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@programCode", programCode);
 
             var addressBooks = new List<AddressBook>();
             using var reader = await command.ExecuteReaderAsync();

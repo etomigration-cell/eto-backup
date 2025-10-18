@@ -1,9 +1,9 @@
 import { transformIncomingReferral } from 'transformer/IncomingReferralTransformer';
 
-export async function fetchIncomingReferrals(id) {
+export async function fetchIncomingReferrals(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/incoming-referral/${id}`,
+      `http://localhost:5001/participant/incoming-referral?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

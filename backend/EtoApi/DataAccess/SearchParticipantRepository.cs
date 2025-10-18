@@ -15,13 +15,13 @@ namespace EtoApi.DataAccess
             }
 
 
-        public async Task<List<ParticipantDetails?>> GetSearchParticipantsAsync(string searchText)
+        public async Task<List<ParticipantDetails?>> GetSearchParticipantsAsync(string searchText, int? program)
         {
              using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
                 SELECT
-                    CLID,
+                    c.CLID,
                     SSN,
                     CaseNumber,
                     FName,
@@ -45,8 +45,8 @@ namespace EtoApi.DataAccess
                     MaritalStatusID,
                     FundingEntityID,
                     ReferralEntityID,
-                    AuditStaffID,
-                    AuditDate,
+                    c.AuditStaffID,
+                    c.AuditDate,
                     AssignedStaffID,
                     DateCreated,
                     Alert,
@@ -63,17 +63,29 @@ namespace EtoApi.DataAccess
                     ZipExtension,
                     OptOut,
                     ReferralNotification,
-                    CSiteID
-                FROM Clients
+                    CSiteID,
+                    frm.ContactMethod_15695,
+                    frm.ContactLocation_15696,
+                    frm.CentrelinkReferenceNumberIfincorrectpleasecorrectindemographicsViewEdit_16044,
+                    frm.AboriginalTorresStraitSouthSeaIslanderIfincorrectpleasecorrectDateofBirthindemographicsViewEdi_16045,
+                    frm.PhotographConsent_16863,
+                    frm.InwhatlanguagedoyoufeelbestabletoexpressyourselfIfincorrectpleasecorrectindemographicsViewEdit_16041,
+                    frm.NicknameAliasIfincorrectpleasecorrectindemographicsViewEdit_16038,
+                    frm.GenderIfincorrectpleasecorrectindemographicsViewEdit_16046
+                FROM Clients c
+                Join ClientsXPrograms cp ON cp.CLID = c.CLID and cp.ProgramID = @program
+                Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
                 WHERE Disabled = 0
                 AND (
                 FName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
                 OR LName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
                 OR Email COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
-                OR CLID LIKE @searchText
+                OR c.CLID LIKE @searchText
                 )";
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@searchText", $"%{searchText}%");
+            command.Parameters.AddWithValue("@program", program);
+
             var participantDetails = new List<ParticipantDetails>();
             
             using var reader = await command.ExecuteReaderAsync();
@@ -123,7 +135,15 @@ namespace EtoApi.DataAccess
                     ZipExtension = reader.IsDBNull(39) ? null : reader.GetString(39),
                     OptOut = reader.IsDBNull(40) ? null : reader.GetBoolean(40),
                     ReferralNotification = reader.IsDBNull(41) ? null : reader.GetBoolean(41),
-                    CSiteID = reader.IsDBNull(42) ? null : reader.GetInt16(42)
+                    CSiteID = reader.IsDBNull(42) ? null : reader.GetInt16(42),
+                    ContactMethod = reader.IsDBNull(43) ? null : reader.GetString(43),
+                    ContactLocation = reader.IsDBNull(44) ? null : reader.GetString(44),
+                    CRN = reader.IsDBNull(45) ? null : reader.GetString(45),
+                    AboriginalTorresStraitSouthSeaIslander = reader.IsDBNull(46) ? null : reader.GetString(46),
+                    PhotographConsent = reader.IsDBNull(47) ? null : reader.GetString(47),
+                    Inwhatlanguagedoyoufeelbestabletoexpressyourself = reader.IsDBNull(48) ? null : reader.GetString(48),
+                    Nickname = reader.IsDBNull(49) ? null : reader.GetString(49),
+                    GenderIfincorrect = reader.IsDBNull(50) ? null : reader.GetString(50)
                 });
             }
             return participantDetails;

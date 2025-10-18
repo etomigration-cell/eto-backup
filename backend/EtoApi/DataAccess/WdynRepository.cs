@@ -15,7 +15,7 @@ namespace EtoApi.DataAccess
             }
 
 
-        public async Task<List<Wdyn>> GetWdynByIdAsync(int id)
+        public async Task<List<Wdyn>> GetWdynByIdAsync(int id, int programCode)
         {
             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
@@ -110,10 +110,12 @@ namespace EtoApi.DataAccess
                 JOIN Entities e ON e.EntityID = frm.MicahTeam_16083
                 JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = frm.ProgramID
-                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+                Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
+                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode";
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
-
+            command.Parameters.AddWithValue("@programCode", programCode);
+            
             var wdyns = new List<Wdyn>();
             using var reader = await command.ExecuteReaderAsync();
 

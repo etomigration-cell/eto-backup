@@ -47,7 +47,7 @@ function getMimeType(document) {
   return "application/octet-stream";
 }
 
-function DocumentAttachmentList({ participant, config }) {
+function DocumentAttachmentList({ participant, config, programCode }) {
   const [documents, setDocuments] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [documentsDetail, setDocumentDetails] = useState([]);
@@ -56,11 +56,11 @@ function DocumentAttachmentList({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
 
   useEffect(() => {
-    async function getDocuments() {
+    async function getDocuments(params) {
       setLoading(true);
       setError("");
       try {
-        const result = await fetchDocuments(participant.clid);
+        const result = await fetchDocuments(params);
         setDocuments(result || []);
         setDocumentDetails(result.full);
       } catch (err) {
@@ -70,8 +70,13 @@ function DocumentAttachmentList({ participant, config }) {
         setLoading(false);
       }
     }
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+    });
+
     if (participant?.clid) {
-      getDocuments();
+      getDocuments(params);
     } else {
       setDocuments([]);
     }

@@ -30,14 +30,13 @@ function SearchPage({ selectedProgram, programs }) {
   const [searchText, setSearchText] = useState("");
   const [searchError, setSearchError] = useState("");
   const [selected, setSelected] = useState("Participant");
-  const [program, setProgram] = useState({ code: "762"});
+  const [program, setProgram] = useState("762");
   const [results, setResults] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false);
   const [participant, setParticipant] = useState(null);
   const [activeTab, setActiveTab] = useState("participantInformation");
   const [loading, setLoading] = useState(false);
-
-  console.log(programs)
+  const [defaultDisplay, setDefaultDisplay] = useState(false);
 
   const documentRef = useRef();
 
@@ -48,14 +47,19 @@ function SearchPage({ selectedProgram, programs }) {
     return;
   }
     setSearchError("");
-
     setShowDashboard(false);
+    setDefaultDisplay(true);
     setResults([]);
     setLoading(true);
 
+    console.log(program);
+
     const params = new URLSearchParams({
-      query: searchText,
+    query: searchText,
+    ...(program && program !== 'All' ? { program: program } : {})
     });
+
+
 
     const participants = await getSearchParticipants(params);
     setResults(participants);
@@ -125,7 +129,7 @@ function SearchPage({ selectedProgram, programs }) {
         </select>
         <select
           className="search-program"
-          value={program.code}
+          value={program}
           onChange={(e) => setProgram(e.target.value)}
         >
           {programs.programs.map((opt) => (
@@ -140,13 +144,18 @@ function SearchPage({ selectedProgram, programs }) {
       </form>
 
       {loading && <Spinner />}
-      {!showDashboard && results.length > 0 && (
-        <div className="search-table-container">
-          <DynamicTable data={results} config={columns} className="search-results-table" enableFilter={false}/>
-          <div className="pagination-wrapper">
-          </div>
-        </div>
+      {!showDashboard && !loading && defaultDisplay && (
+      <div className="search-table-container">
+        <DynamicTable
+          data={results}
+          config={columns}
+          className="search-results-table"
+          enableFilter={false}
+        />
+        <div className="pagination-wrapper"></div>
+      </div>
       )}
+
 
       {showDashboard && (
         <>
@@ -165,21 +174,23 @@ function SearchPage({ selectedProgram, programs }) {
                 <SupportPeriod
                   config={supportPeriodsTableConfig}
                   participant={participant}
+                  programCode={program}
                 ></SupportPeriod>
               ),
-              plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant}></PlannedActions>),
-              addressBook: <AddressBook participant={participant} config={addressBookTableConfig}></AddressBook>,
-              wdyn: <Wdyn participant={participant} config={wdynTableConfig}></Wdyn>,
+              plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant} programCode={program}></PlannedActions>),
+              addressBook: <AddressBook participant={participant} config={addressBookTableConfig} programCode={program}></AddressBook>,
+              wdyn: <Wdyn participant={participant} config={wdynTableConfig} programCode={program}></Wdyn>,
               consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
               saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
                 <ServiceAndActivities
                   participant={participant}
                   config={serviceActivitiesTableConfig}
+                  programCode={program}
                 />
               ),
-              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload}/>,
-              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig}/>
+              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload} programCode={program}/>,
+              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig} programCode={program}/>
             }}
           </TouchPointsTabs>
         </>

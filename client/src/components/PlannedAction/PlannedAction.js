@@ -9,7 +9,7 @@ import SupportPlanAction from "./SupportPlanAction";
 
 import "./PlannedAction.css";
 
-function PlannedActions({ participant, config }) {
+function PlannedActions({ participant, config, programCode }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [plannedActions, setPlannedActions] = useState([]);
@@ -17,10 +17,10 @@ function PlannedActions({ participant, config }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getPlannedAction() {
+    async function getPlannedAction(params) {
       try {
         setLoading(true);
-        const result = await fetchPlannedAction(participant.clid);
+        const result = await fetchPlannedAction(params);
         console.log(result);
         setPlannedActions(result);
         setPlannedActionDetails(result.full);
@@ -30,8 +30,13 @@ function PlannedActions({ participant, config }) {
       }
     }
 
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
+
     if (participant.clid) {
-      getPlannedAction();
+      getPlannedAction(params);
     }
   }, [participant.clid]);
 

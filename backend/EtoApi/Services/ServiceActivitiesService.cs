@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<ServiceActivity>> GetServiceActivitiesByIdAsync(int id)
+        public Task<List<ServiceActivity>> GetServiceActivitiesByIdAsync(int id, int programCode)
         {
-            return _repository.GetServiceActivitiesByIdAsync(id);
+            return _repository.GetServiceActivitiesByIdAsync(id, programCode);
         }
     }
 }
