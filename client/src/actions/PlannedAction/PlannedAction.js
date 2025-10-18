@@ -1,9 +1,9 @@
 import { transformAllPlannedAction } from 'transformer/PlannedActionTransformer';
 
-export async function fetchPlannedAction(id) {
+export async function fetchPlannedAction(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/planned-action/${id}`,
+      `http://localhost:5001/participant/planned-action?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

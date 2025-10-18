@@ -9,7 +9,7 @@ import Spinner from "common/Spinner/Spinner";
 
 import "./SupportPeriod.css";
 
-function SupportPeriods({ participant, config }) {
+function SupportPeriods({ participant, config, programCode }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [supportPeriod, setSupportPeriod] = useState([]);
@@ -17,10 +17,10 @@ function SupportPeriods({ participant, config }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getSupportedPeriod() {
+    async function getSupportedPeriod(params) {
       try {
         setLoading(true);
-        const result = await fetchSupportedPeriod(participant.clid);
+        const result = await fetchSupportedPeriod(params);
         console.log(result);
         setSupportPeriod(result);
         setSupportPeriodDetails(result.full);
@@ -30,8 +30,13 @@ function SupportPeriods({ participant, config }) {
       }
     }
 
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
+
     if (participant.clid) {
-      getSupportedPeriod();
+      getSupportedPeriod(params);
     }
   }, [participant.clid]);
 

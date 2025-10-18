@@ -11,7 +11,7 @@ import GoalStatus from './GoalStatus';
 import Spinner from "common/Spinner/Spinner";
 import { fetchWdyn } from "actions/WdynAction/WdynAction"
 
-function Wdyn({ participant, config }) {
+function Wdyn({ participant, config, programCode }) {
 const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [wdyn, setWdyn] = useState([]);
@@ -19,10 +19,10 @@ const [viewedData, setViewedData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getWdyn() {
+    async function getWdyn(params) {
       try {
         setLoading(true);
-        const result = await fetchWdyn(participant.clid);
+        const result = await fetchWdyn(params);
         setWdyn(result);
         setWdynDetails(result.full);
         setLoading(false);
@@ -31,8 +31,13 @@ const [viewedData, setViewedData] = useState(null);
       }
     }
 
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
+
     if (participant.clid) {
-      getWdyn();
+      getWdyn(params);
     }
   }, [participant.clid]);
 

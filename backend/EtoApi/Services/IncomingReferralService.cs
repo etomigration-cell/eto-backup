@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<IncomingReferral>> GetIncomingReferralByIdAsync(int id)
+        public Task<List<IncomingReferral>> GetIncomingReferralByIdAsync(int id, int programCode)
         {
-            return _repository.GetIncomingReferralByIdAsync(id);
+            return _repository.GetIncomingReferralByIdAsync(id, programCode);
         }
     }
 }

@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<AddressBook>> GetAddressBookByIdAsync(int id)
+        public Task<List<AddressBook>> GetAddressBookByIdAsync(int id, int programCode)
         {
-            return _repository.GetAddressBookByIdAsync(id);
+            return _repository.GetAddressBookByIdAsync(id, programCode);
         }
     }
 }

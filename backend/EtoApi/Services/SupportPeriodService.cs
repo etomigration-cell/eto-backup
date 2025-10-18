@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<SupportPeriod>> GetSupportPeriodByIdAsync(int id)
+        public Task<List<SupportPeriod>> GetSupportPeriodByIdAsync(int id, int programCode)
         {
-            return _repository.GetSupportPeriodByIdAsync(id);
+            return _repository.GetSupportPeriodByIdAsync(id, programCode);
         }
     }
 }

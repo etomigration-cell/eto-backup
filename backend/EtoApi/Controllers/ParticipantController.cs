@@ -3,6 +3,7 @@ using EtoApi.Models;
 using EtoApi.Services;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace EtoApi.Controllers
 {
@@ -68,9 +69,9 @@ namespace EtoApi.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<List<ParticipantDetails>>> GetParticipantDetails([FromQuery] string query)
+        public async Task<ActionResult<List<ParticipantDetails>>> GetParticipantDetails([FromQuery] string query, [FromQuery] int? program)
         {
-            var participant = await _searchParticipantService.GetSearchParticipantsAsync(query);
+            var participant = await _searchParticipantService.GetSearchParticipantsAsync(query, program);
             if (participant == null)
             {
                 return NotFound();
@@ -78,10 +79,10 @@ namespace EtoApi.Controllers
             return Ok(participant);
         }
 
-        [HttpGet("support-period/{id}")]
-        public async Task<ActionResult<List<SupportPeriod>>> GetSupportPeriods(int id)
+        [HttpGet("support-period")]
+        public async Task<ActionResult<List<SupportPeriod>>> GetSupportPeriods([FromQuery] int id, [FromQuery] int programCode)
         {
-            var periods = await _supportPeriodService.GetSupportPeriodByIdAsync(id);
+            var periods = await _supportPeriodService.GetSupportPeriodByIdAsync(id, programCode);
             if (periods == null || periods.Count == 0)
             {
                 return NotFound();
@@ -89,10 +90,10 @@ namespace EtoApi.Controllers
             return Ok(periods);
         }
 
-        [HttpGet("service-activities/{id}")]
-        public async Task<ActionResult<List<ServiceActivity>>> GetServiceActivities(int id)
+        [HttpGet("service-activities")]
+        public async Task<ActionResult<List<ServiceActivity>>> GetServiceActivities([FromQuery] int id, [FromQuery] int programCode)
         {
-            var activities = await _serviceActivitiesService.GetServiceActivitiesByIdAsync(id);
+            var activities = await _serviceActivitiesService.GetServiceActivitiesByIdAsync(id, programCode);
             if (activities == null || activities.Count == 0)
             {
                 return NotFound();
@@ -100,10 +101,10 @@ namespace EtoApi.Controllers
             return Ok(activities);
         }
 
-        [HttpGet("address-book/{id}")]
-        public async Task<ActionResult<List<AddressBook>>> GetSAddressBook(int id)
+        [HttpGet("address-book")]
+        public async Task<ActionResult<List<AddressBook>>> GetAddressBook([FromQuery] int Id, [FromQuery] int programCode)
         {
-            var activities = await _addressService.GetAddressBookByIdAsync(id);
+            var activities = await _addressService.GetAddressBookByIdAsync(Id, programCode );
             if (activities == null || activities.Count == 0)
             {
                 return NotFound();
@@ -111,10 +112,10 @@ namespace EtoApi.Controllers
             return Ok(activities);
         }
 
-        [HttpGet("planned-action/{id}")]
-        public async Task<ActionResult<List<PlannedAction>>> GetPlannedAction(int id)
+        [HttpGet("planned-action")]
+        public async Task<ActionResult<List<PlannedAction>>> GetPlannedAction([FromQuery] int Id, [FromQuery] int programCode)
         {
-            var activities = await _plannedActionService.GetPlannedActionByIdAsync(id);
+            var activities = await _plannedActionService.GetPlannedActionByIdAsync(Id, programCode);
             if (activities == null || activities.Count == 0)
             {
                 return NotFound();
@@ -122,10 +123,10 @@ namespace EtoApi.Controllers
             return Ok(activities);
         }
 
-        [HttpGet("wdyn/{id}")]
-        public async Task<ActionResult<List<Wdyn>>> GetWdyn(int id)
+        [HttpGet("wdyn")]
+        public async Task<ActionResult<List<Wdyn>>> GetWdyn([FromQuery] int Id, [FromQuery] int programCode)
         {
-            var activities = await _wdynService.GetWdynByIdAsync(id);
+            var activities = await _wdynService.GetWdynByIdAsync(Id, programCode);
             if (activities == null || activities.Count == 0)
             {
                 return NotFound();
@@ -133,10 +134,10 @@ namespace EtoApi.Controllers
             return Ok(activities);
         }
 
-        [HttpGet("documents/{id}")]
-        public async Task<ActionResult<List<Document>>> GetDocuments(int id)
+        [HttpGet("documents")]
+        public async Task<ActionResult<List<Document>>> GetDocuments([FromQuery] int Id, [FromQuery] int programCode)
         {
-            var documents = await _documentsService.GetDocumentsByIdAsync(id);
+            var documents = await _documentsService.GetDocumentsByIdAsync(Id, programCode);
             if (documents == null || documents.Count == 0)
             {
                 return NotFound();
@@ -177,10 +178,10 @@ namespace EtoApi.Controllers
             return Ok(safetyAlerts);
         }
 
-        [HttpGet("incoming-referral/{id}")]
-        public async Task<ActionResult<List<IncomingReferral>>> GetIncomingReferral(int id)
+        [HttpGet("incoming-referral")]
+        public async Task<ActionResult<List<IncomingReferral>>> GetIncomingReferral(int id, int programCode)
         {
-            var incomingReferral = await _incomingReferralService.GetIncomingReferralByIdAsync(id);
+            var incomingReferral = await _incomingReferralService.GetIncomingReferralByIdAsync(id, programCode);
             if (incomingReferral == null || incomingReferral.Count == 0)
             {
                 return NotFound();

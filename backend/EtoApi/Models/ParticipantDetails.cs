@@ -45,5 +45,14 @@ namespace EtoApi.Models
         public bool? OptOut { get; set; }
         public bool? ReferralNotification { get; set; }
         public int? CSiteID { get; set; }
+        public string? ContactMethod { get; set; }
+        public string? ContactLocation { get; set; }
+        public string? CRN { get; set; }
+        public string? AboriginalTorresStraitSouthSeaIslander { get; set; }
+        public string? PhotographConsent { get; set; }
+        public string? Inwhatlanguagedoyoufeelbestabletoexpressyourself { get; set; }
+        public string? Nickname { get; set; }
+
+        public string? GenderIfincorrect { get; set; }
     }
 }

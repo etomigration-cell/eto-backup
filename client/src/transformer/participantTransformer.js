@@ -29,7 +29,7 @@ export function transformParticipant(input) {
     auditStaffID: input.auditStaffID ?? null,
     auditDate: input.auditDate ?? null,
     assignedStaffID: input.assignedStaffID ?? null,
-    dateCreated: input.dateCreated ?? null,
+    dateCreated: input.dateCreated ? moment(input.dateCreated).format("DD/MM/YYYY") : "",
     alert: input.alert ?? null,
     hoR_ID: input.hoR_ID ?? null,
     hoR_ChildID: input.hoR_ChildID ?? null,
@@ -44,7 +44,15 @@ export function transformParticipant(input) {
     zipExtension: input.zipExtension ?? null,
     optOut: Boolean(input.optOut),
     referralNotification: Boolean(input.referralNotification),
-    cSiteID: input.cSiteID ?? null
+    cSiteID: input.cSiteID ?? null,
+    contactMethod: input.contactMethod ?? null,
+    contactLocation: input.contactLocation ?? null,
+    crn: input.crn ?? null,
+    aboriginalTorresStraitSouthSeaIslander: input.aboriginalTorresStraitSouthSeaIslander ?? null,
+    photographConsent: input.photographConsent ?? null,
+    inwhatlanguagedoyoufeelbestabletoexpressyourself: input.inwhatlanguagedoyoufeelbestabletoexpressyourself ?? null,
+    nickname: input.nickname ?? null,
+    genderIfincorrect: input.genderIfincorrect ?? null
   };
 }
 

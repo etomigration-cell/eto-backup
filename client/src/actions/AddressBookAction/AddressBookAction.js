@@ -1,9 +1,9 @@
 import { transformAllAddressBook } from 'transformer/addressBookTransformer';
 
-export async function fetchAddressBook(id) {
+export async function fetchAddressBook(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/address-book/${id}`,
+      `http://localhost:5001/participant/address-book?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

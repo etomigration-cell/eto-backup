@@ -13,9 +13,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public Task<List<ParticipantDetails>> GetSearchParticipantsAsync(string query)
+        public Task<List<ParticipantDetails>> GetSearchParticipantsAsync(string query, int? program)
         {
-            return _repository.GetSearchParticipantsAsync(query);
+            return _repository.GetSearchParticipantsAsync(query, program);
         }
     }
 }

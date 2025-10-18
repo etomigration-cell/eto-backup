@@ -10,7 +10,7 @@ import SupportServiceActivities from "./SupportServiceActivities";
 import AdditionalNeeds from "./AdditionalNeeds";
 import "./ServiceAndActivities.css";
 
-function ServiceAndActivities({ participant, config }) {
+function ServiceAndActivities({ participant, config, programCode }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [serviceAndActivities, setServiceAndActivities] = useState([]);
@@ -18,10 +18,10 @@ function ServiceAndActivities({ participant, config }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getServiceAndActivities() {
+    async function getServiceAndActivities(params) {
       try {
         setLoading(true);
-        const result = await fetchServiceActivities(participant.clid);
+        const result = await fetchServiceActivities(params);
         console.log(result);
         setServiceAndActivities(result);
         setServiceAndActivitiesDetails(result.full);
@@ -31,8 +31,13 @@ function ServiceAndActivities({ participant, config }) {
       }
     }
 
+    const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
+
     if (participant.clid) {
-      getServiceAndActivities();
+      getServiceAndActivities(params);
     }
   }, [participant.clid]);
 

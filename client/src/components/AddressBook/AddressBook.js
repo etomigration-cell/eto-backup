@@ -9,7 +9,7 @@ import PhoneNumberAndEmail from "./PhoneNumberAndEmail";
 import { fetchAddressBook } from 'actions/AddressBookAction/AddressBookAction';
 import Spinner from "common/Spinner/Spinner";
 
-function AddressBook({ participant, config }) {
+function AddressBook({ participant, config, programCode }) {
   const [ addressBook, setAddressBook ] = useState([]);
   const [ addressBookDetails, setAddressBookDetails ] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
@@ -20,7 +20,7 @@ function AddressBook({ participant, config }) {
       async function getAddressBook() {
         try {
           setLoading(true);
-          const result = await fetchAddressBook(participant.clid);
+          const result = await fetchAddressBook(params);
           console.log(result);
           setAddressBook(result);
           setAddressBookDetails(result.full);
@@ -29,9 +29,14 @@ function AddressBook({ participant, config }) {
           console.error("Error fetching family members:", error);
         }
       }
+
+      const params = new URLSearchParams({
+      id: participant.clid,
+      programCode: programCode
+      });
   
       if (participant.clid) {
-        getAddressBook();
+        getAddressBook(params);
       }
     }, [participant.clid]);
 

@@ -15,9 +15,9 @@ namespace EtoApi.Services
             _repository = repository;
         }
 
-        public async Task<List<Document>> GetDocumentsByIdAsync(int id)
+        public async Task<List<Document>> GetDocumentsByIdAsync(int id, int programCode)
         {
-            var docs = await _repository.GetDocumentsByIdAsync(id);
+            var docs = await _repository.GetDocumentsByIdAsync(id, programCode);
             foreach (var document in docs)
             {
                 File.WriteAllBytes(document.FileName, Convert.FromBase64String(document.Content));
