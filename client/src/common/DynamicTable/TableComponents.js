@@ -6,8 +6,8 @@ export const supportPeriodsTableConfig = {
     { key: "programName", label: "Program",  filter: "text" },
     { key: "subjectType", label: "Subject Type",  filter: "text" },
     { key: "dateLastUpdated", label: "Date Last Updated",  filter: "text" },
-    { key: "auditDate", label: "Audit Creation Date",  filter: "text" },
     { key: "StaffName", label: "Last Updated By",  filter: false },
+    { key: "micahTeam", label: "Micah Team",  filter: "text" },
     { key: "submitsReport", label: "AIHW/SHS",  filter: "text" },
     { key: "startDate", label: "Start Date",  filter: "text" },
     { key: "endDate", label: "End Date",  filter: "text" },
@@ -167,7 +167,7 @@ export const incomingReferralConfig = {
 export const AIHWFormTableConfig = {
   columns: [
    { key: "subjectID", label: "Subject Type",  filter: "text" },
-    { key: "auditDate", label: "Audit Staff", filter: "text" },
+    { key: "auditDate", label: "Audit Date", filter: "text" },
      { key: "createdby", label: "Created By", filter: "text" },
     { key: "micahTeam", label: "Micah Team",  filter: false },  
   

@@ -156,7 +156,8 @@ namespace EtoApi.DataAccess
                 Datethisceasedasserviceprovider_29299
                 FROM form.f_236 frm
                 Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
-                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";
+                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)
+                ORDER BY frm.AuditDate DESC";
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);

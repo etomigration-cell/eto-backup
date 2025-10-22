@@ -371,7 +371,8 @@ namespace EtoApi.DataAccess
                 JOIN Staff s ON frm.AuditStaffID = s.StaffID
                 JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = frm.ProgramID
-                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)";        
+                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id)
+                ORDER BY frm.AuditDate DESC";        
 
 
             using var command = new SqlCommand(query, connection);

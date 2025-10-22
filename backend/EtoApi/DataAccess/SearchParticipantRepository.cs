@@ -74,7 +74,7 @@ namespace EtoApi.DataAccess
                     frm.GenderIfincorrectpleasecorrectindemographicsViewEdit_16046
                 FROM Clients c
                 Join ClientsXPrograms cp ON cp.CLID = c.CLID and cp.ProgramID = @program
-                Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
+                LEFT Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
                 WHERE Disabled = 0
                 AND (
                 FName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
