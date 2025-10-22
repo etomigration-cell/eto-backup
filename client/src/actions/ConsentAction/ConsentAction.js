@@ -1,9 +1,8 @@
-import { transformAihwform } from '../../transformer/aihwformTransformer'; 
-//import {aihwdata} from '../AIHWFormAction/AiHWFormData.json';
-export async function fetchaihwForm(id) {
+import { transformConsent } from 'transformer/msuTransformer';
+export async function fetchSaftyConsent(id) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/aihwform/${id}`,
+      `http://localhost:5001/participant/consent/${id}`,
     );
     if (!response.ok) {
       // Return empty results if API call fails
@@ -12,7 +11,7 @@ export async function fetchaihwForm(id) {
     const data = await response.json();
 
     // Run transformer here
-    const transformed = transformAihwform(data);
+    const transformed = transformConsent(data);
 
     return transformed;
   } catch (error) {

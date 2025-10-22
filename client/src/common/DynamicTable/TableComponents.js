@@ -109,20 +109,6 @@ export const wdynTableConfig = {
   ]
 };
 
-export const consentTableConfig = {
-  columns: [
-    { key: 'program',         label: 'Program' },
-    { key: 'dateCompleted',     label: 'Date Completed' },
-    { key: 'lastUpdatedby', label: 'Last Updated By' },
-    { key: 'status', label: 'Status' },
-    { key: 'dateParticipantSigned',   label: 'Date Participant Signed' },
-    {
-      key: 'actions',
-      label: 'Actions'
-    }
-  ]
-};
-
 export const documentTableConfig = ( handleDocumentDownload ) => {
   return {
   columns: [
@@ -171,6 +157,91 @@ export const incomingReferralConfig = {
     { key: 'programID',   label: 'Program' },
     { key: 'micahTeam', label: 'Micah Team'},
     { key: 'StaffName',       label: 'Staff' },
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]
+};
+
+export const AIHWFormTableConfig = {
+  columns: [
+   { key: "subjectID", label: "Subject Type",  filter: "text" },
+    { key: "auditDate", label: "Audit Staff", filter: "text" },
+     { key: "createdby", label: "Created By", filter: "text" },
+    { key: "micahTeam", label: "Micah Team",  filter: false },  
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+ 
+export const brokeragePaymentTableConfig = {
+  columns: [
+   { key: "vouchertype_6553", label: "Voucher Type",  filter: "text" },
+    { key: "purpose_6508", label: "Purpose", filter: "text" },
+    
+    { key: "chequePayableTo_6554", label: "Cheque Payable",  filter: false },  
+    { key: "micahTeam_11295", label: "Micah Team",  filter: false },
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
+
+
+export const SafetyAlertsTableConfig = {
+  columns: [
+   { key: "reviewdate_9603", label: "Date Last Updated",  filter: "text" },
+   { key: "micahTeam_11292", label: "Micah Team",  filter: false }, 
+   { key: "extremeRisk_23528", label: "Extreme Risk", filter: "text" },
+     { key: "alertCategory_9599", label: "Category", filter: "text" },
+     { key: "alertType_9600", label: "Type", filter: "text" },
+     { key: "expirationDate_9604", label: "Date no longer active", filter: "text" },
+      
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+   
+export const msuTableConfig = {
+  columns: [
+   { key: "labourForceStatus_16397", label: "Labour Force Status",  filter: "text" },
+    { key: "micahTeam_16473", label: "Micah Team", filter: "text" },
+    
+    { key: "age_16522", label: "Age",  filter: false },  
+    { key: "totalefforttimeforparticipant_33292", label: "total effort time for participant",  filter: false },
+  
+    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+    ]
+};
+
+export const consentTableConfig = {
+  columns: [
+    { key: 'program',         label: 'Program' },
+    { key: 'dateCompleted',     label: 'Date Completed' },
+    { key: 'lastUpdatedby', label: 'Last Updated By' },
+    { key: 'status', label: 'Status' },
+    { key: 'dateParticipantSigned',   label: 'Date Participant Signed' },
     {
       key: 'actions',
       label: 'Actions'

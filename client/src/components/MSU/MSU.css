@@ -1,4 +1,4 @@
-.consent-panel {
+.msu-panel {
   border: 1px solid #bbb;
   border-radius: 5px;
   margin: 8px 0;
@@ -20,15 +20,15 @@
   padding: 12px 14px;
 }
 
-.consent-table {
+.saftyalerts-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.98em;
   margin-bottom: 8px;
 }
 
-.consent-table th,
-.consent-table td {
+.msu-table th,
+.msu-table td {
   border-bottom: 1px solid #e0e0e0;
   padding: 6px 10px;
   text-align: left;
@@ -45,7 +45,7 @@
   font-size: 0.97em;
 }
 
-.consent-new {
+.msu-new {
   color: #147397;
   font-weight: bold;
   font-size: 1.1em;
