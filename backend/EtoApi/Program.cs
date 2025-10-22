@@ -43,6 +43,8 @@ builder.Services.AddTransient<AIHWFormRepository>();
 builder.Services.AddTransient<BrokeragePaymentRepository>();
 builder.Services.AddTransient<SafetyAlertsRepository>();
 builder.Services.AddTransient<IncomingReferralRepository>();
+builder.Services.AddTransient<MSURepository>();
+builder.Services.AddTransient<ConsentRepository>();
 
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
@@ -58,6 +60,8 @@ builder.Services.AddSingleton<AIHWFormService>();
 builder.Services.AddSingleton<SafetyAlertsService>();
 builder.Services.AddSingleton<BrokeragePaymentService>();
 builder.Services.AddSingleton<IncomingReferralService>();
+builder.Services.AddSingleton<MSUService>();
+builder.Services.AddSingleton<ConsentService>();
 
 var app = builder.Build();
 

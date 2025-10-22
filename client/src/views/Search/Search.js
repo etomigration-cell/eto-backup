@@ -7,13 +7,16 @@ import FamilyInformation from "components/FamilyInformation/FamilyInformation";
 import SupportPeriod from "components/SupportPeriod/SupportPeriod";
 import AddressBook from "components/AddressBook/AddressBook";
 import Wdyn from "components/WDYN/WDYN";
-import SaftyAlerts from "components/SafetyAlerts/SafetyAlerts";
+import AIHWForm from "components/AIHWForm/AIHWForm";
+import BrokeragePayment from "components/BrokeragePayment/BrokeragePayment";
+import SafetyAlerts  from "components/SafetyAlerts/SafetyAlerts";
 import Consent from "components/Consent/Consent";
+import MSU  from "components/MSU/MSU";
 import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActivities";
 import Documents from "components/Documents/Documents";
 import consentData from "assets/consent.json";
 import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, incomingReferralConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, incomingReferralConfig, AIHWFormTableConfig, SafetyAlertsTableConfig, msuTableConfig, brokeragePaymentTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
 import Spinner from "common/Spinner/Spinner";
@@ -180,8 +183,6 @@ function SearchPage({ selectedProgram, programs }) {
               plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant} programCode={program}></PlannedActions>),
               addressBook: <AddressBook participant={participant} config={addressBookTableConfig} programCode={program}></AddressBook>,
               wdyn: <Wdyn participant={participant} config={wdynTableConfig} programCode={program}></Wdyn>,
-              consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
-              saftyalerts: <SaftyAlerts saftyalerts={safetyAlerts.saftyalerts}></SaftyAlerts>,
               serviceAndActivities: (
                 <ServiceAndActivities
                   participant={participant}
@@ -190,7 +191,12 @@ function SearchPage({ selectedProgram, programs }) {
                 />
               ),
               documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload} programCode={program}/>,
-              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig} programCode={program}/>
+              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig} programCode={program}/>,
+              aihw: <AIHWForm participant={participant} config={AIHWFormTableConfig}></AIHWForm>,
+              brokeragePayment:<BrokeragePayment participant={participant} config={brokeragePaymentTableConfig}></BrokeragePayment>,
+              consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
+              msu:<MSU participant={participant} config={msuTableConfig}></MSU>,
+              safetyAlerts:(<SafetyAlerts participant={participant} config={SafetyAlertsTableConfig}></SafetyAlerts>),
             }}
           </TouchPointsTabs>
         </>

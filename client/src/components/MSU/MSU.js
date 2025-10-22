@@ -3,41 +3,44 @@ import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-import AIHWFormDetailView from "../AIHWFormDetailView/AIHWFormDetailView";
-import AIHWFormPresentingDetailView from "../AIHWFormDetailView/AIHWFormPresentingDetailView";
-import { fetchaihwForm } from "actions/AIHWFormAction/AIHWFormAction";
-import Spinner from "common/Spinner/Spinner";
-import "./AIHWForm.css";
 
-function AIHWForm({ participant, config }) {
+import MSUDetailView from "../MSUDetailView/MSUDetailView";
+import MSUMCQDetailView from "../MSUDetailView/MSUMCQDetailView";
+import MSUEffortDetailView from "../MSUDetailView/MSUEffortDetailView";
+import MSUECDetailView from "../MSUDetailView/MSUECDetailView";
+import { fetchMSU } from "../../actions/MSUAction/MSUAction";
+import Spinner from "common/Spinner/Spinner";
+
+
+function MSU({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [AIHWForm, setAIHWForm] = useState([]);
-  const [AIHWFormDetails, setAIHWFormDetails] = useState([]);
+  const [MSU, setMSU] = useState([]);
+  const [MSUDetails, setMSUDetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getAIHWForm() {
+    async function getMSU() {
       try {
         setLoading(true);
-        const result = await fetchaihwForm(participant.clid);
+        const result = await fetchMSU(participant.clid);
         console.log(result);
-        setAIHWForm(result);
-        setAIHWFormDetails(result.full);
+        setMSU(result);
+        setMSUDetails(result.full);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching AIHWForm:", error);
+        console.error("Error fetching  MSU:", error);
       }
     }
 
     if (participant.clid) {
-      getAIHWForm();
+      getMSU();
     }
   }, [participant.clid]);
 
   const handleView = (row) => {
     // If you want to pass the full detail instead of row
-    const detail = AIHWFormDetails.find(d => d.id === row.id) || row;
+    const detail = MSUDetails.find(d => d.id === row.id) || row;
     setViewedData(detail);
   };
 
@@ -45,13 +48,22 @@ function AIHWForm({ participant, config }) {
 
   const tabs = [
     {
-      label: "General Details, Housing Status",
-      content: <AIHWFormDetailView detail={viewedData} />,
+      label: "Monthly Status Update - SHS Reporting",
+      content: <MSUDetailView detail={viewedData} />,
     },
-    {
-      label: "Presenting Reasons",
-      content: <AIHWFormPresentingDetailView detail={viewedData} />,
-    },
+    // {
+    //   label: "Monthly Circumstances Questions",
+    //   content: <MSUMCQDetailView detail={viewedData} />,
+    // },
+    //  {
+    //   label: "Efforts Details",
+    //   content: <MSUEffortDetailView detail={viewedData} />,
+    // },
+    // {
+    //   label: "Exclusions to Consent",
+    //   content: <MSUECDetailView detail={viewedData} />,
+    // }
+    
   ];
 
   const configWithActions = {
@@ -80,17 +92,17 @@ function AIHWForm({ participant, config }) {
   };
 
   return (
-    <div className="AIHWForm-panel">
+    <div className="msu-panel">
       <div className="panel-header">
-        <strong>AIHW Form</strong>
+        <strong>Monthly Status Update</strong>
       </div>
       {loading && <Spinner />}
       {!loading && (
         <div className="panel-section">
           <DynamicTable
-            data={AIHWForm.minimal || []}
+            data={MSU.minimal || []}
             config={configWithActions}
-            className="sa-table"
+            className="msu-table"
             enableFilter={false}
           />
         </div>
@@ -100,7 +112,7 @@ function AIHWForm({ participant, config }) {
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `AIHWForm for ${viewedData.program || ""}`
+            ? `MSU for ${viewedData.program || ""}`
             : ""
         }
       >
@@ -110,4 +122,4 @@ function AIHWForm({ participant, config }) {
   );
 }
 
-export default AIHWForm;
+export default MSU;

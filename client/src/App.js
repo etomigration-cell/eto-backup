@@ -19,7 +19,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   const login = (username, password) => {
-    if (username === "admin@admin.com" && password === "1234") {
+    if (username === "admin@micahprojects.com" && password === "1234") {
       setUser({ name: username });
       return true;
     }
