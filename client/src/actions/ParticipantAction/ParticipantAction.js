@@ -1,7 +1,9 @@
 // action/participant.js
 
+import { tranformProgramHistories } from "transformer/participantTransformer";
+
 export async function fetchParticipantById(id) {
-  const response = await fetch(`http://localhost:5001/participant/participant-details/${id}`);
+  const response = await fetch(`${process.env.REACT_APP_API_BASE}/participant/participant-details?id=${id}`);
   if (!response.ok) {
     throw new Error("Participant not found");
   }
@@ -11,7 +13,7 @@ export async function fetchParticipantById(id) {
 
 export async function fetchParticipantAuditReport(id) {
   const response = await fetch(
-    `http://localhost:3001/participant/audit-report/${id}`,
+    `${process.env.REACT_APP_API_BASE}/participant/audit-report/${id}`,
   );
   if (!response.ok) {
     throw new Error("Participant audit report not found");
@@ -20,13 +22,15 @@ export async function fetchParticipantAuditReport(id) {
   return data;
 }
 
-export async function fetchParticipantProgramHistory(id) {
+export async function fetchParticipantProgramHistory(params) {
   const response = await fetch(
-    `http://localhost:5001/participant/participant-details/${id}`,
+    `${process.env.REACT_APP_API_BASE}/participant/program-history?${params.toString()}`
   );
   if (!response.ok) {
     throw new Error("Participant program history not found");
   }
   const data = await response.json();
-  return data;
+  const history = tranformProgramHistories(data);
+  console.log(history, 'history')
+  return tranformProgramHistories(data);
 }

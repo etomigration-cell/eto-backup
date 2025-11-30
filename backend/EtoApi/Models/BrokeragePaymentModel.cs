@@ -123,6 +123,12 @@ namespace EtoApi.Models
         public decimal? Ofchildrenunder5_32024 { get; set; }
         public decimal? childrenbetween6and12_32025 { get; set; }
         public decimal? childrenbetween13and18_32026 { get; set; }
+        public string? FName { get; set; }
+        public string? LName { get; set; }
+        public string? SubjectName { get; set; }
+        public string? ProgramName { get; set; }
+
+        public string? EntityName { get; set; }
 
     }
 }

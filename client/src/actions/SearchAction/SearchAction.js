@@ -1,10 +1,10 @@
 import { transformParticipantList } from 'transformer/participantTransformer';
 
 export async function getSearchParticipants(params) {
-  console.log(params)
+  console.log(params.toString())
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/search?${params.toString()}`,
+      `${process.env.REACT_APP_API_BASE}/participant/search?${params.toString()}`,
     );
     const data = transformParticipantList(await response.json());
     console.log(data);

@@ -1,53 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fetchParticipantProgramHistory } from 'actions/ParticipantAction/ParticipantAction';
+import DynamicTable from "common/DynamicTable/DynamicTable";
+import Spinner from "common/Spinner/Spinner";
 import "./ParticipantProgramHistory.css";
 
-function ProgramHistory({ history }) {
-  if (!history) {
-    return (
-      <div className="empty-history">
-        No program history available for this participant.
-      </div>
-    );
-  }
+function ProgramHistory({ participant, config }) {
+  const [programHistory, setProgramHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getProgramHistory(params) {
+      try {
+        setLoading(true);
+        const result = await fetchParticipantProgramHistory(params);
+      
+        console.log(result);
+        setProgramHistory(result);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching family members:", error);
+      }
+    }
+
+    const params = new URLSearchParams({
+      id: participant.clid
+      });
+
+    if (participant.clid) {
+      getProgramHistory(params);
+    }
+  }, [participant.clid]);
 
   return (
-    <div className="program-history-table-wrapper">
-      <h3>Program History</h3>
-      <table className="program-history-table">
-        <thead>
-          <tr>
-            <th>Program</th>
-            <th>Status</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Projected End</th>
-            <th>Days</th>
-            <th>Dismissal Reason</th>
-            <th>Staff</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{history.program}</td>
-            <td>{history.enrollmentStatus}</td>
-            <td>{history.programStartDate}</td>
-            <td>{history.programEndDate || "-"}</td>
-            <td>{history.projectedEndDate || "-"}</td>
-            <td>{history.daysInProgram}</td>
-            <td>{history.reasonForDismissal || "-"}</td>
-            <td>{history.staff}</td>
-            <td>
-              <button onClick={() => alert("Edit not implemented")}>
-                Edit
-              </button>
-              <button onClick={() => alert("Delete not implemented")}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="program-history-panel">
+      <div className="panel-header">
+      {!loading && <strong>Program History</strong>}
+      </div>
+      {loading && <Spinner />}
+      {!loading && <div className="ph-table-wrapper">
+        <DynamicTable data={programHistory || []} config={config} className="ph-table" enableFilter={false}/>
+      </div>}
     </div>
   );
 }

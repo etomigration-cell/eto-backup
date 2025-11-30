@@ -19,10 +19,10 @@ collectionID:record.collectionID,
 responseCreatedDate:record.responseCreatedDate,
 programID:record.programID,
 auditStaffID:record.auditStaffID,
-auditDate:record.auditDate,
+auditDate:record.auditDate ? moment(record.auditDate).format("DD/MM/YYYY") : null,
 dataEnteredByID:record.dataEnteredByID,
 draftSavedOn:record.draftSavedOn,
-removedDate:record.removedDate,
+removedDate:record.removedDate ? moment(record.removedDate).format("DD/MM/YYYY") : null,
 dwellingType_16392:record.dwellingType_16392,
 dwellingType_16392_ResponseChoiceID:record.dwellingType_16392_ResponseChoiceID,
 episodeOfHomelessness_16393:record.episodeOfHomelessness_16393,
@@ -99,17 +99,22 @@ totaltimespentonbehalfofparticipant_23290:record.totaltimespentonbehalfofpartici
 hastheparticipantreturnedhome_28343:record.hastheparticipantreturnedhome_28343,
 hastheparticipantreturnedhome_28343_ResponseChoiceID:record.hastheparticipantreturnedhome_28343_ResponseChoiceID,
 participantAge_29347:record.participantAge_29347,
-totalefforttimeforparticipant_33292:record.totalefforttimeforparticipant_33292
+totalefforttimeforparticipant_33292:record.totalefforttimeforparticipant_33292,
+auditName:record.fName+" "+record.lName,
+subjectName:record.subjectName,
+programName:record.programName,
+entityName:record.entityName,
   };
 }
 
 
 export function transformmsu(records) {
   const minimalKeys = [
-    "labourForceStatus_16397",
-    "micahTeam_16473",    
-    "age_16522",
-    "totalefforttimeforparticipant_33292"
+    "auditDate",
+    "responseCreatedDate",
+    "entityName",    
+    "programName",
+    "auditName"
     
   ];
 

@@ -56,7 +56,12 @@ namespace EtoApi.DataAccess
                     frm.MicahTeam_11292,
                     frm.ExtremeRisk_23528,
                     frm.ExtremeRisk_23528_ResponseChoiceID,
-                    frm.Safetydocuments_31786
+                    frm.Safetydocuments_31786,
+                    s.FName,
+                    s.LName,
+                    sub.Name,
+                    prg.ProgramName,
+                    e.EntityName
 
 
                 FROM form.f_238 frm
@@ -110,6 +115,11 @@ namespace EtoApi.DataAccess
                     ExtremeRisk_23528 = reader.IsDBNull(30) ? null : reader.GetString(30),
                     ExtremeRisk_23528_ResponseChoiceID = reader.IsDBNull(31) ? (int?)null : reader.GetInt32(31),
                     Safetydocuments_31786 = reader.IsDBNull(32) ? (int?)null : reader.GetInt32(32),
+                    FName = reader.IsDBNull(33) ? null : reader.GetString(33),
+                    LName = reader.IsDBNull(34) ? null : reader.GetString(34),
+                    SubjectName = reader.IsDBNull(35) ? null : reader.GetString(35),
+                    ProgramName = reader.IsDBNull(36) ? null : reader.GetString(36),
+                    EntityName = reader.IsDBNull(37) ? null : reader.GetString(37),
 
                 });
             }

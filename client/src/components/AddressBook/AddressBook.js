@@ -87,7 +87,7 @@ function AddressBook({ participant, config, programCode }) {
   return (
     <div className="addressbook-panel">
       <div className="panel-header">
-        <strong>Address Book</strong>
+       {!loading &&  <strong>Address Book</strong> }
       </div>
        {loading && <Spinner />}
       {!loading &&  <div className="address-table-wrapper">

@@ -22,12 +22,11 @@ export function transformParticipant(input) {
     workPhoneExtension: input.workPhoneExtension ?? null,
     pager: input.pager ?? null,
     email: input.email === "" ? null : input.email,
-    gender: input.gender ?? null,
     maritalStatusID: input.maritalStatusID ?? null,
     fundingEntityID: input.fundingEntityID ?? null,
     referralEntityID: input.referralEntityID ?? null,
     auditStaffID: input.auditStaffID ?? null,
-    auditDate: input.auditDate ?? null,
+    auditDate: input.auditDate ? moment(input.auditDate).format("DD/MM/YYYY") : "",
     assignedStaffID: input.assignedStaffID ?? null,
     dateCreated: input.dateCreated ? moment(input.dateCreated).format("DD/MM/YYYY") : "",
     alert: input.alert ?? null,
@@ -47,15 +46,79 @@ export function transformParticipant(input) {
     cSiteID: input.cSiteID ?? null,
     contactMethod: input.contactMethod ?? null,
     contactLocation: input.contactLocation ?? null,
-    crn: input.crn ?? null,
-    aboriginalTorresStraitSouthSeaIslander: input.aboriginalTorresStraitSouthSeaIslander ?? null,
+    crn: input.demographics.CRN ?? null,
+    aboriginalTorresStraitSouthSeaIslander: input.demographics.Aboriginal_Torres_Strait_Islander ?? null,
     photographConsent: input.photographConsent ?? null,
     inwhatlanguagedoyoufeelbestabletoexpressyourself: input.inwhatlanguagedoyoufeelbestabletoexpressyourself ?? null,
     nickname: input.nickname ?? null,
-    genderIfincorrect: input.genderIfincorrect ?? null
+    genderIfincorrect: input.genderIfincorrect ?? null,
+    cald: input.demographics.CALD ?? null,
+    citizenship_Status: input.demographics.Citizenship_Status ?? null,
+    country_of_Birth: input.demographics.Country_of_Birth ?? null,
+    current_or_Former_ADF_member: input.demographics.current_or_Former_ADF_member ?? null,
+    dOB_Accuracy: input.demographics.DOB_Accuracy ?? null,
+  //  "date_of_First_Micah_Contact_-Historical": input.demographics.Date_of_First_Micah_Contact_-Historical ?? null,
+    ethnicity: input.demographics.Ethnicity,
+    experience_with_Child_Welfare_System_at_intake: input.demographics.Experience_with_Child_Welfare_System_at_intake,
+    experience_with_Child_Welfare_system_at_Intake: input.demographics.Experience_with_Child_Welfare_system_at_Intake,
+    gender: input.demographics.Gender,
+    gender_PSM: input.demographics.Gender_PSM,
+    history_of_substance_abuse: input.demographics.History_of_substance_abuse,
+    history_of_substance_abuse_: input.demographics.History_of_substance_abuse_,
+    if_Yes_for_non_spoken: input.demographics.If_Yes_for_non_spoken,
+    if_Yes_for_spoken_language_other_than_english: input.demographics.If_Yes_for_spoken_language_other_than_english,
+    initial_Contact_Electronic_Type: input.demographics.Initial_Contact_Electronic_Type,
+    initial_Contact_Type: input.demographics.Initial_Contact_Type,
+    interpreter_required: input.demographics.Interpreter_required,
+    language_at_Home: input.demographics.Language_at_Home,
+    marital_Status: input.demographics.Marital_Status,
+    marital_Status_cx_MIECHV: input.demographics.Marital_Status_cx_MIECHV,
+    medicare_No_Individual_ID: input.demographics.Medicare_No_Individual_ID,
+    medicare_Number: input.demographics.Medicare_Number,
+    member_Type: input.demographics.Member_Type,
+    most_effective_method_of_Communication_: input.demographics.Most_effective_method_of_Communication_,
+    my_Aged_Care_ID: input.demographics.My_Aged_Care_ID,
+    ndis_Number: input.demographics.NDIS_Number,
+    non_Spoken_other: input.demographics.Non_Spoken_other,
+    one_or_more_children_have_low_student_achievement: input.demographics.One_or_more_children_have_low_student_achievement,
+    participant_Image: input.demographics.Participant_Image,
+    personal_characteristics: input.demographics.Personal_characteristics,
+    primary_language_exposure_of_target_child: input.demographics.Primary_language_exposure_of_target_child,
+    race: input.demographics.Race,
+    race_cx: input.demographics.Race_cx,
+    real_or_Fake_Person: input.demographics.Real_or_Fake_Person,
+    referral_Source: input.demographics.Referral_Source,
+    referral_Source_MP: input.demographics.Referral_Source_MP,
+    role_in_armed_forces: input.demographics.Role_in_armed_forces,
+    srsid: input.demographics.SRSID,
+    sex: input.demographics.Sex,
+    sexual_Identity: input.demographics.Sexual_Identity,
+    sexual_Identity_Other: input.demographics.Sexual_Identity_Other,
+    south_Sea_Islander: input.demographics.South_Sea_Islander,
+    tobacco_used_in_the_home: input.demographics.Tobacco_used_in_the_home,
+    what_is_the_primary_disability_group: input.demographics.What_is_the_primary_disability_group,
+    year_of_Arrival_YYYY: input.demographics.Year_of_Arrival_YYYY,
+    staffName: input.staffFName +" "+ input.staffLName,
   };
 }
 
 export function transformParticipantList(participants) {
   return participants.map(transformParticipant);
+}
+
+export function transformProgramHistory(input) {
+  return {
+     clid: input.clid ?? null,
+     programName: input.programName ?? null,
+     programStartDate: moment(input.programStartDate).format("DD/MM/YYYY") ?? null,
+     programEndDate: input.programEndDate
+      ? moment(input.programEndDate).format("DD/MM/YYYY")
+      : "Pending",
+     auditDate: moment(input.auditDate).format("DD/MM/YYYY") ?? null,
+     staffName: input.staffFName +" "+ input.staffLName,
+  }
+}
+
+export function tranformProgramHistories(programHistory) {
+  return programHistory.map(transformProgramHistory);
 }

@@ -83,7 +83,7 @@ function SupportPeriods({ participant, config, programCode }) {
   return (
     <div className="support-periods-panel">
       <div className="panel-header">
-        <strong>Support Periods</strong>
+      {!loading && <strong>Support Periods</strong>}
       </div>
       {loading && <Spinner />}
       {!loading && <div className="sp-table-wrapper">

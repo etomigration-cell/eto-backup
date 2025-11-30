@@ -9,6 +9,11 @@
   flex-wrap: wrap;
 }
 
+.search-page {
+  display: flex;
+  flex-direction: column;
+}
+
 .search-input,
 .program-name-input {
   padding: 0.5rem 1rem;

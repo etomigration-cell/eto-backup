@@ -1,0 +1,140 @@
+import moment from "moment";
+
+/**
+ * Map all aihwform record fields for full detail view.
+ */
+export function transformRedress(record) {
+  return {
+    // Identifiers
+formResponseID:record.formResponseID,
+formIdentifier:record.formIdentifier,
+subjectID:record.subjectID,
+groupID:record.groupID,
+familyID:record.familyID,
+responseSetID:record.responseSetID,
+formID:record.formID,
+collectionTypeID:record.collectionTypeID,
+subjectTypeID:record.subjectTypeID,
+collectionID:record.collectionID,
+responseCreatedDate:record.responseCreatedDate ? moment(record.responseCreatedDate).format("DD/MM/YYYY") : null,
+programID:record.programID,
+auditStaffID:record.auditStaffID,
+auditDate:record.auditDate? moment(record.auditDate).format("DD/MM/YYYY") : null,
+dataEnteredByID:record.dataEnteredByID,
+draftSavedOn:record.draftSavedOn,
+removedDate:record.removedDate ? moment(record.removedDate).format("DD/MM/YYYY") : null,
+contactMethod_28645:record.contactMethod_28645,
+contactMethod_28645_ResponseChoiceID:record.contactMethod_28645_ResponseChoiceID,
+contactLocation_28646:record.contactLocation_28646,
+contactLocation_28646_ResponseChoiceID:record.contactLocation_28646_ResponseChoiceID,
+phoneContactType_28647:record.phoneContactType_28647,
+phoneContactType_28647_ResponseChoiceID:record.phoneContactType_28647_ResponseChoiceID,
+ifcontactlocationisotherpleasespecify_28648:record.ifcontactlocationisotherpleasespecify_28648,
+howmanystaffdidthistogetherAtmost4_28649:record.howmanystaffdidthistogetherAtmost4_28649,
+timespentwithparticipantPerstaffmember_28650:record.timespentwithparticipantPerstaffmember_28650,
+timespentonbehalfofparticipantPerstaffmember_28651:record.timespentonbehalfofparticipantPerstaffmember_28651,
+timespenttravellingNotwithparticipantPerstaffmember_28652:record.timespenttravellingNotwithparticipantPerstaffmember_28652,
+totaltimespentwithparticipant_28653:record.totaltimespentwithparticipant_28653,
+totaltimespentonbehalfofparticipant_28654:record.totaltimespentonbehalfofparticipant_28654,
+totaltimespenttravelling_28655:record.totaltimespenttravelling_28655,
+totalefforttimeforparticipant_28656:record.totalefforttimeforparticipant_28656,
+selectyourname_28657:record.selectyourname_28657,
+micahTeam_28658:record.micahTeam_28658,
+selectthe2ndstaffperson_28659:record.selectthe2ndstaffperson_28659,
+whatotherteamassisted_28660:record.whatotherteamassisted_28660,
+howdidyoufindoutaboutourservice_28664:record.howdidyoufindoutaboutourservice_28664,
+howdidyoufindoutaboutourservice_28664_ResponseChoiceID:record.howdidyoufindoutaboutourservice_28664_ResponseChoiceID,
+preferredmethodofsupportvia_28665:record.preferredmethodofsupportvia_28665,
+preferredmethodofsupportvia_28665_ResponseChoiceID:record.preferredmethodofsupportvia_28665_ResponseChoiceID,
+doyouhaveanydisabilities_28667:record.doyouhaveanydisabilities_28667,
+doyouhaveanydisabilities_28667_ResponseChoiceID:record.doyouhaveanydisabilities_28667_ResponseChoiceID,
+disabilityimpairmentorconditionindicator_28668:record.disabilityimpairmentorconditionindicator_28668,
+disabilityimpairmentorconditionindicator_28668_ResponseChoiceID:record.disabilityimpairmentorconditionindicator_28668_ResponseChoiceID,
+languageSpokenatHomeotherthanEnglish_28669:record.languageSpokenatHomeotherthanEnglish_28669,
+mainsourceofincome_28670:record.mainsourceofincome_28670,
+mainsourceofincome_28670_ResponseChoiceID:record.mainsourceofincome_28670_ResponseChoiceID,
+selectyourlocation_28672:record.selectyourlocation_28672,
+selectyourlocation_28672_ResponseChoiceID:record.selectyourlocation_28672_ResponseChoiceID,
+mailingList_28674:record.mailingList_28674,
+mailingList_28674_ResponseChoiceID:record.mailingList_28674_ResponseChoiceID,
+areyouworkingwithanyotherservices_28675:record.areyouworkingwithanyotherservices_28675,
+referredby_28676:record.referredby_28676,
+name_28688:record.name_28688,
+contactDetails_28690:record.contactDetails_28690,
+educationStatus_28698:record.educationStatus_28698,
+educationStatus_28698_ResponseChoiceID:record.educationStatus_28698_ResponseChoiceID,
+doestheParticipantspeakalanguageotherthanEnglishathome_28701:record.doestheParticipantspeakalanguageotherthanEnglishathome_28701,
+doestheParticipantspeakalanguageotherthanEnglishathome_28701_ResponseChoiceID:record.doestheParticipantspeakalanguageotherthanEnglishathome_28701_ResponseChoiceID,
+areyouaForgottenAustralian_28702:record.areyouaForgottenAustralian_28702,
+areyouaForgottenAustralian_28702_ResponseChoiceID:record.areyouaForgottenAustralian_28702_ResponseChoiceID,
+howwastheparticipantreferredtoourservice_28703:record.howwastheparticipantreferredtoourservice_28703,
+howwastheparticipantreferredtoourservice_28703_ResponseChoiceID:record.howwastheparticipantreferredtoourservice_28703_ResponseChoiceID,
+internalreference_28704:record.internalreference_28704,
+internalreference_28704_ResponseChoiceID:record.internalreference_28704_ResponseChoiceID,
+externalreference_28705:record.externalreference_28705,
+externalreference_28705_ResponseChoiceID:record.externalreference_28705_ResponseChoiceID,
+otherReference_28706:record.otherReference_28706,
+istheparticipantapriority_28708:record.istheparticipantapriority_28708,
+istheparticipantapriority_28708_ResponseChoiceID:record.istheparticipantapriority_28708_ResponseChoiceID,
+selectthereasonsforprioritising_28709:record.selectthereasonsforprioritising_28709,
+selectthereasonsforprioritising_28709_ResponseChoiceID:record.selectthereasonsforprioritising_28709_ResponseChoiceID,
+haveyouspokentoanyotherserviceaboutRedress_28710:record.haveyouspokentoanyotherserviceaboutRedress_28710,
+haveyouspokentoanyotherserviceaboutRedress_28710_ResponseChoiceID:record.haveyouspokentoanyotherserviceaboutRedress_28710_ResponseChoiceID,
+services_28711:record.services_28711,
+services_28711_ResponseChoiceID:record.services_28711_ResponseChoiceID,
+servicesOther_28712:record.servicesOther_28712,
+istheparticipanteligibletoapplytoNRS_28714:record.istheparticipanteligibletoapplytoNRS_28714,
+istheparticipanteligibletoapplytoNRS_28714_ResponseChoiceID:record.istheparticipanteligibletoapplytoNRS_28714_ResponseChoiceID,
+selectallreasonsforseekingassistance_28715:record.selectallreasonsforseekingassistance_28715,
+selectallreasonsforseekingassistance_28715_ResponseChoiceID:record.selectallreasonsforseekingassistance_28715_ResponseChoiceID,
+historyasachild_28722:record.historyasachild_28722,
+historyasachild_28722_ResponseChoiceID:record.historyasachild_28722_ResponseChoiceID,
+detailsonhistoryofbeinginstitutionalizedasachild_28723:record.detailsonhistoryofbeinginstitutionalizedasachild_28723,
+historyasanadult_28724:record.historyasanadult_28724,
+historyasanadult_28724_ResponseChoiceID:record.historyasanadult_28724_ResponseChoiceID,
+detailsonhistoryofbeinginstitutionalizedasanadult_28725:record.detailsonhistoryofbeinginstitutionalizedasanadult_28725,
+isthereapublictrusteeoranadultguardian_28847:record.isthereapublictrusteeoranadultguardian_28847,
+isthereapublictrusteeoranadultguardian_28847_ResponseChoiceID:record.isthereapublictrusteeoranadultguardian_28847_ResponseChoiceID,
+namepublictrustee_28848:record.namepublictrustee_28848,
+contactdetailspublictrustee_28849:record.contactdetailspublictrustee_28849,
+whichregionistheparticipanttobeallocatedto_29325:record.whichregionistheparticipanttobeallocatedto_29325,
+whichregionistheparticipanttobeallocatedto_29325_ResponseChoiceID:record.whichregionistheparticipanttobeallocatedto_29325_ResponseChoiceID,
+pleaselistotherinternalreferrer_33336:record.pleaselistotherinternalreferrer_33336,
+
+auditName:record.fName+" "+record.lName,
+subjectName:record.subjectName,
+programName:record.programName,
+entityName:record.entityName,
+  };
+}
+
+
+export function transformredress(records) {
+  const minimalKeys = [
+    "auditDate",
+    "responseCreatedDate",
+    "auditName",
+    "entityName",    
+   // "programName",
+    //"auditName"
+    
+  ];
+
+  // Map all records to frontend format first
+  const mapped = records.map(transformRedress);
+
+  // Then extract minimal information from mapped records
+  const minimal = mapped.map(rec =>
+    ({
+      ...Object.fromEntries(
+        minimalKeys.map(key => [key, rec[key]])
+      ),
+      StaffName: `${rec.fName || ''} ${rec.lName || ''}`.trim(),
+    })
+  );
+
+  return {
+    minimal,
+    full: mapped
+  };
+}

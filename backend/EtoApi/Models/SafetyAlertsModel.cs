@@ -35,7 +35,11 @@ namespace EtoApi.Models
         public string? ExtremeRisk_23528 { get; set; }
         public int? ExtremeRisk_23528_ResponseChoiceID { get; set; }
         public int? Safetydocuments_31786 { get; set; }
-
+        public string? FName { get; set; }
+        public string? LName { get; set; }
+        public string? SubjectName { get; set; }
+        public string? ProgramName { get; set; }
+        public string? EntityName { get; set; }
 
     }
 }

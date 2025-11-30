@@ -3,7 +3,7 @@ import { transformWdyn } from 'transformer/wdynTransformer';
 export async function fetchWdyn(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/wdyn?${params.toString()}`,
+      `${process.env.REACT_APP_API_BASE}/participant/wdyn?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

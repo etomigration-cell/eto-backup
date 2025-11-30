@@ -83,7 +83,7 @@ function PlannedActions({ participant, config, programCode }) {
   return (
     <div className="planned-actions-panel">
       <div className="panel-header">
-        <strong>Planned Action</strong>
+      {!loading &&  <strong>Planned Action</strong> }
       </div>
       {loading && <Spinner />}
       {!loading && <div className="pa-table-wrapper">

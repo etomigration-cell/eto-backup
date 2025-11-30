@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { find } from "lodash";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import TouchPointsTabs from "components/TouchPointsTabs/TouchPointsTabs";
@@ -14,13 +14,17 @@ import Consent from "components/Consent/Consent";
 import MSU  from "components/MSU/MSU";
 import ServiceAndActivities from "components/ServiceAndActivities/ServiceAndActivities";
 import Documents from "components/Documents/Documents";
-import consentData from "assets/consent.json";
-import safetyAlerts from "assets/safetyAlerts.json";
-import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, incomingReferralConfig, AIHWFormTableConfig, SafetyAlertsTableConfig, msuTableConfig, brokeragePaymentTableConfig } from "common/DynamicTable/TableComponents";
+import { supportPeriodsTableConfig, searchResultsTableConfig, addressBookTableConfig, wdynTableConfig, consentTableConfig, serviceActivitiesTableConfig, documentTableConfig, plannedActionTableConfig, incomingReferralConfig, AIHWFormTableConfig, SafetyAlertsTableConfig, msuTableConfig, brokeragePaymentTableConfig, programHistoryConfig, lotusNotesConfig, lotusInitialFormConfig, redressTableConfig, redressNotesTableConfig } from "common/DynamicTable/TableComponents";
 import { fetchParticipantById } from "actions/ParticipantAction/ParticipantAction";
 import { getSearchParticipants } from "actions/SearchAction/SearchAction";
+import { fetchTouchPoints } from "actions/TouchPointsAction/TouchPointsAction";
+import { fetchProfile } from "actions/ProfileAction/ProfileAction";
 import Spinner from "common/Spinner/Spinner";
 import PlannedActions from "components/PlannedAction/PlannedAction";
+import LotusNotes from "components/LotusNotesView/LotusNotes";
+import LotusInitialForm from "components/LotusInitialFormView/LotusInitialForm";
+import Redress from "components/Redress/Redress";
+import RedressNotes from "components/RedressNotes/RedressNotes";
 
 import "./Search.css";
 import IncomingReferral from "components/IncomingReferral/IncomingReferral";
@@ -33,6 +37,7 @@ function SearchPage({ selectedProgram, programs }) {
   const [searchText, setSearchText] = useState("");
   const [searchError, setSearchError] = useState("");
   const [selected, setSelected] = useState("Participant");
+  const [profilePrograms, setProfilePrograms] = useState([]);
   const [program, setProgram] = useState("762");
   const [results, setResults] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false);
@@ -40,8 +45,34 @@ function SearchPage({ selectedProgram, programs }) {
   const [activeTab, setActiveTab] = useState("participantInformation");
   const [loading, setLoading] = useState(false);
   const [defaultDisplay, setDefaultDisplay] = useState(false);
+  const [touchPoints, setTouchPoints] = useState([]);
 
   const documentRef = useRef();
+
+  useEffect(() => {
+        async function getPrograms() {
+          try {
+            setLoading(true);
+            const profile = await fetchProfile("");
+            const params = new URLSearchParams({
+            query: "null",
+            ...(program && program !== 'All' ? { program: program } : {})
+            });
+            const participants = await getSearchParticipants(params);
+            setResults(participants);
+            setShowDashboard(false);
+            console.log(participants);
+            setProfilePrograms(profile?.programIDs || programs);
+            setLoading(false);
+            setDefaultDisplay(true);
+          } catch (error) {
+            console.error("Error fetching family members:", error);
+          }
+        }
+
+        getPrograms();
+        
+      }, [program]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +96,9 @@ function SearchPage({ selectedProgram, programs }) {
 
 
     const participants = await getSearchParticipants(params);
+    const touchPoints = await fetchTouchPoints(program);
+    console.log("touchPoints==", touchPoints);
+    setTouchPoints(touchPoints);
     setResults(participants);
     setLoading(false);
     setSearchText("");
@@ -73,7 +107,10 @@ function SearchPage({ selectedProgram, programs }) {
   const fetchParticipant = async (id) => {
     try {
       setLoading(true);
-      const participant = results.find(p => p.clid === id);
+     // const touchPoints = await fetchTouchPoints(program);
+    //  console.log("touchPoints==", touchPoints);
+    //  setTouchPoints(touchPoints);
+      const participant = await fetchParticipantById(id);
       setParticipant(participant);
       setLoading(false);
       setShowDashboard(true);
@@ -106,6 +143,124 @@ function SearchPage({ selectedProgram, programs }) {
   const programName = programObj ? programObj.name : "";
   const columns = searchResultsTableConfig(fetchParticipant);
 
+  console.log(programs)
+
+  const tabs = {
+  participantInformation: (
+    <ParticipantInformation key="participantInformation" participant={participant} programHistoryConfig={programHistoryConfig}/>
+  ),
+  familyInformation: (
+    <FamilyInformation
+      key="familyInformation"
+      participant={participant}
+      onMemberClick={handleFamilyMemberClick}
+    />
+  ),
+    supportPeriods: (
+      <SupportPeriod
+        key="supportPeriods"
+        config={supportPeriodsTableConfig}
+        participant={participant}
+        programCode={program}
+      />
+    ),
+    plannedAction: (
+      <PlannedActions
+        key="plannedAction"
+        config={plannedActionTableConfig}
+        participant={participant}
+        programCode={program}
+      />
+    ),
+    addressBook: (
+      <AddressBook
+        key="addressBook"
+        participant={participant}
+        config={addressBookTableConfig}
+        programCode={program}
+      />
+    ),
+    wdyn: (
+      <Wdyn
+        key="wdyn"
+        participant={participant}
+        config={wdynTableConfig}
+        programCode={program}
+      />
+    ),
+    serviceAndActivities: (
+      <ServiceAndActivities
+        key="serviceAndActivities"
+        participant={participant}
+        config={serviceActivitiesTableConfig}
+        programCode={program}
+      />
+    ),
+    documents: (
+      <Documents
+        key="documents"
+        ref={documentRef}
+        participant={participant}
+        config={documentTableConfig}
+        handleDocumentDownload={handleDocumentDownload}
+        programCode={program}
+      />
+    ),
+    incomingReferral: (
+      <IncomingReferral
+        key="incomingReferral"
+        participant={participant}
+        config={incomingReferralConfig}
+        programCode={program}
+      />
+    ),
+    aihw: (
+      <AIHWForm
+        key="aihw"
+        participant={participant}
+        config={AIHWFormTableConfig}
+      />
+    ),
+    brokeragePayment: (
+      <BrokeragePayment
+        key="brokeragePayment"
+        participant={participant}
+        config={brokeragePaymentTableConfig}
+      />
+    ),
+    consent:(<Consent participant={participant} config={consentTableConfig}></Consent>),
+    msu: (
+      <MSU
+        key="msu"
+        participant={participant}
+        config={msuTableConfig}
+      />
+    ),
+    safetyAlerts: (
+      <SafetyAlerts
+        key="safetyAlerts"
+        participant={participant}
+        config={SafetyAlertsTableConfig}
+      />
+    ),
+    lotusNotes: (
+      <LotusNotes
+        key="lotusNotes"
+        participant={participant}
+        config={lotusNotesConfig}
+      />
+    ),
+    lotusInitialForm: (
+      <LotusInitialForm
+        key="lotusInitialForm"
+        participant={participant}
+        config={lotusInitialFormConfig}
+      />
+    ),
+    redress: (<Redress participant={participant} config={redressTableConfig}></Redress>),
+    redressNotes:(<RedressNotes participant={participant} config={redressNotesTableConfig}></RedressNotes>),
+  };
+
   return (
     <div>
       <form className="search-form" onSubmit={handleSubmit}>
@@ -135,11 +290,13 @@ function SearchPage({ selectedProgram, programs }) {
           value={program}
           onChange={(e) => setProgram(e.target.value)}
         >
-          {programs.programs.map((opt) => (
+          {programs.programs.map((opt) => 
+          profilePrograms.includes(parseInt(opt.code)) ? (
             <option key={opt.code} value={opt.code}>
               {opt.name}
             </option>
-          ))}
+          ) : null
+        )}
         </select>
         <button className="search-button" type="submit">
           Search
@@ -162,43 +319,10 @@ function SearchPage({ selectedProgram, programs }) {
 
       {showDashboard && (
         <>
-          <TouchPointsTabs activeTab={activeTab} onTabChange={setActiveTab}>
-            {{
-              participantInformation: (
-                <ParticipantInformation participant={participant} />
-              ),
-              familyInformation: (
-                <FamilyInformation
-                  participant={participant}
-                  onMemberClick={handleFamilyMemberClick}
-                />
-              ),
-              supportPeriods: (
-                <SupportPeriod
-                  config={supportPeriodsTableConfig}
-                  participant={participant}
-                  programCode={program}
-                ></SupportPeriod>
-              ),
-              plannedAction: (<PlannedActions config={plannedActionTableConfig} participant={participant} programCode={program}></PlannedActions>),
-              addressBook: <AddressBook participant={participant} config={addressBookTableConfig} programCode={program}></AddressBook>,
-              wdyn: <Wdyn participant={participant} config={wdynTableConfig} programCode={program}></Wdyn>,
-              serviceAndActivities: (
-                <ServiceAndActivities
-                  participant={participant}
-                  config={serviceActivitiesTableConfig}
-                  programCode={program}
-                />
-              ),
-              documents: <Documents ref={documentRef} participant={participant} config={documentTableConfig} handleDocumentDownload={handleDocumentDownload} programCode={program}/>,
-              incomingReferral: <IncomingReferral participant={participant} config={incomingReferralConfig} programCode={program}/>,
-              aihw: <AIHWForm participant={participant} config={AIHWFormTableConfig}></AIHWForm>,
-              brokeragePayment:<BrokeragePayment participant={participant} config={brokeragePaymentTableConfig}></BrokeragePayment>,
-              consent: <Consent consent={consentData.consent} config={consentTableConfig} consentDetails={consentData.consentDetails}></Consent>,
-              msu:<MSU participant={participant} config={msuTableConfig}></MSU>,
-              safetyAlerts:(<SafetyAlerts participant={participant} config={SafetyAlertsTableConfig}></SafetyAlerts>),
-            }}
+          <TouchPointsTabs activeTab={activeTab} onTabChange={setActiveTab} selectedProgram={program}>
+          {tabs}
           </TouchPointsTabs>
+
         </>
       )}
     </div>

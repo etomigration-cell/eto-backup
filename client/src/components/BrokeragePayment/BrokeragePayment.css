@@ -31,17 +31,17 @@
 /* Thin columns for IDs, staff, etc., wide column for Notes */
 .BrokeragePayment-panel th:nth-child(1),
 .BrokeragePayment-panel td:nth-child(1) {
-  width: 92px;
+  width: 182px;
   border-top-left-radius: 8px;
 }
 .BrokeragePayment-panel th:nth-child(2),
 .BrokeragePayment-panel td:nth-child(2) {
-  width: 80px;
+  width: 180px;
 }
 
 .BrokeragePayment-panel th:nth-child(3),
 .BrokeragePayment-panel td:nth-child(3) {
-  width: 90px;
+  width: 130px;
 }
 
 .BrokeragePayment-panel th:nth-child(4),

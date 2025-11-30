@@ -19,52 +19,56 @@ namespace EtoApi.DataAccess
              using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
             var query = @"
-                SELECT
-                    CLID,
-                    SSN,
-                    CaseNumber,
-                    FName,
-                    MiddleInitial,
-                    LName,
-                    Disabled,
-                    PrefixID,
-                    SuffixID,
-                    EthnicityID,
-                    DOB,
-                    Address1,
-                    Address2,
-                    ZipCode,
-                    HomePhone,
-                    CellPhone,
-                    WorkPhone,
-                    WorkPhoneExtension,
-                    Pager,
-                    Email,
-                    Gender,
-                    MaritalStatusID,
-                    FundingEntityID,
-                    ReferralEntityID,
-                    AuditStaffID,
-                    AuditDate,
-                    AssignedStaffID,
-                    DateCreated,
-                    Alert,
-                    HoR_ID,
-                    HoR_ChildID,
-                    HoR_BID,
-                    HoR_IDAbuser,
-                    HoR_VID,
-                    ClientGUID,
-                    TigerID,
-                    CensusTract,
-                    CensusBlock,
-                    CLID_Source,
-                    ZipExtension,
-                    OptOut,
-                    ReferralNotification,
-                    CSiteID
-                FROM Clients
-                WHERE CLID = @Id";
+               SELECT
+                c.CLID,
+                c.SSN,
+                c.CaseNumber,
+                c.FName,
+                c.MiddleInitial,
+                c.LName,
+                c.Disabled,
+                c.PrefixID,
+                c.SuffixID,
+                c.EthnicityID,
+                c.DOB,
+                c.Address1,
+                c.Address2,
+                c.ZipCode,
+                c.HomePhone,
+                c.CellPhone,
+                c.WorkPhone,
+                c.WorkPhoneExtension,
+                c.Pager,
+                c.Email,
+                c.Gender,
+                c.MaritalStatusID,
+                c.FundingEntityID,
+                c.ReferralEntityID,
+                c.AuditStaffID,
+                c.AuditDate,
+                c.AssignedStaffID,
+                c.DateCreated,
+                c.Alert,
+                c.HoR_ID,
+                c.HoR_ChildID,
+                c.HoR_BID,
+                c.HoR_IDAbuser,
+                c.HoR_VID,
+                c.ClientGUID,
+                c.TigerID,
+                c.CensusTract,
+                c.CensusBlock,
+                c.CLID_Source,
+                c.ZipExtension,
+                c.OptOut,
+                c.ReferralNotification,
+                c.CSiteID,
+                s.FName AS StaffFName,
+                s.LName AS StaffLName
+            FROM Clients c
+            LEFT JOIN Staff s ON c.AuditStaffID = s.StaffID
+            WHERE c.CLID = @Id";
+
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
 
@@ -115,7 +119,9 @@ namespace EtoApi.DataAccess
                     ZipExtension = reader.IsDBNull(39) ? null : reader.GetString(39),
                     OptOut = reader.IsDBNull(40) ? null : reader.GetBoolean(40),
                     ReferralNotification = reader.IsDBNull(41) ? null : reader.GetBoolean(41),
-                    CSiteID = reader.IsDBNull(42) ? null : reader.GetInt16(42)
+                    CSiteID = reader.IsDBNull(42) ? null : reader.GetInt16(42),
+                    StaffFName = reader.IsDBNull(43) ? null : reader.GetString(43),
+                    StaffLName = reader.IsDBNull(44) ? null : reader.GetString(44),
                 };
             }
             return null;

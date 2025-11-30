@@ -3,7 +3,7 @@ import { transformServiceActivities } from 'transformer/ServiceAndActivitiesTran
 export async function fetchServiceActivities(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/service-activities?${params.toString()}`,
+      `${process.env.REACT_APP_API_BASE}/participant/service-activities?${params.toString()}`,
     );
     if (!response.ok) {
       // Return empty results if API call fails

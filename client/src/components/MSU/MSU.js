@@ -3,14 +3,10 @@ import { FaEye } from "react-icons/fa";
 import DynamicTable from "common/DynamicTable/DynamicTable";
 import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
-
 import MSUDetailView from "../MSUDetailView/MSUDetailView";
-import MSUMCQDetailView from "../MSUDetailView/MSUMCQDetailView";
-import MSUEffortDetailView from "../MSUDetailView/MSUEffortDetailView";
-import MSUECDetailView from "../MSUDetailView/MSUECDetailView";
 import { fetchMSU } from "../../actions/MSUAction/MSUAction";
 import Spinner from "common/Spinner/Spinner";
-
+import "./MSU.css";
 
 function MSU({ participant, config }) {
   const [viewedData, setViewedData] = useState(null);
@@ -102,7 +98,7 @@ function MSU({ participant, config }) {
           <DynamicTable
             data={MSU.minimal || []}
             config={configWithActions}
-            className="msu-table"
+            className="sa-table"
             enableFilter={false}
           />
         </div>
@@ -112,7 +108,7 @@ function MSU({ participant, config }) {
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `MSU for ${viewedData.program || ""}`
+            ? `MSU for ${viewedData.programName || ""}`
             : ""
         }
       >

@@ -1,6 +1,6 @@
 export async function fetchFamilyDetails(id) {
   const response = await fetch(
-    `http://localhost:5001/participant/family-details/${id}`
+    `${process.env.REACT_APP_API_BASE}/participant/family-details/${id}`
   );
   if (!response.ok) {
     throw new Error("Family not found");

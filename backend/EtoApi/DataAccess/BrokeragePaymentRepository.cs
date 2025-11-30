@@ -142,7 +142,12 @@ namespace EtoApi.DataAccess
                     frm.AIHWpurpose_28341_ResponseChoiceID,
                     frm.Ofchildrenunder5_32024,
                     frm.childrenbetween6and12_32025,
-                    frm.childrenbetween13and18_32026
+                    frm.childrenbetween13and18_32026,
+                    s.FName,
+                    s.LName,
+                    sub.Name,
+                    prg.ProgramName,
+                    e.EntityName
 
                 FROM form.f_200 frm
                 JOIN Staff s ON frm.AuditStaffID = s.StaffID
@@ -283,6 +288,11 @@ namespace EtoApi.DataAccess
                     Ofchildrenunder5_32024 = reader.IsDBNull(118) ? (decimal?)null : reader.GetDecimal(118),
                     childrenbetween6and12_32025 = reader.IsDBNull(119) ? (decimal?)null : reader.GetDecimal(119),
                     childrenbetween13and18_32026 = reader.IsDBNull(120) ? (decimal?)null : reader.GetDecimal(120),
+                    FName = reader.IsDBNull(121) ? null : reader.GetString(121),
+                    LName = reader.IsDBNull(122) ? null : reader.GetString(122),
+                    SubjectName = reader.IsDBNull(123) ? null : reader.GetString(123),
+                    ProgramName = reader.IsDBNull(124) ? null : reader.GetString(124),
+                    EntityName = reader.IsDBNull(125) ? null : reader.GetString(125),
 
                 });
             }

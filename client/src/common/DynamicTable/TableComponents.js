@@ -5,7 +5,7 @@ export const supportPeriodsTableConfig = {
   columns: [
     { key: "programName", label: "Program",  filter: "text" },
     { key: "subjectType", label: "Subject Type",  filter: "text" },
-    { key: "dateLastUpdated", label: "Date Last Updated",  filter: "text" },
+    { key: "auditDate", label: "Date Last Updated",  filter: "text" },
     { key: "StaffName", label: "Last Updated By",  filter: false },
     { key: "micahTeam", label: "Micah Team",  filter: "text" },
     { key: "submitsReport", label: "AIHW/SHS",  filter: "text" },
@@ -51,8 +51,6 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
       ),
     },
     { key: "caseNumber", label: "Case Number" },
-    { key: "RealOrFake", label: "Real or Fake" },
-    { key: "genderIfincorrect", label: "Gender" },
     { key: "dateCreated", label: "Program Start Date" },
   ]
 }
@@ -60,7 +58,7 @@ export const searchResultsTableConfig = ( fetchParticipant ) => {
 
 export const addressBookTableConfig = {
   columns: [
-    { key: 'auditDate', label: 'Audit Date' },
+    { key: 'auditDate', label: 'Date last updated' },
     { key: 'whoseContactDetails_value', label: 'Who is This?' },
     { key: 'name', label: 'Name' },
     {
@@ -166,7 +164,7 @@ export const incomingReferralConfig = {
 
 export const AIHWFormTableConfig = {
   columns: [
-   { key: "subjectID", label: "Subject Type",  filter: "text" },
+   { key: "subjectName", label: "Subject Type",  filter: "text" },
     { key: "auditDate", label: "Audit Date", filter: "text" },
      { key: "createdby", label: "Created By", filter: "text" },
     { key: "micahTeam", label: "Micah Team",  filter: false },  
@@ -182,13 +180,15 @@ export const AIHWFormTableConfig = {
  
 export const brokeragePaymentTableConfig = {
   columns: [
-   { key: "vouchertype_6553", label: "Voucher Type",  filter: "text" },
-    { key: "purpose_6508", label: "Purpose", filter: "text" },
+   { key: "auditDate", label: "Date Completed",  filter: "text" },
+    { key: "responseCreatedDate", label: "Last Updated", filter: "text" },
     
-    { key: "chequePayableTo_6554", label: "Cheque Payable",  filter: false },  
-    { key: "micahTeam_11295", label: "Micah Team",  filter: false },
+    { key: "formIdentifier", label: "Identifier",  filter: false },  
+    { key: "collectionID", label: "Collection",  filter: false },
   
-    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    { key: "programName", label: "Program",  filter: "text" },
+    { key: "auditName", label: "Staff",  filter: "text" },
+    { key: "transactionDate_6525", label: "Transaction Date",  filter: "text" },
     {
       key: "actions",
       label: "Actions",
@@ -202,7 +202,7 @@ export const brokeragePaymentTableConfig = {
 export const SafetyAlertsTableConfig = {
   columns: [
    { key: "reviewdate_9603", label: "Date Last Updated",  filter: "text" },
-   { key: "micahTeam_11292", label: "Micah Team",  filter: false }, 
+   { key: "entityName", label: "Micah Team",  filter: false }, 
    { key: "extremeRisk_23528", label: "Extreme Risk", filter: "text" },
      { key: "alertCategory_9599", label: "Category", filter: "text" },
      { key: "alertType_9600", label: "Type", filter: "text" },
@@ -220,13 +220,13 @@ export const SafetyAlertsTableConfig = {
    
 export const msuTableConfig = {
   columns: [
-   { key: "labourForceStatus_16397", label: "Labour Force Status",  filter: "text" },
-    { key: "micahTeam_16473", label: "Micah Team", filter: "text" },
+   { key: "auditDate", label: "Date Completed",  filter: "text" },
+    { key: "responseCreatedDate", label: "Last Updated", filter: "text" },
     
-    { key: "age_16522", label: "Age",  filter: false },  
-    { key: "totalefforttimeforparticipant_33292", label: "total effort time for participant",  filter: false },
+    { key: "entityName", label: "Micah Team",  filter: false },  
+    { key: "programName", label: "Program",  filter: false },
   
-    //{ key: "completionDate", label: "Close Date",  filter: "text" },
+    { key: "auditName", label: "Staff",  filter: "text" },
     {
       key: "actions",
       label: "Actions",
@@ -237,14 +237,98 @@ export const msuTableConfig = {
 
 export const consentTableConfig = {
   columns: [
-    { key: 'program',         label: 'Program' },
-    { key: 'dateCompleted',     label: 'Date Completed' },
-    { key: 'lastUpdatedby', label: 'Last Updated By' },
-    { key: 'status', label: 'Status' },
-    { key: 'dateParticipantSigned',   label: 'Date Participant Signed' },
+    { key: "programName", label: "Program Name",  filter: "text" },
+    { key: "auditDate", label: "Date Complete", filter: false },
+    
+    { key: "workerDatesigned_25244", label: "Last Update By",  filter: false },  
+    { key: "consentstatus_25257", label: "Status",  filter: false },
+  
+    { key: "dateofSignature_25242", label: "Date Participant Signed",  filter: "text" },
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+  ]
+};
+
+export const programHistoryConfig = {
+  columns: [
+    { key: 'clid',         label: 'Case Number' },
+    { key: 'programName',     label: 'Program Name' },
+    { key: 'programStartDate', label: 'Start Date' },
+    { key: 'programEndDate', label: 'End Date' },
+    { key: 'auditDate',   label: 'Audit Date' },
+    {
+      key: 'staffName',
+      label: 'Audti Staff'
+    }
+  ]
+};
+
+export const lotusNotesConfig = {
+  columns: [
+    { key: 'responseCreatedDate',     label: 'Date created' },
+    { key: 'auditDate', label: 'Last updated date' },
+    { key: 'entityName', label: 'Micah Team' },
+    { key: 'scoring_31496',   label: 'Scoring' },
+    {
+      key: 'StaffName',
+      label: 'Last updated by'
+    },
     {
       key: 'actions',
       label: 'Actions'
+    }
+  ]
+};
+
+export const lotusInitialFormConfig = {
+  columns: [
+    { key: 'responseCreatedDate',     label: 'Date created' },
+    { key: 'auditDate', label: 'Last updated date' },
+    { key: 'entityName', label: 'Micah Team' },
+    {
+      key: 'StaffName',
+      label: 'Last updated by'
+    },
+    {
+      key: 'actions',
+      label: 'Actions'
+    }
+  ]
+};
+
+export const redressTableConfig = {
+  columns: [
+   
+   { key: "auditDate", label: "Date Completed",  filter: "text" },
+    { key: "responseCreatedDate", label: "Date Last Updated", filter: "text" },
+      { key: "auditName", label: "Last Updated By",  filter: "text" },
+    { key: "entityName", label: "Micah Team",  filter: false },  
+   
+  
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
+    }
+  ]
+};
+
+export const redressNotesTableConfig = {
+  columns: [
+   
+   { key: "auditDate", label: "Date Completed",  filter: "text" },
+    { key: "responseCreatedDate", label: "Date Last Updated", filter: "text" },
+      { key: "auditName", label: "Last Updated By",  filter: "text" },
+    { key: "entityName", label: "Micah Team",  filter: false },  
+   
+  
+    {
+      key: "actions",
+      label: "Actions",
+       filter: false
     }
   ]
 };

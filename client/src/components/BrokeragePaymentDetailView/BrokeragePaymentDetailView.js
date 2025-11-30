@@ -6,11 +6,12 @@ function BrokeragePaymentDetailView({ detail }) {
   if (!detail) return null;
 
   const fieldLabels = {
-   transactionDate_6525 : "Transaction Date",
-	micahTeam_8276: "Micah Team",
-	worker1_7379 : "Worker1",
-	worker2_7380 : "Worker2",
-	financeJobCode_16945 : "Finance Job Code",
+        transactionDate_6525 : "Transaction Date",
+        entityName: "Micah Team",
+        worker1_7379 : "Worker1",
+        worker2_7380 : "Worker2",
+        financeJobCode_16945 : "Finance Job Code",
+        financeShortJobCode_16946 : "Finance Short Job Code",
         transactionAmount_6530 : "Transaction Amount",
         willthistransactionbenefitonlythisindividualorisitforanentirefamily_21917 : "Will this transaction benefit only this individual, or is it for an entire family",
         detailsofTransaction_6533 : "Details of Transaction",

@@ -3,7 +3,7 @@ namespace EtoApi.Models
     public class SupportPeriod
     {
         public int? FormResponseID { get; set; }
-        public int? FormIdentifier { get; set; }
+        public string? FormIdentifier { get; set; }
         public string? SubjectName { get; set; }
         public int? GroupID { get; set; }
         public int? FamilyID { get; set; }
@@ -49,12 +49,12 @@ namespace EtoApi.Models
         public int? WhatistheparticipantsselfassessedEnglishproficiency_24801_ResponseChoiceID { get; set; }
         public string? DoestheParticipantspeakalanguageotherthanEnglishathome_24803 { get; set; }
         public int? DoestheParticipantspeakalanguageotherthanEnglishathome_24803_ResponseChoiceID { get; set; }
-        public string? LanguageSpokenatHome_24975 { get; set; }
+        public int? LanguageSpokenatHome_24975 { get; set; }
         public decimal? AgeOfparticipant_24977 { get; set; }
         public decimal? Age_27257 { get; set; }
         public string? Wasthecarefinderclientfeedbacksurveyofferred_31682 { get; set; }
         public int? Wasthecarefinderclientfeedbacksurveyofferred_31682_ResponseChoiceID { get; set; }
-        public string? MainLanguageatHome_33264 { get; set; }
+        public int? MainLanguageatHome_33264 { get; set; }
         public string? LanguageProficiency_33265 { get; set; }
         public int? LanguageProficiency_33265_ResponseChoiceID { get; set; }
         public string? SAMMensProgramonlywhatwasthereasonforthesupportperiodending_33335 { get; set; }

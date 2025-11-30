@@ -96,7 +96,7 @@ function BrokeragePayment({ participant, config }) {
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `Brokerage Payment for ${viewedData.program || ""}`
+            ? `Brokerage Payment for ${viewedData.programName || ""}`
             : ""
         }
       >

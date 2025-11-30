@@ -39,15 +39,68 @@
   box-shadow: 0 0 0 2px #e4ecfc;
 }
 
-.side-tabs {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.side-tabs-groups {
   flex: 1 1 auto;
   min-width: 0;
   overflow-y: auto;
   background: #f9f9fa;
   max-height: calc(100vh - 52px);
+}
+
+.tab-group {
+  margin-bottom: 4px;
+}
+
+.tab-group-header {
+  width: 100%;
+  display: flex;
+  align-items: center;         /* Vertically center contents */
+  justify-content: space-between; /* Distribute icon/text left, +/− right */
+  gap: 12px;                   /* Space between icon and label */
+  padding: 15px 23px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ececec;
+  cursor: pointer;
+  color: #2d3446;
+  font-size: 1.02em;
+  font-weight: 500;
+  transition: background 0.18s, color 0.18s;
+  position: relative;
+}
+
+.tab-group-header .tab-group-icon {
+  font-size: 1.2em;
+  margin-right: 9px;           /* Icon/text spacing */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.tab-group-header .tab-group-label {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.tab-group-header .tab-group-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  margin-left: 12px;
+}
+
+.tab-group-header:hover {
+  background: #eaefff;
+  color: #194782;
+}
+
+.side-tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f9f9fa;
 }
 
 .tab-item {

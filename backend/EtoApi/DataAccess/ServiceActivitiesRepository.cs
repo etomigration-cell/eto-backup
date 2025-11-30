@@ -293,7 +293,7 @@ namespace EtoApi.DataAccess
                     JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                     JOIN Programs prg ON prg.ProgramID = frm.ProgramID
                     Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
-                    WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode";
+                    WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode ORDER BY frm.AuditDate DESC";
     
     using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);

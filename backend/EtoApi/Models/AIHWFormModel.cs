@@ -344,7 +344,11 @@ namespace EtoApi.Models
         public string? SummaryObservations_23040 { get; set; }
         public string? IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805 { get; set; }
         public int? IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID { get; set; }
-         public string? FName { get; set; }
-          public string? LName { get; set; }
+        public string? FName { get; set; }
+        public string? LName { get; set; }
+        public string? SubjectName { get; set; }
+        public string? ProgramName { get; set; }
+
+        
     }
 }

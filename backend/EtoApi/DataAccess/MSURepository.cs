@@ -118,7 +118,12 @@ namespace EtoApi.DataAccess
                     frm.Hastheparticipantreturnedhome_28343,
                     frm.Hastheparticipantreturnedhome_28343_ResponseChoiceID,
                     frm.ParticipantAge_29347,
-                    frm.Totalefforttimeforparticipant_33292
+                    frm.Totalefforttimeforparticipant_33292,
+                    s.FName,
+                    s.LName,
+                    sub.Name,
+                    prg.ProgramName,
+                    e.EntityName
 
                 FROM form.f_300 frm
                 JOIN Staff s ON frm.AuditStaffID = s.StaffID
@@ -233,6 +238,12 @@ namespace EtoApi.DataAccess
                     Hastheparticipantreturnedhome_28343_ResponseChoiceID = reader.IsDBNull(91) ? (int?)null : reader.GetInt32(91),
                     ParticipantAge_29347 = reader.IsDBNull(92) ? (decimal?)null : reader.GetDecimal(92),
                     Totalefforttimeforparticipant_33292 = reader.IsDBNull(93) ? (int?)null : reader.GetInt32(93),
+                    FName = reader.IsDBNull(94) ? null : reader.GetString(94),
+                    LName = reader.IsDBNull(95) ? null : reader.GetString(95),
+                    SubjectName = reader.IsDBNull(96) ? null : reader.GetString(96),
+                    ProgramName = reader.IsDBNull(97) ? null : reader.GetString(97),
+                    EntityName = reader.IsDBNull(98) ? null : reader.GetString(98),
+                   
 
                 });
             }

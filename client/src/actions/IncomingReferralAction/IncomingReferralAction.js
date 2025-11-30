@@ -3,7 +3,7 @@ import { transformIncomingReferral } from 'transformer/IncomingReferralTransform
 export async function fetchIncomingReferrals(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/incoming-referral?${params.toString()}`,
+      `${process.env.REACT_APP_API_BASE}/participant/incoming-referral?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

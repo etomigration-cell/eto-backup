@@ -35,8 +35,17 @@
 
 /* Tab Content Panel */
 .tab-content {
-  padding: 1.2em 1em 0.85em 1em;
-  margin-left: 0;
+  min-width: 400px; /* Adjust this value as needed */
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1rem;
+  background: #fff;
+}
+
+.tab-content {
+  .family-panel {
+    margin: 1rem;
+  }
 }
 
 @media (max-width: 600px) {

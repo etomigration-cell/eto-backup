@@ -25,9 +25,14 @@ namespace EtoApi.Controllers
         private readonly MSUService _msuService;
         private readonly ConsentService _consentService;
         private readonly IncomingReferralService _incomingReferralService;
+        private readonly ProgramHistoryService _programHistoryService;
+        private readonly LotusNotesService _lotusNotesService;
+        private readonly LotusInitialFormService _lotusInitialFormService;
+        private readonly RedressService _redressService;
+        private readonly RedressNotesService _redressnotesService;
 
         // Inject all services via constructor
-        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService, MSUService msuService, ConsentService consentService, IncomingReferralService incomingReferralService)
+        public ParticipantController(FamilyService familyService, ParticipantService participantService, SupportPeriodService supportPeriodService, ServiceActivitiesService serviceActivitiesService, DocumentService documentsService, AddressBookService addressService, PlannedActionService plannedActionService, WdynService wdynService, SearchParticipantService searchParticipantService, AIHWFormService aIHWFormService, BrokeragePaymentService brokeragePaymentService, SafetyAlertsService safetyAlertsService, MSUService msuService, ConsentService consentService, IncomingReferralService incomingReferralService, ProgramHistoryService programHistoryService, LotusNotesService lotusNotesService, LotusInitialFormService lotusInitialFormService, RedressService redressService, RedressNotesService redressnotesService)
         {
             _familyService = familyService;
             _participantService = participantService;
@@ -44,6 +49,11 @@ namespace EtoApi.Controllers
             _msuService = msuService;
             _consentService = consentService;
             _incomingReferralService = incomingReferralService;
+            _programHistoryService = programHistoryService;
+            _lotusNotesService = lotusNotesService;
+            _lotusInitialFormService = lotusInitialFormService;
+            _redressService = redressService;
+            _redressnotesService = redressnotesService;
         }
 
         [HttpGet("family-details/{id}")]
@@ -57,8 +67,8 @@ namespace EtoApi.Controllers
             return Ok(members);
         }
 
-        [HttpGet("participant-details/{id}")]
-        public async Task<ActionResult<ParticipantDetails>> GetParticipantDetails(int id)
+        [HttpGet("participant-details")]
+        public async Task<ActionResult<ParticipantDetails>> GetParticipantDetails([FromQuery] int id)
         {
             var participant = await _participantService.GetParticipantByIdAsync(id);
             if (participant == null)
@@ -209,6 +219,65 @@ namespace EtoApi.Controllers
                 return NotFound();
             }
             return Ok(incomingReferral);
+        }
+
+        [HttpGet("program-history")]
+        public async Task<ActionResult<List<ParticipantProgramHistory>>> GetProgramHistory([FromQuery] int id)
+        {
+            var programHistory = await _programHistoryService.GetParticipantProgramHistoryByIdAsync(id);
+            if (programHistory == null || programHistory.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(programHistory);
+        }
+
+        [HttpGet("lotus-initial-form")]
+        public async Task<ActionResult<List<LotusInitialForm>>> GetLotusInitialForm([FromQuery] int id)
+        {
+            var lotusInitialForm = await _lotusInitialFormService.GetLotusInitialFormByIdAsync(id);
+            if (lotusInitialForm == null || lotusInitialForm.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(lotusInitialForm);
+        }
+
+        [HttpGet("lotus-notes")]
+        public async Task<ActionResult<List<LotusNotes>>> GetLotusNotes([FromQuery] int id)
+        {
+            var lotusNotes = await _lotusNotesService.GetLotusNotesByIdAsync(id);
+            if (lotusNotes == null || lotusNotes.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(lotusNotes);
+        }
+
+        [HttpGet("redress/{id}")]
+        public async Task<ActionResult<List<RedressModel>>> GetRedress(int id)
+        {
+
+            var redress = await _redressService.GetRedressAsync(id);
+            if (redress == null || redress.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(redress);
+        }
+
+
+
+        [HttpGet("redress-notes/{id}")]
+        public async Task<ActionResult<List<RedressNotesModel>>> GetRedressNotes(int id)
+        {
+
+            var redressnotes = await _redressnotesService.GetRedressNotesAsync(id);
+            if (redressnotes == null || redressnotes.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(redressnotes);
         }
     }
 }

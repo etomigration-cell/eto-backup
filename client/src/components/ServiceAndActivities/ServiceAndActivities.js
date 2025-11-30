@@ -90,7 +90,7 @@ function ServiceAndActivities({ participant, config, programCode }) {
   return (
     <div className="service-and-activities-panel">
       <div className="panel-header">
-        <strong>Service And Activities</strong>
+       {!loading && <strong>Service And Activities</strong> }
       </div>
       {loading && <Spinner />}
       {!loading && (

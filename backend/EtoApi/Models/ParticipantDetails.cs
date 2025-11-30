@@ -52,7 +52,9 @@ namespace EtoApi.Models
         public string? PhotographConsent { get; set; }
         public string? Inwhatlanguagedoyoufeelbestabletoexpressyourself { get; set; }
         public string? Nickname { get; set; }
-
         public string? GenderIfincorrect { get; set; }
+        public Dictionary<string, string?> Demographics { get; set; } = new();
+        public string? StaffFName { get; set; }
+        public string? StaffLName { get; set; }
     }
 }

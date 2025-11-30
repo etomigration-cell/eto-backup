@@ -3,7 +3,7 @@ import { transformAllAddressBook } from 'transformer/addressBookTransformer';
 export async function fetchAddressBook(params) {
   try {
     const response = await fetch(
-      `http://localhost:5001/participant/address-book?${params.toString()}`,
+      `${process.env.REACT_APP_API_BASE}/participant/address-book?${params.toString()}`,
     );
     if (!response.ok) {
       return [];

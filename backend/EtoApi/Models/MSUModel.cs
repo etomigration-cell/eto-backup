@@ -98,6 +98,13 @@ namespace EtoApi.Models
         public int? Hastheparticipantreturnedhome_28343_ResponseChoiceID { get; set; }
         public decimal? ParticipantAge_29347 { get; set; }
         public int? Totalefforttimeforparticipant_33292 { get; set; }
+        public string? FName { get; set; }
+        public string? LName { get; set; }
+        public string? SubjectName { get; set; }
+        public string? ProgramName { get; set; }
+
+        public string? EntityName { get; set; }
+        
 
     }
 }

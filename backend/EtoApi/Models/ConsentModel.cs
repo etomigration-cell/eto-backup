@@ -66,5 +66,7 @@ namespace EtoApi.Models
         public string? IconsentforMicahtostoremyhousekeysindesignatedkeystorage_30828 { get; set; }
         public int? IconsentforMicahtostoremyhousekeysindesignatedkeystorage_30828_ResponseChoiceID { get; set; }
 
+        public string? ProgramName { get; set; }
+
     }
 }

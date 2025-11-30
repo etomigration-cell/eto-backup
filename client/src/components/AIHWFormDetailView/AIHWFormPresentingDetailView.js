@@ -9,7 +9,7 @@ function AIHWFormPresentingDetailView({ detail }) {
     
 whatReasonsDoesTheParticipantReportForSeekingAssistance_14662 : "What reasons does the participant report for seeking assistance?",
 whatOtherReasonsDoesTheParticipantReportForSeekingAssistance_14663:"what Other Reasons Does The Participant Report For Seeking Assistance",
-age_14803:"age",
+age_14803:"Age",
 
 ofTheseReasonsWhichDoesTheParticipantReportAsBeingTheMainReasonForSeekingAssistance_14827 : "Of this reasons, which does the participant report as being the main reason for seeking assistance?",
 ifThisParticipantHasACareOrProtectionOrderWhatWereTheCareArrangementsTheWeekBeforePresentingFo_14669 : "If this participant has a care or protection order, what were the care arrangements the Week Before Presenting",
@@ -29,7 +29,7 @@ labourForceStatus_14716 : "If the participant is aged 15 or older, what is their
 ifTheParticipantIs15yrsWhatIsTheirEmploymentStatus_14711 :"If the participant is employed - what is their employment status?",
 ifTheParticipantIs15yrsWhatIsTheirEmploymentStatus_14717 :"If the participant is employed - what is their employment status?",
 mainSourceOfIncome_14718 :"Main Source of income",
-mainSourceOfIncome_14712 :"Main Source of income",
+//mainSourceOfIncome_14712 :"Main Source of income",
 isTheParticipantCurrentlyRegisteredForAGovernmentBenefitPensionOrAllowanceButAwaitingYourFirst_14719: "Is the participant currently registered for a government benefit, pension or allowance but awaiting the first payment?",
 isTheParticipantCurrentlyRegisteredForAGovernmentBenefitPensionOrAllowanceButAwaitingYourFirst_14713 : "Is the participant currently registered for a government benefit, pension or allowance but awaiting the first payment?",
 isTheParticipantUndertakingFormalStudyOrTrainingEgSchoolUniversityVocationalStudiesSuchAsTafe_14720 :"Is the participant undertaking formal study or training(e.g school, university, vocational studies such as TAFE)?",
@@ -39,7 +39,7 @@ whatTypeOfEducationtrainingIsTheParticipantEnrolledIn_14715 : "What type of educ
 whatWasTheSchoolEnrolmentAndAttendanceStatusOnPresentation_14847 : "What was the school enrolment and attendance status on presentation?",
 episodeOfHomelessness_14731 : "Episode of homelessness -in a month presenting",
 labourForceStatus_14710:"If the participant is aged 15 or older, what is their Labour Force status?",
-episodeOfHomelessness_14734 : "Episode of homelessness -12 mnth before",
+episodeOfHomelessness_14734 : "Episode of homelessness -12 month before",
 howLongSinceYouHadThisPermanentPlaceToLive_14737 : "How long since you had this permanent place to live",
 
 whatWasTheSuburblocalityOfYourMostRecentPermanentPlaceToLive_14738 : "What was the suburb/locally of your most recent permanent place to live?",

@@ -20,10 +20,10 @@ collectionID:record.collectionID,
 responseCreatedDate:record.responseCreatedDate,
 programID:record.programID,
 auditStaffID:record.auditStaffID,
-auditDate:record.auditDate,
+auditDate:record.auditDate ? moment(record.auditDate).format("DD/MM/YYYY") : null,
 dataEnteredByID:record.dataEnteredByID,
 draftSavedOn:record.draftSavedOn,
-removedDate:record.removedDate,
+removedDate:record.removedDate ? moment(record.removedDate).format("DD/MM/YYYY") : null,
 whatReasonsDoesTheParticipantReportForSeekingAssistance_14662:record.whatReasonsDoesTheParticipantReportForSeekingAssistance_14662,
 whatReasonsDoesTheParticipantReportForSeekingAssistance_14662_ResponseChoiceID:record.whatReasonsDoesTheParticipantReportForSeekingAssistance_14662_ResponseChoiceID,
 whatOtherReasonsDoesTheParticipantReportForSeekingAssistance_14663:record.whatOtherReasonsDoesTheParticipantReportForSeekingAssistance_14663,
@@ -352,13 +352,14 @@ lName:record.lName,
 auditDate: record.auditDate ? moment(record.auditDate).format("DD/MM/YYYY") : "",
 micahTeam: record.micahTeam_16159,
 createdby:record.fName+" "+record.lName,
+subjectName:record.subjectName,
   };
 }
 
  
 export function transformAihwform(records) {
   const minimalKeys = [
-    "subjectID",    
+    "subjectName",    
     "auditDate",
     "createdby",
     // "dateLastUpdated",

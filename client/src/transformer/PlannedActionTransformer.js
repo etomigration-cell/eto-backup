@@ -12,7 +12,7 @@ function transformPlannedAction(input) {
     collectionTypeID: input.collectionTypeID ?? null,
     subjectTypeID: input.subjectTypeID ?? null,
     collectionID: input.collectionID ?? null,
-    responseCreatedDate: input.responseCreatedDate ?? null,
+    responseCreatedDate: input.responseCreatedDate ? moment(input.responseCreatedDate).format("DD/MM/YYYY") : "",
     programID: input.programID ?? null,
     auditStaffID: input.auditStaffID ?? null,
     auditDate: input.auditDate ? moment(input.auditDate).format("DD/MM/YYYY") : "",

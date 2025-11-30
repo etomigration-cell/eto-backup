@@ -11,7 +11,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactFrontendPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins("http://localhost:3000",
+         "https://eto-migration-ui-faepfberdcamc7gz.australiaeast-01.azurewebsites.net")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -45,6 +46,14 @@ builder.Services.AddTransient<SafetyAlertsRepository>();
 builder.Services.AddTransient<IncomingReferralRepository>();
 builder.Services.AddTransient<MSURepository>();
 builder.Services.AddTransient<ConsentRepository>();
+builder.Services.AddTransient<ProfileRepository>();
+builder.Services.AddTransient<TouchpointsRepository>();
+builder.Services.AddTransient<DemographicsRepository>();
+builder.Services.AddTransient<ProgramHistoryRepository>();
+builder.Services.AddTransient<LotusInitialFormRepository>();
+builder.Services.AddTransient<LotusNotesRepository>();
+builder.Services.AddTransient<RedressRepository>();
+builder.Services.AddTransient<RedressNotesRepository>();
 
 builder.Services.AddSingleton<FamilyService>();
 builder.Services.AddSingleton<ParticipantService>();
@@ -62,6 +71,13 @@ builder.Services.AddSingleton<BrokeragePaymentService>();
 builder.Services.AddSingleton<IncomingReferralService>();
 builder.Services.AddSingleton<MSUService>();
 builder.Services.AddSingleton<ConsentService>();
+builder.Services.AddSingleton<ProfileService>();
+builder.Services.AddSingleton<TouchpointsService>();
+builder.Services.AddSingleton<ProgramHistoryService>();
+builder.Services.AddSingleton<LotusInitialFormService>();
+builder.Services.AddSingleton<LotusNotesService>();
+builder.Services.AddSingleton<RedressService>();
+builder.Services.AddSingleton<RedressNotesService>();
 
 var app = builder.Build();
 

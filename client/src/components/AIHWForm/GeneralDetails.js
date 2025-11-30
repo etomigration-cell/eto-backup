@@ -7,7 +7,8 @@ function GeneralDetails({ detail }) {
 
   const fieldLabels = {
     programName: "Program Name",
-    subjectType: "Subject Type",
+    
+    subjectName: "subject Typr",
     startDate: "What is the start date of Support Period",
     endDate: "Support Period End Date",
     auditDate: "Audit Date",

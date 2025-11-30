@@ -17,77 +17,146 @@ namespace EtoApi.DataAccess
 
         public async Task<List<ParticipantDetails?>> GetSearchParticipantsAsync(string searchText, int? program)
         {
-             using var connection = await _connectionFactory.CreateOpenConnectionAsync();
+            bool fetchAll = string.IsNullOrEmpty(searchText) || searchText == "null";
+            
+            using var connection = await _connectionFactory.CreateOpenConnectionAsync();
 
-            var query = @"
-                SELECT
-                    c.CLID,
-                    SSN,
-                    CaseNumber,
-                    FName,
-                    MiddleInitial,
-                    LName,
-                    Disabled,
-                    PrefixID,
-                    SuffixID,
-                    EthnicityID,
-                    DOB,
-                    Address1,
-                    Address2,
-                    ZipCode,
-                    HomePhone,
-                    CellPhone,
-                    WorkPhone,
-                    WorkPhoneExtension,
-                    Pager,
-                    Email,
-                    Gender,
-                    MaritalStatusID,
-                    FundingEntityID,
-                    ReferralEntityID,
-                    c.AuditStaffID,
-                    c.AuditDate,
-                    AssignedStaffID,
-                    DateCreated,
-                    Alert,
-                    HoR_ID,
-                    HoR_ChildID,
-                    HoR_BID,
-                    HoR_IDAbuser,
-                    HoR_VID,
-                    ClientGUID,
-                    TigerID,
-                    CensusTract,
-                    CensusBlock,
-                    CLID_Source,
-                    ZipExtension,
-                    OptOut,
-                    ReferralNotification,
-                    CSiteID,
-                    frm.ContactMethod_15695,
-                    frm.ContactLocation_15696,
-                    frm.CentrelinkReferenceNumberIfincorrectpleasecorrectindemographicsViewEdit_16044,
-                    frm.AboriginalTorresStraitSouthSeaIslanderIfincorrectpleasecorrectDateofBirthindemographicsViewEdi_16045,
-                    frm.PhotographConsent_16863,
-                    frm.InwhatlanguagedoyoufeelbestabletoexpressyourselfIfincorrectpleasecorrectindemographicsViewEdit_16041,
-                    frm.NicknameAliasIfincorrectpleasecorrectindemographicsViewEdit_16038,
-                    frm.GenderIfincorrectpleasecorrectindemographicsViewEdit_16046
-                FROM Clients c
-                Join ClientsXPrograms cp ON cp.CLID = c.CLID and cp.ProgramID = @program
-                LEFT Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
-                WHERE Disabled = 0
-                AND (
-                FName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
-                OR LName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
-                OR Email COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
-                OR c.CLID LIKE @searchText
-                )";
+            string query;
+            if (fetchAll)
+            {
+                // No search filter; bring all participants for the given program
+                query = @"
+                    SELECT TOP 100
+                        c.CLID,
+                        SSN,
+                        CaseNumber,
+                        FName,
+                        MiddleInitial,
+                        LName,
+                        Disabled,
+                        PrefixID,
+                        SuffixID,
+                        EthnicityID,
+                        DOB,
+                        Address1,
+                        Address2,
+                        ZipCode,
+                        HomePhone,
+                        CellPhone,
+                        WorkPhone,
+                        WorkPhoneExtension,
+                        Pager,
+                        Email,
+                        Gender,
+                        MaritalStatusID,
+                        FundingEntityID,
+                        ReferralEntityID,
+                        c.AuditStaffID,
+                        c.AuditDate,
+                        AssignedStaffID,
+                        DateCreated,
+                        Alert,
+                        HoR_ID,
+                        HoR_ChildID,
+                        HoR_BID,
+                        HoR_IDAbuser,
+                        HoR_VID,
+                        ClientGUID,
+                        TigerID,
+                        CensusTract,
+                        CensusBlock,
+                        CLID_Source,
+                        ZipExtension,
+                        OptOut,
+                        ReferralNotification,
+                        CSiteID,
+                        frm.ContactMethod_15695,
+                        frm.ContactLocation_15696,
+                        frm.CentrelinkReferenceNumberIfincorrectpleasecorrectindemographicsViewEdit_16044,
+                        frm.AboriginalTorresStraitSouthSeaIslanderIfincorrectpleasecorrectDateofBirthindemographicsViewEdi_16045,
+                        frm.PhotographConsent_16863,
+                        frm.InwhatlanguagedoyoufeelbestabletoexpressyourselfIfincorrectpleasecorrectindemographicsViewEdit_16041,
+                        frm.NicknameAliasIfincorrectpleasecorrectindemographicsViewEdit_16038,
+                        frm.GenderIfincorrectpleasecorrectindemographicsViewEdit_16046
+                    FROM Clients c
+                    Join ClientsXPrograms cp ON cp.CLID = c.CLID AND cp.ProgramID = @program
+                    LEFT Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
+                    WHERE Disabled = 0 ORDER BY c.AuditDate DESC";
+            }
+            else
+            {
+                // Apply filter for searchText across multiple fields
+                query = @"
+                    SELECT
+                        c.CLID,
+                        SSN,
+                        CaseNumber,
+                        FName,
+                        MiddleInitial,
+                        LName,
+                        Disabled,
+                        PrefixID,
+                        SuffixID,
+                        EthnicityID,
+                        DOB,
+                        Address1,
+                        Address2,
+                        ZipCode,
+                        HomePhone,
+                        CellPhone,
+                        WorkPhone,
+                        WorkPhoneExtension,
+                        Pager,
+                        Email,
+                        Gender,
+                        MaritalStatusID,
+                        FundingEntityID,
+                        ReferralEntityID,
+                        c.AuditStaffID,
+                        c.AuditDate,
+                        AssignedStaffID,
+                        DateCreated,
+                        Alert,
+                        HoR_ID,
+                        HoR_ChildID,
+                        HoR_BID,
+                        HoR_IDAbuser,
+                        HoR_VID,
+                        ClientGUID,
+                        TigerID,
+                        CensusTract,
+                        CensusBlock,
+                        CLID_Source,
+                        ZipExtension,
+                        OptOut,
+                        ReferralNotification,
+                        CSiteID,
+                        frm.ContactMethod_15695,
+                        frm.ContactLocation_15696,
+                        frm.CentrelinkReferenceNumberIfincorrectpleasecorrectindemographicsViewEdit_16044,
+                        frm.AboriginalTorresStraitSouthSeaIslanderIfincorrectpleasecorrectDateofBirthindemographicsViewEdi_16045,
+                        frm.PhotographConsent_16863,
+                        frm.InwhatlanguagedoyoufeelbestabletoexpressyourselfIfincorrectpleasecorrectindemographicsViewEdit_16041,
+                        frm.NicknameAliasIfincorrectpleasecorrectindemographicsViewEdit_16038,
+                        frm.GenderIfincorrectpleasecorrectindemographicsViewEdit_16046
+                    FROM Clients c
+                    Join ClientsXPrograms cp ON cp.CLID = c.CLID AND cp.ProgramID = @program
+                    LEFT Join form.f_288 frm ON frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = c.CLID)
+                    WHERE Disabled = 0
+                    AND (
+                        FName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
+                        OR LName COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
+                        OR Email COLLATE SQL_Latin1_General_CP1_CI_AS LIKE @searchText
+                        OR c.CLID LIKE @searchText
+                    ) ORDER BY c.AuditDate DESC";
+            }
             using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@searchText", $"%{searchText}%");
             command.Parameters.AddWithValue("@program", program);
 
-            var participantDetails = new List<ParticipantDetails>();
-            
+            if (!fetchAll)
+                command.Parameters.AddWithValue("@searchText", $"%{searchText}%");
+
+            var participantDetails = new List<ParticipantDetails?>();
             using var reader = await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {

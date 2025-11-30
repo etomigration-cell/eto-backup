@@ -5,6 +5,7 @@ import Sidebar from "components/Sidebar/Sidebar";
 import Tabs from "components/Tabs/Tabs";
 import AIHWFormDetailView from "../AIHWFormDetailView/AIHWFormDetailView";
 import AIHWFormPresentingDetailView from "../AIHWFormDetailView/AIHWFormPresentingDetailView";
+import AIHWFormSummaryDetailView from "../AIHWFormDetailView/AIHWFormSummaryDetailView";
 import { fetchaihwForm } from "actions/AIHWFormAction/AIHWFormAction";
 import Spinner from "common/Spinner/Spinner";
 import "./AIHWForm.css";
@@ -26,7 +27,7 @@ function AIHWForm({ participant, config }) {
         setAIHWFormDetails(result.full);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching AIHWForm:", error);
+        console.error("Error fetching AIHW Form:", error);
       }
     }
 
@@ -51,6 +52,10 @@ function AIHWForm({ participant, config }) {
     {
       label: "Presenting Reasons",
       content: <AIHWFormPresentingDetailView detail={viewedData} />,
+    },
+    {
+      label: "Summary Observations and Efforts Details",
+      content: <AIHWFormSummaryDetailView detail={viewedData} />,
     },
   ];
 
@@ -100,7 +105,7 @@ function AIHWForm({ participant, config }) {
         onClose={handleCloseSidebar}
         title={
           viewedData
-            ? `AIHWForm for ${viewedData.program || ""}`
+            ? `AIHW Form for ${viewedData.programName || ""}`
             : ""
         }
       >

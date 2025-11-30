@@ -12,14 +12,20 @@ function transformContactInfo(input) {
     collectionTypeID: input.collectionTypeID ?? null,
     subjectTypeID: input.subjectTypeID ?? null,
     collectionID: input.collectionID ?? null,
-    responseCreatedDate: input.responseCreatedDate ?? null,
+    responseCreatedDate: input.responseCreatedDate
+          ? moment(input.responseCreatedDate).format("DD/MM/YYYY")
+          : "",
     programID: input.programID ?? null,
     programName: input.programName_19776 ?? null,
     auditStaffID: input.auditStaffID ?? null,
-    auditDate: input.auditDate ? moment(input.auditDate).format("DD/MM/YYYY") : null,
+    auditDate: input.auditDate
+          ? moment(input.auditDate).format("DD/MM/YYYY")
+          : "",
     dataEnteredByID: input.dataEnteredByID ?? null,
     draftSavedOn: input.draftSavedOn ?? null,
-    removedDate: input.removedDate ?? null,
+    removedDate: input.removedDate
+          ? moment(input.removedDate).format("DD/MM/YYYY")
+          : "",
     name: input.name_9373 ?? null,
     relationship_type: input.relationship_9376 ?? null,
     relationship_choiceID: input.relationship_9376_ResponseChoiceID ?? null,

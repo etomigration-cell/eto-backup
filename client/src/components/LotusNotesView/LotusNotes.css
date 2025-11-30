@@ -1,0 +1,44 @@
+
+.lotus-notes-panel .lotus-notes-table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  background: #fff;
+  table-layout: fixed; /* Ensures columns use the specified widths */
+}
+
+/* Header Row */
+.lotus-notes-panel .lotus-notes-table th {
+  background: #002a54;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 8px;
+  border-bottom: 1px solid #e3e8ee;
+  text-align: left;
+  font-size: 12px;
+}
+
+/* Body Rows */
+.lotus-notes-panel .lotus-notes-table td {
+  padding: 8px 8px;
+  border-bottom: 1px solid #e7eaed;
+  font-size: 12px;
+  vertical-align: top;
+  color: #262d3d;
+}
+
+.lotus-notes-panel .lotus-notes-table th:nth-child(1) {
+ border-top-left-radius: 8px;
+}
+
+.lotus-notes-panel .lotus-notes-table th:last-child {
+ border-top-right-radius: 8px;
+}
+
+/* Overflow scroll for table wrapper/panel */
+.lotus-notes-table-wrapper,
+.panel-section {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(60,80,130,0.07);
+}

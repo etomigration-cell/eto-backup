@@ -16,13 +16,13 @@ formID:record.formID,
 collectionTypeID:record.collectionTypeID,
 subjectTypeID:record.subjectTypeID,
 collectionID:record.collectionID,
-responseCreatedDate:record.responseCreatedDate,
+responseCreatedDate:record.responseCreatedDate ? moment(record.responseCreatedDate).format("DD/MM/YYYY") : null,
 programID:record.programID,
 auditStaffID:record.auditStaffID,
-auditDate:record.auditDate,
+auditDate:record.auditDate ? moment(record.auditDate).format("DD/MM/YYYY") : null,
 dataEnteredByID:record.dataEnteredByID,
 draftSavedOn:record.draftSavedOn,
-removedDate:record.removedDate,
+removedDate:record.removedDate ? moment(record.removedDate).format("DD/MM/YYYY") : null,
 purpose_6508:record.purpose_6508,
 purpose_6508_ResponseChoiceID:record.purpose_6508_ResponseChoiceID,
 context_6510:record.context_6510,
@@ -33,7 +33,7 @@ numberOfAdults_6514:record.numberOfAdults_6514,
 numberOfChildren_6515:record.numberOfChildren_6515,
 numberOfNightsOfaccommodation_6516:record.numberOfNightsOfaccommodation_6516,
 amountRecovered_6518:record.amountRecovered_6518,
-transactionDate_6525:record.transactionDate_6525,
+transactionDate_6525:record.transactionDate_6525  ? moment(record.transactionDate_6525).format("DD/MM/YYYY") : null,
 shouldthepaperformbeanonymous_6527:record.shouldthepaperformbeanonymous_6527,
 shouldthepaperformbeanonymous_6527_ResponseChoiceID:record.shouldthepaperformbeanonymous_6527_ResponseChoiceID,
 jobCode_6528:record.jobCode_6528,
@@ -126,7 +126,11 @@ aIHWpurpose_28341:record.aIHWpurpose_28341,
 aIHWpurpose_28341_ResponseChoiceID:record.aIHWpurpose_28341_ResponseChoiceID,
 ofchildrenunder5_32024:record.ofchildrenunder5_32024,
 childrenbetween6and12_32025:record.childrenbetween6and12_32025,
-childrenbetween13and18_32026:record.childrenbetween13and18_32026
+childrenbetween13and18_32026:record.childrenbetween13and18_32026,
+auditName:record.fName+" "+record.lName,
+subjectName:record.subjectName,
+programName:record.programName,
+entityName:record.entityName
 
 
   };
@@ -135,11 +139,13 @@ childrenbetween13and18_32026:record.childrenbetween13and18_32026
 
 export function transformBrokeragePayment(records) {
   const minimalKeys = [
-    "vouchertype_6553",
-    "Status",
-    "purpose_6508",    
-    "chequePayableTo_6554",
-    "micahTeam_11295",
+    "auditDate",
+    "responseCreatedDate",
+    "formIdentifier",
+    "collectionID",        
+    "programName",
+    "auditName",
+    "transactionDate_6525"
     
   ];
 

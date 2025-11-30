@@ -86,7 +86,8 @@ namespace EtoApi.DataAccess
                 JOIN SubjectType sub ON sub.SubjectTypeID = frm.SubjectTypeID
                 JOIN Programs prg ON prg.ProgramID = frm.ProgramID
                 Join ClientsXPrograms cp ON cp.CLID = @Id and cp.ProgramID = @programCode
-                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode";
+                WHERE frm.SubjectID = (SELECT SubjectID FROM SubjectXClient WHERE CLID = @Id) and frm.ProgramID = @programCode
+                ORDER BY frm.AuditDate DESC";
 
             using var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
@@ -100,7 +101,7 @@ namespace EtoApi.DataAccess
                 supportPeriods.Add(new SupportPeriod
                 {
                     FormResponseID = reader.IsDBNull(0) ? (int?)null : reader.GetInt32(0),
-                    FormIdentifier = reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1),
+                    FormIdentifier = reader.IsDBNull(1) ? null : reader.GetString(1),
                     SubjectName = reader.IsDBNull(2) ? null : reader.GetString(2),
                     GroupID = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                     FamilyID = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4),
@@ -146,12 +147,12 @@ namespace EtoApi.DataAccess
                     WhatistheparticipantsselfassessedEnglishproficiency_24801_ResponseChoiceID = reader.IsDBNull(44) ? (int?)null : reader.GetInt32(44),
                     DoestheParticipantspeakalanguageotherthanEnglishathome_24803 = reader.IsDBNull(45) ? null : reader.GetString(45),
                     DoestheParticipantspeakalanguageotherthanEnglishathome_24803_ResponseChoiceID = reader.IsDBNull(46) ? (int?)null : reader.GetInt32(46),
-                    LanguageSpokenatHome_24975 = reader.IsDBNull(47) ? null : reader.GetString(47),
+                    LanguageSpokenatHome_24975 = reader.IsDBNull(47) ? (int?)null : reader.GetInt32(47),
                     AgeOfparticipant_24977 = reader.IsDBNull(48) ? (decimal?)null : reader.GetDecimal(48),
                     Age_27257 = reader.IsDBNull(49) ? (decimal?)null : reader.GetDecimal(49),
                     Wasthecarefinderclientfeedbacksurveyofferred_31682 = reader.IsDBNull(50) ? null : reader.GetString(50),
                     Wasthecarefinderclientfeedbacksurveyofferred_31682_ResponseChoiceID = reader.IsDBNull(51) ? (int?)null : reader.GetInt32(51),
-                    MainLanguageatHome_33264 = reader.IsDBNull(52) ? null : reader.GetString(52),
+                    MainLanguageatHome_33264 = reader.IsDBNull(52) ? (int?)null : reader.GetInt32(52),
                     LanguageProficiency_33265 = reader.IsDBNull(53) ? null : reader.GetString(53),
                     LanguageProficiency_33265_ResponseChoiceID = reader.IsDBNull(54) ? (int?)null : reader.GetInt32(54),
                     SAMMensProgramonlywhatwasthereasonforthesupportperiodending_33335 = reader.IsDBNull(55) ? null : reader.GetString(55),

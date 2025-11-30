@@ -362,8 +362,10 @@ namespace EtoApi.DataAccess
                     frm.SummaryObservations_23040,
                     frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805,
                     frm.IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID,
-                     s.FName,
-                    s.LName
+                    s.FName,
+                    s.LName,
+                    sub.Name,
+                    prg.ProgramName
                 
 
                 FROM form.f_290 frm
@@ -725,8 +727,10 @@ namespace EtoApi.DataAccess
                     IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805 = reader.IsDBNull(337) ? null : reader.GetString(337),
                     IstheparticipantcurrentlyreceivinganagreedpackageofsupportthroughtheNationalDisabilityInsuranc_24805_ResponseChoiceID = reader.IsDBNull(338) ? (int?)null : reader.GetInt32(338),
                     FName = reader.IsDBNull(339) ? null : reader.GetString(339),
-                    LName = reader.IsDBNull(340) ? null : reader.GetString(340)
-                });
+                    LName = reader.IsDBNull(340) ? null : reader.GetString(340),
+                    SubjectName = reader.IsDBNull(341) ? null : reader.GetString(341),
+                    ProgramName = reader.IsDBNull(342) ? null :reader.GetString(342),
+                 });
             }
 
             return AIHWForm;
